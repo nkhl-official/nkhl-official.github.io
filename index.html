@@ -36,7 +36,64 @@
         </nav>
     </header>
     <main>
-        <p>Welcome to the official NKHL website!</p>
-    </main>
+        <h2>Home</h2>
+        <section id="description">
+            <p>Welcome to the official website of the National Knee Hockey League! Stay updated with the latest news, schedules, and standings. See how your favorite teams are performing, and watch to see who will win the national championship!</p>
+        </section>
+
+    <section id="top-teams">
+        <h2>Top 3 Teams</h2>
+        <table id="top-teams-table">
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>OT Losses</th>
+                    <th>Points</th>
+                    <th>Goals Scored</th>
+                    <th>Streak</th>
+                    <th>Goal Differential</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Top 3 teams will be dynamically populated here -->
+            </tbody>
+        </table>
+    </section>
+</main>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const standingsTable = document.getElementById("standings");
+        const standingsRows = Array.from(standingsTable.querySelectorAll("tbody tr"));
+
+        standingsRows.sort((a, b) => {
+            const pointsA = parseInt(a.dataset.points, 10);
+            const pointsB = parseInt(b.dataset.points, 10);
+            const goalsA = parseInt(a.dataset.goals, 10);
+            const goalsB = parseInt(b.dataset.goals, 10);
+            const diffA = parseInt(a.dataset.differential, 10);
+            const diffB = parseInt(b.dataset.differential, 10);
+
+            if (pointsA !== pointsB) {
+                return pointsB - pointsA;
+            } else if (goalsA !== goalsB) {
+                return goalsB - goalsA;
+            } else if (diffA !== diffB) {
+                return diffB - diffA;
+            } else {
+                return 0;
+            }
+        });
+
+        const topTeams = standingsRows.slice(0, 3);
+
+        const topTeamsTable = document.querySelector("#top-teams-table tbody");
+        topTeams.forEach(team => {
+            const newRow = team.cloneNode(true);
+            topTeamsTable.appendChild(newRow);
+        });
+    });
+</script>
 </body>
 </html>
