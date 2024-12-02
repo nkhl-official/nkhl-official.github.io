@@ -100,3 +100,51 @@ iframe {
     height: auto;
     border: none;
 }
+
+main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.divisions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.division {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+}
+
+.division h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.division ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.division li {
+    margin: 5px 0;
+}
+
+.division a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.division a:hover {
+    text-decoration: underline;
+}
