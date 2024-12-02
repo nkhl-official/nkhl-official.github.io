@@ -87,3 +87,16 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
     background-color: #e6e6e6;
 }
+
+.slideshow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+iframe {
+    max-width: 100%;
+    height: auto;
+    border: none;
+}
