@@ -88,13 +88,6 @@ tbody tr:hover {
     background-color: #e6e6e6;
 }
 
-.slideshow {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-}
-
 main {
     max-width: 1200px;
     margin: 40px auto;
