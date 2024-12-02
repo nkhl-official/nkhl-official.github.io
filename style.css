@@ -95,12 +95,6 @@ tbody tr:hover {
     margin: 20px 0;
 }
 
-iframe {
-    max-width: 100%;
-    height: auto;
-    border: none;
-}
-
 main {
     max-width: 1200px;
     margin: 40px auto;
