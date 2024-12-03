@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snipers</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
     <link rel="stylesheet" href="https://nkhl-official.github.io/style.css">
 </head>
 <body>
@@ -40,6 +37,8 @@
         <!-- Standings Table for the Team -->
         <section id="team-standings">
             <h3>Current Team Standings</h3>
+            <!-- Hidden iFrame to load standings -->
+            <iframe src="standings.html" id="standings-frame" style="display: none;"></iframe>
             <table id="team-standings-table">
                 <thead>
                     <tr>
@@ -102,43 +101,35 @@
                 <p class="jersey-label">Alternate Jersey</p>
             </div>
         </section>
-
     </main>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const teamName = "Snipers"; // Replace with the actual team name //
-            const standingsTable = document.getElementById("standings");
-            const standingsRows = Array.from(standingsTable.querySelectorAll("tbody tr"));
+            const teamName = "Snipers";
+            const iframe = document.getElementById("standings-frame");
 
-            const teamRow = standingsRows.find(row => row.querySelector("td:first-child").textContent === teamName);
+            iframe.onload = () => {
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                const standingsTable = iframeDoc.querySelector("#standings");
+                const standingsRows = Array.from(standingsTable.querySelectorAll("tbody tr"));
 
-            if (teamRow) {
-                const teamStats = [
-                    teamRow.querySelector("td:nth-child(2)").textContent, // Wins
-                    teamRow.querySelector("td:nth-child(3)").textContent, // Losses
-                    teamRow.querySelector("td:nth-child(4)").textContent, // OT Losses
-                    teamRow.querySelector("td:nth-child(5)").textContent, // Points
-                    teamRow.querySelector("td:nth-child(6)").textContent, // Goals Scored
-                    teamRow.querySelector("td:nth-child(7)").textContent, // Streak
-                    teamRow.querySelector("td:nth-child(8)").textContent, // Goal Differential
-                ];
+                const teamRow = standingsRows.find(row => row.querySelector("td:first-child").textContent === teamName);
 
-                const place = teamRow.querySelector("td:first-child").textContent; // Place/Position of the team
-                const teamStandingsTable = document.querySelector("#team-standings-table tbody");
-                const newRow = document.createElement("tr");
-                newRow.innerHTML = `
-                    <td>${place}</td>
-                    <td>${teamStats[0]}</td>
-                    <td>${teamStats[1]}</td>
-                    <td>${teamStats[2]}</td>
-                    <td>${teamStats[3]}</td>
-                    <td>${teamStats[4]}</td>
-                    <td>${teamStats[5]}</td>
-                    <td>${teamStats[6]}</td>
-                `;
-                teamStandingsTable.appendChild(newRow);
-            }
+                if (teamRow) {
+                    const place = teamRow.querySelector("td:nth-child(1)").textContent;
+                    const stats = Array.from(teamRow.querySelectorAll("td")).slice(1).map(td => td.textContent);
+
+                    const teamStandingsTable = document.querySelector("#team-standings-table tbody");
+                    const newRow = document.createElement("tr");
+                    newRow.innerHTML = `
+                        <td>${place}</td>
+                        ${stats.map(stat => `<td>${stat}</td>`).join("")}
+                    `;
+                    teamStandingsTable.appendChild(newRow);
+                } else {
+                    console.error(`Team "${teamName}" not found in the standings.`);
+                }
+            };
         });
     </script>
 </body>
