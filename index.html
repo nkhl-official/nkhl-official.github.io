@@ -67,55 +67,63 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const standingsTable = document.getElementById("standings");
-            const standingsRows = Array.from(standingsTable.querySelectorAll("tbody tr"));
+            // Wait until the iframe has fully loaded
+            const iframe = document.getElementById("standings-frame");
+            iframe.onload = () => {
+                const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+                const standingsTable = iframeDocument.getElementById("standings");
 
-            standingsRows.sort((a, b) => {
-                const pointsA = parseInt(a.dataset.points, 10);
-                const pointsB = parseInt(b.dataset.points, 10);
-                const goalsA = parseInt(a.dataset.goals, 10);
-                const goalsB = parseInt(b.dataset.goals, 10);
-                const diffA = parseInt(a.dataset.differential, 10);
-                const diffB = parseInt(b.dataset.differential, 10);
+                if (standingsTable) {
+                    const standingsRows = Array.from(standingsTable.querySelectorAll("tbody tr"));
 
-                if (pointsA !== pointsB) {
-                    return pointsB - pointsA;
-                } else if (goalsA !== goalsB) {
-                    return goalsB - goalsA;
-                } else if (diffA !== diffB) {
-                    return diffB - diffA;
-                } else {
-                    return 0;
+                    standingsRows.sort((a, b) => {
+                        const pointsA = parseInt(a.dataset.points, 10);
+                        const pointsB = parseInt(b.dataset.points, 10);
+                        const goalsA = parseInt(a.dataset.goals, 10);
+                        const goalsB = parseInt(b.dataset.goals, 10);
+                        const diffA = parseInt(a.dataset.differential, 10);
+                        const diffB = parseInt(b.dataset.differential, 10);
+
+                        if (pointsA !== pointsB) {
+                            return pointsB - pointsA;
+                        } else if (goalsA !== goalsB) {
+                            return goalsB - goalsA;
+                        } else if (diffA !== diffB) {
+                            return diffB - diffA;
+                        } else {
+                            return 0;
+                        }
+                    });
+
+                    const topTeams = standingsRows.slice(0, 3);
+                    const topTeamsTable = document.querySelector("#top-teams-table tbody");
+
+                    topTeams.forEach(team => {
+                        const newRow = document.createElement("tr");
+
+                        const teamName = team.querySelector("td:first-child").textContent;
+                        const wins = team.querySelector("td:nth-child(2)").textContent;
+                        const losses = team.querySelector("td:nth-child(3)").textContent;
+                        const otLosses = team.querySelector("td:nth-child(4)").textContent;
+                        const points = team.querySelector("td:nth-child(5)").textContent;
+                        const goalsScored = team.querySelector("td:nth-child(6)").textContent;
+                        const streak = team.querySelector("td:nth-child(7)").textContent;
+                        const goalDifferential = team.querySelector("td:nth-child(8)").textContent;
+
+                        newRow.innerHTML = `
+                            <td>${teamName}</td>
+                            <td>${wins}</td>
+                            <td>${losses}</td>
+                            <td>${otLosses}</td>
+                            <td>${points}</td>
+                            <td>${goalsScored}</td>
+                            <td>${streak}</td>
+                            <td>${goalDifferential}</td>
+                        `;
+                        topTeamsTable.appendChild(newRow);
+                    });
                 }
-            });
-
-            const topTeams = standingsRows.slice(0, 3);
-
-            const topTeamsTable = document.querySelector("#top-teams-table tbody");
-            topTeams.forEach(team => {
-                const newRow = document.createElement("tr");
-
-                const teamName = team.querySelector("td:first-child").textContent; // Team Name
-                const wins = team.querySelector("td:nth-child(2)").textContent; // Wins
-                const losses = team.querySelector("td:nth-child(3)").textContent; // Losses
-                const otLosses = team.querySelector("td:nth-child(4)").textContent; // OT Losses
-                const points = team.querySelector("td:nth-child(5)").textContent; // Points
-                const goalsScored = team.querySelector("td:nth-child(6)").textContent; // Goals Scored
-                const streak = team.querySelector("td:nth-child(7)").textContent; // Streak
-                const goalDifferential = team.querySelector("td:nth-child(8)").textContent; // Goal Differential
-
-                newRow.innerHTML = `
-                    <td>${teamName}</td>
-                    <td>${wins}</td>
-                    <td>${losses}</td>
-                    <td>${otLosses}</td>
-                    <td>${points}</td>
-                    <td>${goalsScored}</td>
-                    <td>${streak}</td>
-                    <td>${goalDifferential}</td>
-                `;
-                topTeamsTable.appendChild(newRow);
-            });
+            };
         });
     </script>
 </body>
