@@ -64,9 +64,11 @@
 </main>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
+        // Get rows from the standings table
         const standingsTable = document.getElementById("standings");
         const standingsRows = Array.from(standingsTable.querySelectorAll("tbody tr"));
 
+        // Sort rows based on points, goals scored, and goal differential
         standingsRows.sort((a, b) => {
             const pointsA = parseInt(a.dataset.points, 10);
             const pointsB = parseInt(b.dataset.points, 10);
@@ -90,7 +92,28 @@
 
         const topTeamsTable = document.querySelector("#top-teams-table tbody");
         topTeams.forEach(team => {
-            const newRow = team.cloneNode(true);
+            const newRow = document.createElement("tr");
+
+            const teamName = team.querySelector("td:first-child").textContent; // Team Name
+            const wins = team.querySelector("td:nth-child(2)").textContent; // Wins
+            const losses = team.querySelector("td:nth-child(3)").textContent; // Losses
+            const otLosses = team.querySelector("td:nth-child(4)").textContent; // OT Losses
+            const points = team.querySelector("td:nth-child(5)").textContent; // Points
+            const goalsScored = team.querySelector("td:nth-child(6)").textContent; // Goals Scored
+            const streak = team.querySelector("td:nth-child(7)").textContent; // Streak
+            const goalDifferential = team.querySelector("td:nth-child(8)").textContent; // Goal Differential
+
+            newRow.innerHTML = `
+                <td>${teamName}</td>
+                <td>${wins}</td>
+                <td>${losses}</td>
+                <td>${otLosses}</td>
+                <td>${points}</td>
+                <td>${goalsScored}</td>
+                <td>${streak}</td>
+                <td>${goalDifferential}</td>
+            `;
+
             topTeamsTable.appendChild(newRow);
         });
     });
