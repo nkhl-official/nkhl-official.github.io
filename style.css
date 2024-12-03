@@ -135,3 +135,74 @@ main {
 .division a:hover {
     text-decoration: underline;
 }
+
+#team-info {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#team-logo {
+    max-width: 150px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+#team-info h3 {
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 10px;
+}
+
+#current-season table, #previous-seasons table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+#current-season th, #previous-seasons th,
+#current-season td, #previous-seasons td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+#current-season th, #previous-seasons th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+#current-season td:first-child, #previous-seasons td:first-child {
+    font-weight: bold;
+    color: #555;
+}
+
+#team-jerseys {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.jersey-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.jersey {
+    max-width: 150px;
+    height: auto;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.jersey:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.jersey-label {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #666;
+}
