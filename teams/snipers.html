@@ -102,35 +102,61 @@
             </div>
         </section>
     </main>
-
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const teamName = "Snipers";
-            const iframe = document.getElementById("standings-frame");
+    document.addEventListener("DOMContentLoaded", () => {
+        const teamName = "Snipers"; // Replace with the specific team's name
+        const iframe = document.querySelector("#standings-frame");
 
-            iframe.onload = () => {
-                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                const standingsTable = iframeDoc.querySelector("#standings");
-                const standingsRows = Array.from(standingsTable.querySelectorAll("tbody tr"));
+        iframe.addEventListener("load", () => {
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            const standingsTable = iframeDocument.querySelector("#standings");
 
-                const teamRow = standingsRows.find(row => row.querySelector("td:first-child").textContent === teamName);
+            if (!standingsTable) {
+                console.error("Standings table not found.");
+                return;
+            }
 
-                if (teamRow) {
-                    const place = teamRow.querySelector("td:nth-child(1)").textContent;
-                    const stats = Array.from(teamRow.querySelectorAll("td")).slice(1).map(td => td.textContent);
+            // Find the team's row in the standings
+            const standingsRows = Array.from(standingsTable.querySelectorAll("tbody tr"));
+            const teamRow = standingsRows.find(row => 
+                row.querySelector("td:first-child").textContent.trim() === teamName
+            );
 
-                    const teamStandingsTable = document.querySelector("#team-standings-table tbody");
-                    const newRow = document.createElement("tr");
-                    newRow.innerHTML = `
-                        <td>${place}</td>
-                        ${stats.map(stat => `<td>${stat}</td>`).join("")}
-                    `;
-                    teamStandingsTable.appendChild(newRow);
-                } else {
-                    console.error(`Team "${teamName}" not found in the standings.`);
-                }
-            };
+            if (teamRow) {
+                // Extract the place/position of the team
+                const place = standingsRows.indexOf(teamRow) + 1;
+
+                // Use the home page logic to get team stats based on the place
+                const placeRow = standingsRows[place - 1];
+                const teamStats = [
+                    placeRow.querySelector("td:nth-child(2)").textContent, // Wins
+                    placeRow.querySelector("td:nth-child(3)").textContent, // Losses
+                    placeRow.querySelector("td:nth-child(4)").textContent, // OT Losses
+                    placeRow.querySelector("td:nth-child(5)").textContent, // Points
+                    placeRow.querySelector("td:nth-child(6)").textContent, // Goals Scored
+                    placeRow.querySelector("td:nth-child(7)").textContent, // Streak
+                    placeRow.querySelector("td:nth-child(8)").textContent, // Goal Differential
+                ];
+
+                // Populate the table on the team page
+                const teamStandingsTable = document.querySelector("#team-standings-table tbody");
+                const newRow = document.createElement("tr");
+                newRow.innerHTML = `
+                    <td>${place}</td>
+                    <td>${teamStats[0]}</td>
+                    <td>${teamStats[1]}</td>
+                    <td>${teamStats[2]}</td>
+                    <td>${teamStats[3]}</td>
+                    <td>${teamStats[4]}</td>
+                    <td>${teamStats[5]}</td>
+                    <td>${teamStats[6]}</td>
+                `;
+                teamStandingsTable.appendChild(newRow);
+            } else {
+                console.error(`Team '${teamName}' not found in the standings.`);
+            }
         });
-    </script>
+    });
+</script>
 </body>
 </html>
