@@ -34,15 +34,99 @@
     </header>
     <main>
         <h2>Schedule</h2>
-         <div class="slideshow">
-            <iframe 
-                src="https://docs.google.com/presentation/d/e/2PACX-1vQ-iOzOGDZ0ptgn90muUVUQ32xpRKS3I8ygCAPuLZ2hyUOuOr2cKzuQAs-4KcfXPXzErnUXVEFN_SpC/embed?start=true&loop=true&delayms=5000" 
-                frameborder="0" 
-                width="960" 
-                height="569" 
-                allowfullscreen>
-            </iframe>
+         <div class="carousel-container">
+            <button class="carousel-button" id="prev">&#10094;</button>
+            <div class="carousel-track" id="carousel-track">
+                <!-- Week 1 -->
+                <div class="carousel-slide">
+                    <div class="week-label">Week 1</div>
+                    <table class="games-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Matchup</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Jan 5</td><td>Snipers vs Hawks</td><td>4 - 3</td></tr>
+                            <tr><td>Jan 5</td><td>Blizzards vs Titans</td><td>2 - 2 (OT)</td></tr>
+                            <tr><td>Jan 6</td><td>Storm vs Lightning</td><td>5 - 1</td></tr>
+                            <tr><td>Jan 6</td><td>Wolves vs Sharks</td><td>3 - 6</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Week 2 -->
+                <div class="carousel-slide">
+                    <div class="week-label">Week 2</div>
+                    <table class="games-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Matchup</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Jan 12</td><td>Snipers vs Titans</td><td>–</td></tr>
+                            <tr><td>Jan 12</td><td>Wolves vs Hawks</td><td>–</td></tr>
+                            <tr><td>Jan 13</td><td>Storm vs Sharks</td><td>–</td></tr>
+                            <tr><td>Jan 13</td><td>Blizzards vs Lightning</td><td>–</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Week 3 (and so on...) -->
+                <div class="carousel-slide">
+                    <div class="week-label">Week 3</div>
+                    <table class="games-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Matchup</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Jan 19</td><td>Hawks vs Sharks</td><td>–</td></tr>
+                            <tr><td>Jan 19</td><td>Storm vs Wolves</td><td>–</td></tr>
+                            <tr><td>Jan 20</td><td>Blizzards vs Snipers</td><td>–</td></tr>
+                            <tr><td>Jan 20</td><td>Titans vs Lightning</td><td>–</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <button class="carousel-button" id="next">&#10095;</button>
         </div>
     </main>
+    <script>
+        const track = document.getElementById("carousel-track");
+        const slides = Array.from(track.children);
+        const nextButton = document.getElementById("next");
+        const prevButton = document.getElementById("prev");
+
+        // --- Set the current week manually here ---
+        let currentWeek = 2; // Change this number (1 = Week 1, 2 = Week 2, etc.)
+        let currentIndex = currentWeek - 1;
+
+        // Move carousel to the selected week
+        const updateSlidePosition = () => {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        };
+
+        nextButton.addEventListener("click", () => {
+            if (currentIndex < slides.length - 1) currentIndex++;
+            updateSlidePosition();
+        });
+
+        prevButton.addEventListener("click", () => {
+            if (currentIndex > 0) currentIndex--;
+            updateSlidePosition();
+        });
+
+        // Go to current week on page load
+        document.addEventListener("DOMContentLoaded", updateSlidePosition);
+    </script>
 </body>
 </html>
