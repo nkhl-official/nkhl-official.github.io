@@ -240,3 +240,71 @@ main {
 .news-box p {
     margin: 0;
 }
+
+.carousel-container {
+    position: relative;
+    width: 90%;
+    margin: 40px auto;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
+.week-label {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.games-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.games-table th, .games-table td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 10px;
+}
+
+.games-table th {
+    background-color: #eaeaea;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #222;
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 10px 16px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.carousel-button:hover {
+    background: #444;
+}
+
+#prev {
+    left: 10px;
+}
+
+#next {
+    right: 10px;
+}
