@@ -308,3 +308,26 @@ main {
 #next {
     right: 10px;
 }
+
+.carousel-container {
+    position: relative;
+    width: 90%;
+    margin: 40px auto;
+    overflow: visible; /* allow buttons to show outside the box */
+}
+
+.carousel-button {
+    z-index: 10;
+}
+
+.games-table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center everything inside each slide */
+    justify-content: center;
+}
