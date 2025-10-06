@@ -331,3 +331,11 @@ main {
     align-items: center; /* center everything inside each slide */
     justify-content: center;
 }
+
+#prev {
+    left: -30px;
+}
+
+#next {
+    right: -30px;
+}
