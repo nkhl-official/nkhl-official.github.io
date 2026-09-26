@@ -1,321 +1,217 @@
+/* =========================
+   GENERAL SITE STYLES
+   ========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f4f4;
+    color: #111;
 }
 
 header {
+    background: #111;
+    color: white;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #f8f8f8;
-    border-bottom: 1px solid #ddd;
+    padding: 12px 24px;
+    min-height: 76px;
 }
 
-.logo img {
-    height: 100px;
-}
-
-.logo a img {
-    display: block;
-}
-
-.title h1 {
-    margin: 0;
-    font-size: 40px;
-}
-
-.title h1 a {
+header a {
+    color: white;
     text-decoration: none;
-    color: inherit;
 }
 
-.title h1 a:hover {
-    text-decoration: underline;
-}
-
-h2 {
-    font-size: 30px;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.logo-link {
     display: flex;
+    align-items: center;
 }
 
-nav ul li {
-    margin-left: 30px;
+.logo {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    margin-right: 12px;
 }
 
-nav ul li a {
-    text-decoration: none;
-    color: #333;
+.site-title {
+    font-size: 25px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+nav {
+    margin-left: auto;
+    display: flex;
+    gap: 24px;
+}
+
+nav a {
+    font-size: 16px;
     font-weight: bold;
 }
 
-nav ul li a:hover {
-    color: #007bff;
+nav a:hover {
+    color: #ccc;
 }
+
+main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px 50px;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0;
+}
+
+
+/* =========================
+   TABLES
+   ========================= */
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 16px;
-    text-align: center;
-    background-color: #f9f9f9;
-}
-
-thead {
-    background-color: #333;
-    color: white;
+    background: white;
 }
 
 th,
 td {
-    padding: 10px;
-    border: 1px solid #ccc;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-tbody tr:hover {
-    background-color: #e6e6e6;
-}
-
-main {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
+    padding: 12px 10px;
+    border-bottom: 1px solid #ddd;
     text-align: center;
 }
+
+th {
+    background: #111;
+    color: white;
+}
+
+tr:hover {
+    background: #f1f1f1;
+}
+
+
+/* =========================
+   DIVISIONS / TEAMS
+   ========================= */
 
 .divisions {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin-top: 20px;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
 }
 
 .division {
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
-    text-align: center;
-}
-
-.division h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #333;
-    text-transform: uppercase;
-}
-
-.division ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.division li {
-    margin: 5px 0;
-}
-
-.division a {
-    text-decoration: none;
-    color: #007bff;
-}
-
-.division a:hover {
-    text-decoration: underline;
-}
-
-#team-info {
-    text-align: center;
-    margin: 20px 0;
-}
-
-#team-logo {
-    max-width: 150px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
-
-#team-info h3 {
-    font-size: 1.8em;
-    color: #333;
-    margin-top: 10px;
-}
-
-#current-season table,
-#previous-seasons table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-}
-
-#current-season th,
-#previous-seasons th,
-#current-season td,
-#previous-seasons td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: center;
-}
-
-#current-season th,
-#previous-seasons th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-}
-
-#current-season td:first-child,
-#previous-seasons td:first-child {
-    font-weight: bold;
-    color: #555;
-}
-
-#team-jerseys {
-    margin: 40px 0;
-    text-align: center;
-}
-
-.jersey-images {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.jersey {
-    max-width: 150px;
-    height: auto;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.jersey:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.jersey-label {
-    margin-top: 10px;
-    font-size: 0.9em;
-    color: #666;
-}
-
-#news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    margin: 20px 0;
-    padding: 10px;
-}
-
-.news-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f0f0f0;
-    border: 2px solid #ddd;
+    background: white;
     border-radius: 10px;
     padding: 20px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #000;
-    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.news-box:hover {
-    background-color: #e0e0e0;
-    border-color: #aaa;
-    transform: scale(1.05);
+.team-card {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
 }
 
-.news-box p {
-    margin: 0;
+.team-card:last-child {
+    border-bottom: none;
+}
+
+.team-card img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    margin-right: 12px;
 }
 
 
-/* =========================================================
-   NKHL SCHEDULE
-   ========================================================= */
+/* =========================
+   NEWS / CONTENT
+   ========================= */
+
+.news-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================
+   SCHEDULE PAGE
+   ========================= */
 
 .schedule-page {
-    width: 100%;
     max-width: 1250px;
-    margin: 0 auto;
-    padding: 45px 25px 70px;
-    box-sizing: border-box;
 }
 
 .schedule-page h2 {
-    font-size: 38px;
-    margin: 0 0 35px;
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 25px;
 }
-
-
-/* =========================================================
-   SCHEDULE CAROUSEL
-   ========================================================= */
 
 .schedule-carousel {
     position: relative;
     width: 100%;
     overflow: hidden;
+    background: transparent;
 }
 
 .carousel-track {
     display: flex;
     width: 100%;
     transition: transform 0.45s ease;
-    will-change: transform;
 }
 
 .carousel-slide {
-    flex: 0 0 100%;
+    min-width: 100%;
     width: 100%;
-    box-sizing: border-box;
-    padding: 0 55px;
+    padding: 0 55px 10px;
 }
 
 
-/* =========================================================
+/* =========================
    WEEK HEADER
-   ========================================================= */
+   ========================= */
 
 .week-header {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 }
 
 .week-title {
-    font-size: 30px;
-    font-weight: 700;
-    margin: 0;
+    font-size: 27px;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .week-date {
-    margin-top: 7px;
+    font-size: 16px;
     color: #666;
-    font-size: 17px;
 }
 
 
-/* =========================================================
-   GAMES
-   ========================================================= */
+/* =========================
+   GAME LIST
+   ========================= */
 
 .games-list {
     display: flex;
@@ -324,65 +220,37 @@ main {
 }
 
 .game-card {
-    display: grid;
-    grid-template-columns: 120px 1fr 105px;
-    align-items: center;
-    min-height: 88px;
-    background: #fff;
-    border: 1px solid #d6d6d6;
+    background: white;
     border-radius: 10px;
-    box-sizing: border-box;
-    overflow: hidden;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    min-height: 78px;
+    display: grid;
+    grid-template-columns: 125px 1fr 170px;
+    align-items: center;
+    padding: 12px 18px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
 }
-
-.game-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-
-/* =========================================================
-   GAME DATE
-   ========================================================= */
 
 .game-date {
-    height: 100%;
-    min-height: 88px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: #f5f5f5;
-    border-right: 1px solid #ddd;
-    font-size: 15px;
-    font-weight: 600;
-    color: #444;
-    padding: 8px;
-    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
+    text-align: left;
 }
-
-
-/* =========================================================
-   MATCHUP
-   ========================================================= */
 
 .matchup {
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 22px;
-    padding: 12px 20px;
-    box-sizing: border-box;
+    align-items: center;
+    gap: 25px;
 }
 
 .team {
     display: flex;
     align-items: center;
     gap: 10px;
-    min-width: 145px;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 17px;
+    font-weight: bold;
+    min-width: 150px;
 }
 
 .team.home {
@@ -399,281 +267,295 @@ main {
     width: 42px;
     height: 42px;
     object-fit: contain;
-    flex-shrink: 0;
 }
 
 .vs {
     font-size: 14px;
-    font-weight: 700;
-    color: #888;
-    flex-shrink: 0;
+    font-weight: bold;
+    color: #777;
 }
 
-
-/* =========================================================
-   SCORE BOX
-   ========================================================= */
-
 .score-container {
-    height: 100%;
-    min-height: 88px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border-left: 1px solid #ddd;
-    background: #fafafa;
+    justify-content: flex-end;
 }
 
 .score-box {
-    min-width: 65px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #222;
+    min-width: 92px;
+    text-align: center;
+    padding: 9px 12px;
     border-radius: 7px;
-    background: #fff;
-    font-size: 18px;
-    font-weight: 700;
-    box-sizing: border-box;
+    background: #e9e9e9;
+    color: #555;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .score-box.final {
-    background: #222;
-    color: #fff;
-    border-color: #222;
+    background: #111;
+    color: white;
 }
 
 
-/* =========================================================
+/* =========================
+   BYE WEEK
+   ========================= */
+
+.bye-week {
+    background: white;
+    border-radius: 10px;
+    padding: 55px 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+}
+
+.bye-week h3 {
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+
+.bye-week p {
+    color: #666;
+    margin: 0;
+}
+
+
+/* =========================
    CAROUSEL BUTTONS
-   ========================================================= */
+   ========================= */
 
 .carousel-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 10;
-
-    width: 44px;
-    height: 44px;
-
-    border: 1px solid #cfcfcf;
+    width: 42px;
+    height: 42px;
+    border: none;
     border-radius: 50%;
-
-    background: #fff;
-    color: #222;
-
-    font-size: 24px;
-    line-height: 1;
-
+    background: #111;
+    color: white;
+    font-size: 25px;
+    line-height: 42px;
     cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-
-    transition:
-        background 0.15s ease,
-        color 0.15s ease,
-        opacity 0.15s ease;
+    z-index: 5;
+    transition: background 0.2s, transform 0.2s;
 }
 
 .carousel-button:hover {
-    background: #222;
-    color: #fff;
+    background: #333;
 }
 
-.carousel-button:disabled {
-    opacity: 0.3;
-    cursor: default;
+.carousel-button:active {
+    transform: translateY(-50%) scale(0.95);
 }
 
 #prev {
-    left: 3px;
+    left: 5px;
 }
 
 #next {
-    right: 3px;
+    right: 5px;
+}
+
+.carousel-button:disabled {
+    opacity: 0.35;
+    cursor: default;
 }
 
 
-/* =========================================================
-   WEEK SELECTOR
-   ========================================================= */
+/* =========================
+   WEEK NAVIGATION
+   ========================= */
 
 .week-navigation {
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 18px;
-    margin-top: 28px;
+    align-items: center;
+    gap: 12px;
+    margin-top: 22px;
+    flex-wrap: wrap;
 }
 
 .week-selector {
-    min-width: 150px;
-    padding: 10px 14px;
-    border: 1px solid #cfcfcf;
-    border-radius: 7px;
-    background: #fff;
-    font-size: 15px;
-    font-weight: 600;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
     cursor: pointer;
 }
-
-
-/* =========================================================
-   WEEK DOTS
-   ========================================================= */
 
 .week-dots {
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 7px;
-    margin-top: 18px;
-    flex-wrap: wrap;
+    margin-top: 15px;
 }
 
 .week-dot {
-    width: 8px;
-    height: 8px;
-    padding: 0;
-    border: none;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
-    background: #c8c8c8;
+    border: none;
+    padding: 0;
+    background: #ccc;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
 .week-dot.active {
-    width: 22px;
-    border-radius: 5px;
-    background: #222;
+    background: #111;
 }
 
 
-/* =========================================================
-   SCHEDULE MOBILE
-   ========================================================= */
+/* =========================
+   RESPONSIVE
+   ========================= */
 
-@media (max-width: 800px) {
-
-    .schedule-page {
-        padding: 30px 12px 50px;
+@media (max-width: 900px) {
+    header {
+        padding: 10px 16px;
     }
 
-    .schedule-page h2 {
-        font-size: 32px;
-        margin-bottom: 25px;
+    .site-title {
+        font-size: 20px;
     }
 
-    .carousel-slide {
-        padding: 0 5px;
+    nav {
+        gap: 14px;
+    }
+
+    nav a {
+        font-size: 14px;
     }
 
     .game-card {
-        grid-template-columns: 72px 1fr 75px;
-        min-height: 76px;
+        grid-template-columns: 95px 1fr 120px;
     }
 
-    .game-date {
-        min-height: 76px;
-        font-size: 12px;
+    .team {
+        min-width: 120px;
+        font-size: 15px;
+    }
+
+    .team-logo {
+        width: 36px;
+        height: 36px;
     }
 
     .matchup {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 650px) {
+    header {
+        flex-wrap: wrap;
+    }
+
+    .site-title {
+        font-size: 18px;
+    }
+
+    nav {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+        margin-left: 0;
+    }
+
+    .carousel-slide {
+        padding: 0 40px 10px;
+    }
+
+    .game-card {
+        grid-template-columns: 1fr;
         gap: 8px;
-        padding: 8px 6px;
+        padding: 14px;
+    }
+
+    .game-date {
+        text-align: center;
+    }
+
+    .matchup {
+        gap: 7px;
     }
 
     .team {
         min-width: 0;
-        gap: 5px;
-        font-size: 14px;
+        flex: 1;
+    }
+
+    .team.home {
+        justify-content: flex-end;
+    }
+
+    .team.away {
+        justify-content: flex-start;
     }
 
     .team-logo {
-        width: 30px;
-        height: 30px;
-    }
-
-    .vs {
-        font-size: 11px;
+        width: 32px;
+        height: 32px;
     }
 
     .score-container {
-        min-height: 76px;
+        justify-content: center;
     }
 
     .score-box {
-        min-width: 52px;
-        height: 36px;
-        font-size: 15px;
+        width: 100%;
     }
 
     .carousel-button {
         width: 36px;
         height: 36px;
-        font-size: 19px;
+        line-height: 36px;
+        font-size: 21px;
     }
 
     #prev {
-        left: -2px;
+        left: 1px;
     }
 
     #next {
-        right: -2px;
-    }
-
-    .week-title {
-        font-size: 25px;
-    }
-
-    .week-date {
-        font-size: 14px;
+        right: 1px;
     }
 }
 
-
-/* =========================================================
-   SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 500px) {
-
-    .game-card {
-        grid-template-columns: 58px 1fr 65px;
+@media (max-width: 430px) {
+    main {
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
-    .team {
-        font-size: 12px;
+    .schedule-page h2 {
+        font-size: 27px;
     }
 
-    .team-logo {
-        width: 25px;
-        height: 25px;
+    .week-title {
+        font-size: 23px;
+    }
+
+    .carousel-slide {
+        padding-left: 32px;
+        padding-right: 32px;
     }
 
     .matchup {
-        gap: 4px;
-        padding: 6px 3px;
+        gap: 3px;
+    }
+
+    .team {
+        font-size: 13px;
+    }
+
+    .team-logo {
+        width: 28px;
+        height: 28px;
     }
 
     .vs {
-        font-size: 9px;
-    }
-
-    .game-date {
-        font-size: 10px;
-        padding: 3px;
-    }
-
-    .score-box {
-        min-width: 47px;
-        height: 32px;
-        font-size: 13px;
+        font-size: 12px;
     }
 }
