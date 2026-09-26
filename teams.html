@@ -6,64 +6,101 @@
     <title>NKHL Teams</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+    <!-- Header -->
     <header>
-        <div class="logo">
-            <a href="index.html">
-                <img src="assets/nkhl-logo.png" alt="Logo">
-            </a>
-        </div>
-        <div class="title">
-            <h1><a href="index.html">National Knee Hockey League</a></h1>
-        </div>
+        <a href="index.html" class="logo-link">
+            <img src="assets/nkhl-logo.png" alt="NKHL Logo" class="logo">
+            <span class="site-title">National Knee Hockey League</span>
+        </a>
+
         <nav>
-            <ul>
-                <li><a href="standings.html">Standings</a></li>
-                <li><a href="schedule.html">Schedule</a></li>
-                <li><a href="teams.html">Teams</a></li>
-            </ul>
+            <a href="index.html">Home</a>
+            <a href="standings.html">Standings</a>
+            <a href="schedule.html">Schedule</a>
+            <a href="teams.html">Teams</a>
         </nav>
     </header>
-    <main>
-        <h2>Teams</h2>
-        <div class="divisions">
-            <div class="division">
-                <h3>Northern Division</h3>
-                <ul>
-                    <li><a href="teams/snipers.html">Snipers 8-6-1</a></li>
-                    <li><a href="teams/bowmen.html">Bowmen 6-6-3</a></li>
-                    <li><a href="teams/goblins.html">Goblins 9-4-2</a></li>
-                    <li><a href="teams/polar_bears.html">Polar Bears 9-3-3</a></li>
-                </ul>
+
+
+    <!-- Main Content -->
+    <main class="teams-page">
+
+        <h1>Teams</h1>
+
+
+        <!-- American Conference -->
+        <section class="conference">
+
+            <h2>American Conference</h2>
+
+            <div class="divisions">
+
+                <!-- Northern Division -->
+                <div class="division">
+                    <h3>Northern Division</h3>
+                    <ul>
+                        <li><a href="teams/snipers.html">Snipers <span>0-0-0</span></a></li>
+                        <li><a href="teams/bowmen.html">Bowmen <span>0-0-0</span></a></li>
+                        <li><a href="teams/goblins.html">Goblins <span>0-0-0</span></a></li>
+                        <li><a href="teams/polar_bears.html">Polar Bears <span>0-0-0</span></a></li>
+                    </ul>
+                </div>
+
+
+                <!-- Eastern Division -->
+                <div class="division">
+                    <h3>Eastern Division</h3>
+                    <ul>
+                        <li><a href="teams/gladiators.html">Gladiators <span>0-0-0</span></a></li>
+                        <li><a href="teams/elves.html">Elves <span>0-0-0</span></a></li>
+                        <li><a href="teams/pioneers.html">Pioneers <span>0-0-0</span></a></li>
+                        <li><a href="teams/hawks.html">Hawks <span>0-0-0</span></a></li>
+                    </ul>
+                </div>
+
             </div>
-            <div class="division">
-                <h3>Eastern Division</h3>
-                <ul>
-                    <li><a href="teams/gladiators.html">Gladiators 6-7-2</a></li>
-                    <li><a href="teams/elves.html">Elves 8-5-2</a></li>
-                    <li><a href="teams/pioneers.html">Pioneers 6-6-3</a></li>
-                    <li><a href="teams/hawks.html">Hawks 10-5-0</a></li>
-                </ul>
+
+        </section>
+
+
+        <!-- National Conference -->
+        <section class="conference">
+
+            <h2>National Conference</h2>
+
+            <div class="divisions">
+
+                <!-- Western Division -->
+                <div class="division">
+                    <h3>Western Division</h3>
+                    <ul>
+                        <li><a href="teams/rangers.html">Rangers <span>0-0-0</span></a></li>
+                        <li><a href="teams/coyotes.html">Coyotes <span>0-0-0</span></a></li>
+                        <li><a href="teams/wildfire.html">Wildfire <span>0-0-0</span></a></li>
+                        <li><a href="teams/lumberjacks.html">Lumberjacks <span>0-0-0</span></a></li>
+                    </ul>
+                </div>
+
+
+                <!-- Southern Division -->
+                <div class="division">
+                    <h3>Southern Division</h3>
+                    <ul>
+                        <li><a href="teams/sailors.html">Sailors <span>0-0-0</span></a></li>
+                        <li><a href="teams/wombats.html">Wombats <span>0-0-0</span></a></li>
+                        <li><a href="teams/cyborgs.html">Cyborgs <span>0-0-0</span></a></li>
+                        <li><a href="teams/bolts.html">Bolts <span>0-0-0</span></a></li>
+                    </ul>
+                </div>
+
             </div>
-            <div class="division">
-                <h3>Western Division</h3>
-                <ul>
-                    <li><a href="teams/rangers.html">Rangers 9-4-2</a></li>
-                    <li><a href="teams/coyotes.html">Coyotes 3-7-5</a></li>
-                    <li><a href="teams/wildfire.html">Wildfire 4-9-2</a></li>
-                    <li><a href="teams/lumberjacks.html">Lumberjacks 9-4-2</a></li>
-                </ul>
-            </div>
-            <div class="division">
-                <h3>Southern Division</h3>
-                <ul>
-                    <li><a href="teams/sailors.html">Sailors 12-3-0</a></li>
-                    <li><a href="teams/wombats.html">Wombats 7-6-2</a></li>
-                    <li><a href="teams/cyborgs.html">Cyborgs 5-8-2</a></li>
-                    <li><a href="teams/bolts.html">Bolts 10-3-2</a></li>
-                </ul>
-            </div>
-        </div>
+
+        </section>
+
     </main>
+
 </body>
 </html>
