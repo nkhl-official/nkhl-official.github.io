@@ -578,3 +578,96 @@ tr:hover {
 .rank {
     font-weight: bold;
 }
+
+.teams-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+.teams-page h1 {
+    text-align: center;
+    font-size: 36px;
+    margin: 0 0 40px;
+}
+
+.conference {
+    margin-bottom: 50px;
+}
+
+.conference > h2 {
+    font-size: 28px;
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #111;
+}
+
+.divisions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.division {
+    background: white;
+    border: 1px solid #d5d5d5;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.division h3 {
+    margin: 0;
+    padding: 16px 20px;
+    background: #111;
+    color: white;
+    font-size: 20px;
+}
+
+.division ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.division li {
+    border-top: 1px solid #e5e5e5;
+}
+
+.division li:first-child {
+    border-top: none;
+}
+
+.division li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    color: #111;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.15s ease;
+}
+
+.division li a:hover {
+    background: #f0f0f0;
+}
+
+.division li span {
+    color: #666;
+    font-weight: normal;
+}
+
+@media (max-width: 700px) {
+    .divisions {
+        grid-template-columns: 1fr;
+    }
+
+    .teams-page {
+        padding: 30px 16px;
+    }
+
+    .conference > h2 {
+        font-size: 24px;
+    }
+}
