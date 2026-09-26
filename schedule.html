@@ -3,130 +3,1252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>NKHL Schedule</title>
+
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
     <link rel="manifest" href="/assets/favicons/site.webmanifest">
     <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg" color="#5bbad5">
     <link rel="shortcut icon" href="/assets/favicons/favicon.ico">
+
     <meta name="msapplication-TileColor" content="#ffc40d">
     <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
+
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================================================
+           NKHL SCHEDULE PAGE
+           ========================================================= */
+
+        .schedule-page {
+            width: 100%;
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 45px 25px 70px;
+            box-sizing: border-box;
+        }
+
+        .schedule-page h2 {
+            text-align: center;
+            font-size: 38px;
+            margin: 0 0 35px;
+        }
+
+        /* -------------------------
+           CAROUSEL
+           ------------------------- */
+
+        .schedule-carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 100%;
+            transition: transform 0.45s ease;
+            will-change: transform;
+        }
+
+        .carousel-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0 55px;
+        }
+
+        /* -------------------------
+           WEEK HEADER
+           ------------------------- */
+
+        .week-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .week-title {
+            font-size: 30px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .week-date {
+            margin-top: 7px;
+            color: #666;
+            font-size: 17px;
+        }
+
+        /* -------------------------
+           GAME LIST
+           ------------------------- */
+
+        .games-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .game-card {
+            display: grid;
+            grid-template-columns: 120px 1fr 105px;
+            align-items: center;
+            min-height: 88px;
+            background: #ffffff;
+            border: 1px solid #d6d6d6;
+            border-radius: 10px;
+            box-sizing: border-box;
+            overflow: hidden;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* -------------------------
+           DATE
+           ------------------------- */
+
+        .game-date {
+            height: 100%;
+            min-height: 88px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #f5f5f5;
+            border-right: 1px solid #dddddd;
+            font-size: 15px;
+            font-weight: 600;
+            color: #444;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        /* -------------------------
+           MATCHUP
+           ------------------------- */
+
+        .matchup {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+            padding: 12px 20px;
+            box-sizing: border-box;
+        }
+
+        .team {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 145px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .team.home {
+            justify-content: flex-end;
+            text-align: right;
+        }
+
+        .team.away {
+            justify-content: flex-start;
+            text-align: left;
+        }
+
+        .team-logo {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .vs {
+            font-size: 14px;
+            font-weight: 700;
+            color: #888;
+            flex-shrink: 0;
+        }
+
+        /* -------------------------
+           SCORE BOX
+           ------------------------- */
+
+        .score-container {
+            height: 100%;
+            min-height: 88px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-left: 1px solid #dddddd;
+            background: #fafafa;
+        }
+
+        .score-box {
+            min-width: 65px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #222;
+            border-radius: 7px;
+            background: #ffffff;
+            font-size: 18px;
+            font-weight: 700;
+            box-sizing: border-box;
+        }
+
+        .score-box.final {
+            background: #222;
+            color: #ffffff;
+            border-color: #222;
+        }
+
+        /* -------------------------
+           CAROUSEL BUTTONS
+           ------------------------- */
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+
+            width: 44px;
+            height: 44px;
+
+            border: 1px solid #cfcfcf;
+            border-radius: 50%;
+
+            background: #ffffff;
+            color: #222;
+
+            font-size: 24px;
+            line-height: 1;
+
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+            transition: background 0.15s ease,
+                        color 0.15s ease,
+                        opacity 0.15s ease;
+        }
+
+        .carousel-button:hover {
+            background: #222;
+            color: #ffffff;
+        }
+
+        .carousel-button:disabled {
+            opacity: 0.3;
+            cursor: default;
+        }
+
+        #prev {
+            left: 3px;
+        }
+
+        #next {
+            right: 3px;
+        }
+
+        /* -------------------------
+           WEEK NAVIGATION
+           ------------------------- */
+
+        .week-navigation {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 28px;
+        }
+
+        .week-selector {
+            min-width: 150px;
+            padding: 10px 14px;
+            border: 1px solid #cfcfcf;
+            border-radius: 7px;
+            background: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .week-dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 7px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+
+        .week-dot {
+            width: 8px;
+            height: 8px;
+            padding: 0;
+            border: none;
+            border-radius: 50%;
+            background: #c8c8c8;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .week-dot.active {
+            width: 22px;
+            border-radius: 5px;
+            background: #222;
+        }
+
+        /* -------------------------
+           MOBILE
+           ------------------------- */
+
+        @media (max-width: 800px) {
+
+            .schedule-page {
+                padding: 30px 12px 50px;
+            }
+
+            .schedule-page h2 {
+                font-size: 32px;
+                margin-bottom: 25px;
+            }
+
+            .carousel-slide {
+                padding: 0 5px;
+            }
+
+            .game-card {
+                grid-template-columns: 72px 1fr 75px;
+                min-height: 76px;
+            }
+
+            .game-date {
+                min-height: 76px;
+                font-size: 12px;
+            }
+
+            .matchup {
+                gap: 8px;
+                padding: 8px 6px;
+            }
+
+            .team {
+                min-width: 0;
+                gap: 5px;
+                font-size: 14px;
+            }
+
+            .team.home {
+                justify-content: flex-end;
+            }
+
+            .team-logo {
+                width: 30px;
+                height: 30px;
+            }
+
+            .vs {
+                font-size: 11px;
+            }
+
+            .score-container {
+                min-height: 76px;
+            }
+
+            .score-box {
+                min-width: 52px;
+                height: 36px;
+                font-size: 15px;
+            }
+
+            .carousel-button {
+                width: 36px;
+                height: 36px;
+                font-size: 19px;
+            }
+
+            #prev {
+                left: -2px;
+            }
+
+            #next {
+                right: -2px;
+            }
+
+            .week-title {
+                font-size: 25px;
+            }
+
+            .week-date {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .game-card {
+                grid-template-columns: 58px 1fr 65px;
+            }
+
+            .team {
+                font-size: 12px;
+            }
+
+            .team-logo {
+                width: 25px;
+                height: 25px;
+            }
+
+            .matchup {
+                gap: 4px;
+                padding: 6px 3px;
+            }
+
+            .vs {
+                font-size: 9px;
+            }
+
+            .game-date {
+                font-size: 10px;
+                padding: 3px;
+            }
+
+            .score-box {
+                min-width: 47px;
+                height: 32px;
+                font-size: 13px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <header>
-        <div class="logo">
-            <a href="index.html">
-               <img src="assets/nkhl-logo.png" alt="Logo">
-        </div>
-        <div class="title">
-            <h1><a href="index.html">National Knee Hockey League</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="standings.html">Standings</a></li>
-                <li><a href="schedule.html">Schedule</a></li>
-                <li><a href="teams.html">Teams</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <h2>Schedule</h2>
-         <div class="carousel-container">
-            <button class="carousel-button" id="prev">&#10094;</button>
-            <div class="carousel-track" id="carousel-track">
-                <!-- Week 1 -->
-                <div class="carousel-slide">
-                    <div class="week-label">Week 1</div>
-                    <table class="games-table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Matchup</th>
-                                <th>Score</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Jan 5</td><td>Snipers vs Hawks</td><td>4 - 3</td></tr>
-                            <tr><td>Jan 5</td><td>Blizzards vs Titans</td><td>2 - 2 (OT)</td></tr>
-                            <tr><td>Jan 6</td><td>Storm vs Lightning</td><td>5 - 1</td></tr>
-                            <tr><td>Jan 6</td><td>Wolves vs Sharks</td><td>3 - 6</td></tr>
-                        </tbody>
-                    </table>
-                </div>
 
-                <!-- Week 2 -->
-                <div class="carousel-slide">
-                    <div class="week-label">Week 2</div>
-                    <table class="games-table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Matchup</th>
-                                <th>Score</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Jan 12</td><td>Snipers vs Titans</td><td>–</td></tr>
-                            <tr><td>Jan 12</td><td>Wolves vs Hawks</td><td>–</td></tr>
-                            <tr><td>Jan 13</td><td>Storm vs Sharks</td><td>–</td></tr>
-                            <tr><td>Jan 13</td><td>Blizzards vs Lightning</td><td>–</td></tr>
-                        </tbody>
-                    </table>
-                </div>
+<header>
+    <div class="logo">
+        <a href="index.html">
+            <img src="assets/nkhl-logo.png" alt="NKHL Logo">
+        </a>
+    </div>
 
-                <!-- Week 3 (and so on...) -->
-                <div class="carousel-slide">
-                    <div class="week-label">Week 3</div>
-                    <table class="games-table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Matchup</th>
-                                <th>Score</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Jan 19</td><td>Hawks vs Sharks</td><td>–</td></tr>
-                            <tr><td>Jan 19</td><td>Storm vs Wolves</td><td>–</td></tr>
-                            <tr><td>Jan 20</td><td>Blizzards vs Snipers</td><td>–</td></tr>
-                            <tr><td>Jan 20</td><td>Titans vs Lightning</td><td>–</td></tr>
-                        </tbody>
-                    </table>
-                </div>
+    <div class="title">
+        <h1>
+            <a href="index.html">National Knee Hockey League</a>
+        </h1>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="standings.html">Standings</a></li>
+            <li><a href="schedule.html">Schedule</a></li>
+            <li><a href="teams.html">Teams</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<main class="schedule-page">
+
+    <h2>Schedule</h2>
+
+    <div class="schedule-carousel">
+
+        <button
+            class="carousel-button"
+            id="prev"
+            aria-label="Previous week">
+            &#10094;
+        </button>
+
+        <div class="carousel-track" id="carousel-track">
+            <!-- Weeks are generated by JavaScript -->
+        </div>
+
+        <button
+            class="carousel-button"
+            id="next"
+            aria-label="Next week">
+            &#10095;
+        </button>
+
+    </div>
+
+
+    <div class="week-navigation">
+
+        <select id="week-selector" class="week-selector">
+            <!-- Generated by JavaScript -->
+        </select>
+
+    </div>
+
+    <div class="week-dots" id="week-dots">
+        <!-- Generated by JavaScript -->
+    </div>
+
+</main>
+
+
+<script>
+
+    /* =========================================================
+       NKHL SCHEDULE DATA
+       =========================================================
+
+       Format:
+
+       {
+           home: "Team",
+           away: "Team",
+           score: null
+       }
+
+       To enter a final score later:
+
+       score: "4 - 2"
+
+       For an overtime result:
+
+       score: "3 - 2 OT"
+
+       For an unplayed game:
+
+       score: null
+    */
+
+
+    const schedule = [
+
+        /* =====================================================
+           WEEK 1
+           Oct 13 - Oct 18
+           ===================================================== */
+
+        {
+            week: 1,
+            startDate: "Oct 13",
+            endDate: "Oct 18",
+            games: [
+
+                { date: "Oct 13", home: "Sailors", away: "Wombats", score: null },
+                { date: "Oct 14", home: "Cyborgs", away: "Bolts", score: null },
+                { date: "Oct 15", home: "Pioneers", away: "Hawks", score: null },
+                { date: "Oct 16", home: "Snipers", away: "Bowmen", score: null },
+                { date: "Oct 17", home: "Wildfire", away: "Lumberjacks", score: null },
+                { date: "Oct 17", home: "Rangers", away: "Coyotes", score: null },
+                { date: "Oct 18", home: "Gladiators", away: "Elves", score: null },
+                { date: "Oct 18", home: "Goblins", away: "Polar Bears", score: null }
+
+            ]
+        },
+
+
+        /* =====================================================
+           WEEK 2
+           Oct 20 - Oct 25
+           ===================================================== */
+
+        {
+            week: 2,
+            startDate: "Oct 20",
+            endDate: "Oct 25",
+            games: [
+
+                { date: "Oct 20", home: "Snipers", away: "Wombats", score: null },
+                { date: "Oct 21", home: "Bowmen", away: "Lumberjacks", score: null },
+                { date: "Oct 22", home: "Goblins", away: "Sailors", score: null },
+                { date: "Oct 23", home: "Polar Bears", away: "Wildfire", score: null },
+                { date: "Oct 24", home: "Gladiators", away: "Rangers", score: null },
+                { date: "Oct 24", home: "Elves", away: "Cyborgs", score: null },
+                { date: "Oct 25", home: "Pioneers", away: "Coyotes", score: null },
+                { date: "Oct 25", home: "Hawks", away: "Bolts", score: null }
+
+            ]
+        },
+
+
+        /* =====================================================
+           WEEK 3
+           Oct 27 - Nov 1
+           ===================================================== */
+
+        {
+            week: 3,
+            startDate: "Oct 27",
+            endDate: "Nov 1",
+            games: [
+
+                { date: "Oct 27", home: "Coyotes", away: "Lumberjacks", score: null },
+                { date: "Oct 28", home: "Gladiators", away: "Pioneers", score: null },
+                { date: "Oct 29", home: "Snipers", away: "Goblins", score: null },
+                { date: "Oct 30", home: "Bowmen", away: "Polar Bears", score: null },
+                { date: "Oct 31", home: "Elves", away: "Hawks", score: null },
+                { date: "Oct 31", home: "Rangers", away: "Wildfire", score: null },
+                { date: "Nov 1", home: "Sailors", away: "Cyborgs", score: null },
+                { date: "Nov 1", home: "Wombats", away: "Bolts", score: null }
+
+            ]
+        },
+
+
+        /* =====================================================
+           WEEK 4
+           Nov 3 - Nov 8
+           ===================================================== */
+
+        {
+            week: 4,
+            startDate: "Nov 3",
+            endDate: "Nov 8",
+            games: [
+
+                { date: "Nov 3", home: "Rangers", away: "Wombats", score: null },
+                { date: "Nov 4", home: "Bowmen", away: "Pioneers", score: null },
+                { date: "Nov 5", home: "Goblins", away: "Elves", score: null },
+                { date: "Nov 6", home: "Lumberjacks", away: "Sailors", score: null },
+                { date: "Nov 7", home: "Snipers", away: "Hawks", score: null },
+                { date: "Nov 7", home: "Wildfire", away: "Bolts", score: null },
+                { date: "Nov 8", home: "Polar Bears", away: "Gladiators", score: null },
+                { date: "Nov 8", home: "Coyotes", away: "Cyborgs", score: null }
+
+            ]
+        },
+
+
+        /* =====================================================
+           WEEK 5
+           Nov 10 - Nov 15
+           ===================================================== */
+
+        {
+            week: 5,
+            startDate: "Nov 10",
+            endDate: "Nov 15",
+            games: [
+
+                { date: "Nov 10", home: "Snipers", away: "Sailors", score: null },
+                { date: "Nov 11", home: "Bowmen", away: "Rangers", score: null },
+                { date: "Nov 12", home: "Goblins", away: "Coyotes", score: null },
+                { date: "Nov 13", home: "Polar Bears", away: "Cyborgs", score: null },
+                { date: "Nov 14", home: "Gladiators", away: "Wildfire", score: null },
+                { date: "Nov 14", home: "Elves", away: "Wombats", score: null },
+                { date: "Nov 15", home: "Pioneers", away: "Bolts", score: null },
+                { date: "Nov 15", home: "Hawks", away: "Lumberjacks", score: null }
+
+            ]
+        },
+
+
+        /* =====================================================
+           WEEK 6
+           Nov 17 - Nov 22
+           ===================================================== */
+
+        {
+            week: 6,
+            startDate: "Nov 17",
+            endDate: "Nov 22",
+            games: [
+
+                { date: "Nov 17", home: "Rangers", away: "Lumberjacks", score: null },
+                { date: "Nov 18", home: "Wombats", away: "Cyborgs", score: null },
+                { date: "Nov 19", home: "Sailors", away: "Bolts", score: null },
+                { date: "Nov 20", home: "Coyotes", away: "Wildfire", score: null },
+                { date: "Nov 21", home: "Elves", away: "Pioneers", score: null },
+                { date: "Nov 21", home: "Snipers", away: "Polar Bears", score: null },
+                { date: "Nov 22", home: "Gladiators", away: "Hawks", score: null },
+                { date: "Nov 22", home: "Bowmen", away: "Goblins", score: null }
+
+            ]
+        },
+
+
+        /* =====================================================
+           WEEK 7
+           Nov 24 - Nov 29
+           ===================================================== */
+
+        {
+            week: 7,
+            startDate: "Nov 24",
+            endDate: "Nov 29",
+            games: [
+
+                { date: "Nov 24", home: "Snipers", away: "Pioneers", score: null },
+                { date: "Nov 25", home: "Goblins", away: "Gladiators", score: null },
+                { date: "Nov 26", home: "Lumberjacks", away: "Wombats", score: null },
+                { date: "Nov 27", home: "Wildfire", away: "Sailors", score: null },
+                { date: "Nov 28", home: "Coyotes", away: "Bolts", score: null },
+                { date: "Nov 28", home: "Rangers", away: "Cyborgs", score: null },
+                { date: "Nov 29", home: "Polar Bears", away: "Hawks", score: null },
+                { date: "Nov 29", home: "Bowmen", away: "Elves", score: null }
+
+            ]
+        },
+
+
+        /* =====================================================
+           WEEK 8
+           Dec 1 - Dec 6
+           ===================================================== */
+
+        {
+            week: 8,
+            startDate: "Dec 1",
+            endDate: "Dec 6",
+            games: [
+
+                { date: "Dec 1", home: "Snipers", away: "Lumberjacks", score: null },
+                { date: "Dec 2", home: "Bowmen", away: "Wombats", score: null },
+                { date: "Dec 3", home: "Goblins", away: "Wildfire", score: null },
+                { date: "Dec 4", home: "Polar Bears", away: "Bolts", score: null },
+                { date: "Dec 5", home: "Gladiators", away: "Cyborgs", score: null },
+                { date: "Dec 5", home: "Elves", away: "Rangers", score: null },
+                { date: "Dec 6", home: "Pioneers", away: "Sailors", score: null },
+                { date: "Dec 6", home: "Hawks", away: "Coyotes", score: null }
+
+            ]
+        },
+
+
+        /* =====================================================
+           WEEK 9
+           Dec 8 - Dec 13
+           ===================================================== */
+
+        {
+            week: 9,
+            startDate: "Dec 8",
+            endDate: "Dec 13",
+            games: [
+
+                { date: "Dec 8", home: "Bowmen", away: "Hawks", score: null },
+                { date: "Dec 9", home: "Coyotes", away: "Wombats", score: null },
+                { date: "Dec 10", home: "Goblins", away: "Pioneers", score: null },
+                { date: "Dec 11", home: "Snipers", away: "Gladiators", score: null },
+                { date: "Dec 12", home: "Lumberjacks", away: "Bolts", score: null },
+                { date: "Dec 12", home: "Polar Bears", away: "Elves", score: null },
+                { date: "Dec 13", home: "Rangers", away: "Sailors", score: null },
+                { date: "Dec 13", home: "Wildfire", away: "Cyborgs", score: null }
+
+            ]
+        },
+
+
+        /* =====================================================
+           WEEK 10
+           Dec 15 - Dec 20
+           ===================================================== */
+
+        {
+            week: 10,
+            startDate: "Dec 15",
+            endDate: "Dec 20",
+            games: [
+
+                { date: "Dec 15", home: "Snipers", away: "Bowmen", score: null },
+                { date: "Dec 16", home: "Cyborgs", away: "Bolts", score: null },
+                { date: "Dec 17", home: "Sailors", away: "Wombats", score: null },
+                { date: "Dec 18", home: "Rangers", away: "Coyotes", score: null },
+                { date: "Dec 19", home: "Gladiators", away: "Elves", score: null },
+                { date: "Dec 19", home: "Pioneers", away: "Hawks", score: null },
+                { date: "Dec 20", home: "Goblins", away: "Polar Bears", score: null },
+                { date: "Dec 20", home: "Wildfire", away: "Lumberjacks", score: null }
+
+            ]
+        },
+
+
+        /* =====================================================
+           WEEK 11
+           Dec 22 - Dec 27
+           ===================================================== */
+
+        {
+            week: 11,
+            startDate: "Dec 22",
+            endDate: "Dec 27",
+            games: [
+
+                { date: "Dec 22", home: "Snipers", away: "Coyotes", score: null },
+                { date: "Dec 23", home: "Bowmen", away: "Bolts", score: null },
+                { date: "Dec 24", home: "Goblins", away: "Cyborgs", score: null },
+                { date: "Dec 25", home: "Polar Bears", away: "Rangers", score: null },
+                { date: "Dec 26", home: "Gladiators", away: "Wombats", score: null },
+                { date: "Dec 26", home: "Elves", away: "Lumberjacks", score: null },
+                { date: "Dec 27", home: "Pioneers", away: "Wildfire", score: null },
+                { date: "Dec 27", home: "Hawks", away: "Sailors", score: null }
+
+            ]
+        },
+
+
+        /* =====================================================
+           WEEK 12
+           Dec 29 - Jan 3
+           ===================================================== */
+
+        {
+            week: 12,
+            startDate: "Dec 29",
+            endDate: "Jan 3",
+            games: [
+
+                { date: "Dec 29", home: "Rangers", away: "Lumberjacks", score: null },
+                { date: "Dec 30", home: "Elves", away: "Pioneers", score: null },
+                { date: "Dec 31", home: "Wombats", away: "Cyborgs", score: null },
+                { date: "Jan 1", home: "Sailors", away: "Bolts", score: null },
+                { date: "Jan 2", home: "Snipers", away: "Polar Bears", score: null },
+                { date: "Jan 2", home: "Gladiators", away: "Hawks", score: null },
+                { date: "Jan 3", home: "Coyotes", away: "Wildfire", score: null },
+                { date: "Jan 3", home: "Bowmen", away: "Goblins", score: null }
+
+            ]
+        },
+
+
+        /* =====================================================
+           WEEK 13
+           Jan 5 - Jan 10
+           ===================================================== */
+
+        {
+            week: 13,
+            startDate: "Jan 5",
+            endDate: "Jan 10",
+            games: [
+
+                { date: "Jan 5", home: "Polar Bears", away: "Pioneers", score: null },
+                { date: "Jan 6", home: "Bowmen", away: "Gladiators", score: null },
+                { date: "Jan 7", home: "Lumberjacks", away: "Cyborgs", score: null },
+                { date: "Jan 8", home: "Coyotes", away: "Sailors", score: null },
+                { date: "Jan 9", home: "Rangers", away: "Bolts", score: null },
+                { date: "Jan 9", home: "Snipers", away: "Elves", score: null },
+                { date: "Jan 10", home: "Wildfire", away: "Wombats", score: null },
+                { date: "Jan 10", home: "Goblins", away: "Hawks", score: null }
+
+            ]
+        },
+
+
+        /* =====================================================
+           WEEK 14
+           Jan 12 - Jan 17
+           ===================================================== */
+
+        {
+            week: 14,
+            startDate: "Jan 12",
+            endDate: "Jan 17",
+            games: [
+
+                { date: "Jan 12", home: "Elves", away: "Hawks", score: null },
+                { date: "Jan 13", home: "Bowmen", away: "Polar Bears", score: null },
+                { date: "Jan 14", home: "Snipers", away: "Goblins", score: null },
+                { date: "Jan 15", home: "Wombats", away: "Bolts", score: null },
+                { date: "Jan 16", home: "Rangers", away: "Wildfire", score: null },
+                { date: "Jan 16", home: "Sailors", away: "Cyborgs", score: null },
+                { date: "Jan 17", home: "Coyotes", away: "Lumberjacks", score: null },
+                { date: "Jan 17", home: "Gladiators", away: "Pioneers", score: null }
+
+            ]
+        }
+
+    ];
+
+
+    /* =========================================================
+       TEAM LOGOS
+       ========================================================= */
+
+    const teamLogos = {
+
+        "Snipers": "assets/teams/snipers.png",
+        "Bowmen": "assets/teams/bowmen.png",
+        "Goblins": "assets/teams/goblins.png",
+        "Polar Bears": "assets/teams/polar-bears.png",
+
+        "Gladiators": "assets/teams/gladiators.png",
+        "Elves": "assets/teams/elves.png",
+        "Pioneers": "assets/teams/pioneers.png",
+        "Hawks": "assets/teams/hawks.png",
+
+        "Rangers": "assets/teams/rangers.png",
+        "Coyotes": "assets/teams/coyotes.png",
+        "Wildfire": "assets/teams/wildfire.png",
+        "Lumberjacks": "assets/teams/lumberjacks.png",
+
+        "Sailors": "assets/teams/sailors.png",
+        "Wombats": "assets/teams/wombats.png",
+        "Cyborgs": "assets/teams/cyborgs.png",
+        "Bolts": "assets/teams/bolts.png"
+
+    };
+
+
+    /* =========================================================
+       CAROUSEL SETUP
+       ========================================================= */
+
+    const track = document.getElementById("carousel-track");
+    const nextButton = document.getElementById("next");
+    const prevButton = document.getElementById("prev");
+    const weekSelector = document.getElementById("week-selector");
+    const weekDots = document.getElementById("week-dots");
+
+
+    /*
+       Change this number to choose which week opens automatically.
+
+       1 = Week 1
+       2 = Week 2
+       ...
+       14 = Week 14
+    */
+
+    let currentWeek = 1;
+    let currentIndex = currentWeek - 1;
+
+
+    /* =========================================================
+       CREATE TEAM HTML
+       ========================================================= */
+
+    function createTeam(teamName, side) {
+
+        const logo = teamLogos[teamName] || "";
+
+        return `
+            <div class="team ${side}">
+                ${
+                    side === "home"
+                    ? `<span>${teamName}</span>
+                       <img class="team-logo"
+                            src="${logo}"
+                            alt="${teamName} logo"
+                            onerror="this.style.display='none';">`
+                    : `<img class="team-logo"
+                            src="${logo}"
+                            alt="${teamName} logo"
+                            onerror="this.style.display='none';">
+                       <span>${teamName}</span>`
+                }
             </div>
-            <button class="carousel-button" id="next">&#10095;</button>
-        </div>
-    </main>
-    <script>
-        const track = document.getElementById("carousel-track");
-        const slides = Array.from(track.children);
-        const nextButton = document.getElementById("next");
-        const prevButton = document.getElementById("prev");
+        `;
+    }
 
-        // --- Set the current week manually here ---
-        let currentWeek = 2; // Change this number (1 = Week 1, 2 = Week 2, etc.)
-        let currentIndex = currentWeek - 1;
 
-        // Move carousel to the selected week
-        const updateSlidePosition = () => {
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        };
+    /* =========================================================
+       CREATE GAME CARD
+       ========================================================= */
 
-        nextButton.addEventListener("click", () => {
-            if (currentIndex < slides.length - 1) currentIndex++;
-            updateSlidePosition();
+    function createGame(game) {
+
+        const score = game.score
+            ? game.score
+            : "—";
+
+        const scoreClass = game.score
+            ? "score-box final"
+            : "score-box";
+
+        return `
+            <div class="game-card">
+
+                <div class="game-date">
+                    ${game.date}
+                </div>
+
+                <div class="matchup">
+
+                    ${createTeam(game.home, "home")}
+
+                    <span class="vs">VS</span>
+
+                    ${createTeam(game.away, "away")}
+
+                </div>
+
+                <div class="score-container">
+
+                    <div class="${scoreClass}">
+                        ${score}
+                    </div>
+
+                </div>
+
+            </div>
+        `;
+    }
+
+
+    /* =========================================================
+       CREATE ALL WEEK SLIDES
+       ========================================================= */
+
+    function renderSchedule() {
+
+        track.innerHTML = "";
+        weekSelector.innerHTML = "";
+        weekDots.innerHTML = "";
+
+        schedule.forEach((week, index) => {
+
+            /* -------------------------
+               Slide
+               ------------------------- */
+
+            const slide = document.createElement("div");
+
+            slide.className = "carousel-slide";
+
+            slide.innerHTML = `
+                <div class="week-header">
+
+                    <h3 class="week-title">
+                        Week ${week.week}
+                    </h3>
+
+                    <div class="week-date">
+                        ${week.startDate} – ${week.endDate}
+                    </div>
+
+                </div>
+
+                <div class="games-list">
+
+                    ${week.games.map(createGame).join("")}
+
+                </div>
+            `;
+
+            track.appendChild(slide);
+
+
+            /* -------------------------
+               Dropdown
+               ------------------------- */
+
+            const option = document.createElement("option");
+
+            option.value = index;
+            option.textContent = `Week ${week.week}`;
+
+            weekSelector.appendChild(option);
+
+
+            /* -------------------------
+               Dot
+               ------------------------- */
+
+            const dot = document.createElement("button");
+
+            dot.className = "week-dot";
+
+            dot.type = "button";
+
+            dot.setAttribute(
+                "aria-label",
+                `Go to Week ${week.week}`
+            );
+
+            dot.addEventListener("click", () => {
+                currentIndex = index;
+                updateCarousel();
+            });
+
+            weekDots.appendChild(dot);
+
         });
 
-        prevButton.addEventListener("click", () => {
-            if (currentIndex > 0) currentIndex--;
-            updateSlidePosition();
-        });
+        updateCarousel();
+    }
 
-        // Go to current week on page load
-        document.addEventListener("DOMContentLoaded", updateSlidePosition);
-    </script>
+
+    /* =========================================================
+       UPDATE CAROUSEL
+       ========================================================= */
+
+    function updateCarousel() {
+
+        track.style.transform =
+            `translateX(-${currentIndex * 100}%)`;
+
+        prevButton.disabled =
+            currentIndex === 0;
+
+        nextButton.disabled =
+            currentIndex === schedule.length - 1;
+
+        weekSelector.value = currentIndex;
+
+        document
+            .querySelectorAll(".week-dot")
+            .forEach((dot, index) => {
+
+                dot.classList.toggle(
+                    "active",
+                    index === currentIndex
+                );
+
+            });
+    }
+
+
+    /* =========================================================
+       BUTTON CONTROLS
+       ========================================================= */
+
+    nextButton.addEventListener("click", () => {
+
+        if (currentIndex < schedule.length - 1) {
+
+            currentIndex++;
+
+            updateCarousel();
+
+        }
+
+    });
+
+
+    prevButton.addEventListener("click", () => {
+
+        if (currentIndex > 0) {
+
+            currentIndex--;
+
+            updateCarousel();
+
+        }
+
+    });
+
+
+    /* =========================================================
+       WEEK DROPDOWN
+       ========================================================= */
+
+    weekSelector.addEventListener("change", (event) => {
+
+        currentIndex =
+            Number(event.target.value);
+
+        updateCarousel();
+
+    });
+
+
+    /* =========================================================
+       KEYBOARD CONTROLS
+       ========================================================= */
+
+    document.addEventListener("keydown", (event) => {
+
+        if (event.key === "ArrowRight") {
+
+            if (currentIndex < schedule.length - 1) {
+
+                currentIndex++;
+
+                updateCarousel();
+
+            }
+
+        }
+
+        if (event.key === "ArrowLeft") {
+
+            if (currentIndex > 0) {
+
+                currentIndex--;
+
+                updateCarousel();
+
+            }
+
+        }
+
+    });
+
+
+    /* =========================================================
+       TOUCH / SWIPE SUPPORT
+       ========================================================= */
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+
+    track.addEventListener("touchstart", (event) => {
+
+        touchStartX =
+            event.changedTouches[0].screenX;
+
+    }, { passive: true });
+
+
+    track.addEventListener("touchend", (event) => {
+
+        touchEndX =
+            event.changedTouches[0].screenX;
+
+        const swipeDistance =
+            touchEndX - touchStartX;
+
+
+        if (Math.abs(swipeDistance) < 50) {
+            return;
+        }
+
+
+        if (swipeDistance < 0) {
+
+            if (currentIndex < schedule.length - 1) {
+
+                currentIndex++;
+
+                updateCarousel();
+
+            }
+
+        } else {
+
+            if (currentIndex > 0) {
+
+                currentIndex--;
+
+                updateCarousel();
+
+            }
+
+        }
+
+    }, { passive: true });
+
+
+    /* =========================================================
+       INITIALIZE
+       ========================================================= */
+
+    renderSchedule();
+
+</script>
+
 </body>
 </html>
