@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>NKHL</title>
+
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
@@ -14,116 +15,204 @@
     <meta name="msapplication-TileColor" content="#ffc40d">
     <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
-    
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <header>
-        <div class="logo">
-            <a href="index.html">
-               <img src="assets/nkhl-logo.png" alt="Logo">
-            </a>
-        </div>
-        <div class="title">
-            <h1><a href="index.html">National Knee Hockey League</a></h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="standings.html">Standings</a></li>
-                <li><a href="schedule.html">Schedule</a></li>
-                <li><a href="teams.html">Teams</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <h2>Home</h2>
-        <section id="description">
-            <p>Welcome to the official website of the National Knee Hockey League! Stay updated with the latest news, schedules, and standings. See how your favorite teams are performing, and watch to see who will win the national championship!</p>
-        </section>
 
-        <section id="top-teams">
-            <h2>Top 3 Teams</h2>
-            <iframe src="standings.html" id="standings-frame" style="display:none;"></iframe>
-            <table id="top-teams-table">
-                <thead>
-                    <tr>
-                        <th>Team</th>
-                        <th>Wins</th>
-                        <th>Losses</th>
-                        <th>OT Losses</th>
-                        <th>Points</th>
-                        <th>Goals Scored</th>
-                        <th>Streak</th>
-                        <th>Goal Differential</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Top 3 teams will be dynamically populated here -->
-                </tbody>
-            </table>
-        </section>
-    </main>
+<header>
+    <a href="index.html" class="logo-link">
+        <img src="assets/nkhl-logo.png" alt="NKHL Logo" class="logo">
+        <span class="site-title">National Knee Hockey League</span>
+    </a>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // Wait until the iframe has fully loaded
-            const iframe = document.getElementById("standings-frame");
-            iframe.onload = () => {
-                const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-                const standingsTable = iframeDocument.getElementById("standings");
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="standings.html">Standings</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="teams.html">Teams</a>
+    </nav>
+</header>
 
-                if (standingsTable) {
-                    const standingsRows = Array.from(standingsTable.querySelectorAll("tbody tr"));
+<main>
 
-                    standingsRows.sort((a, b) => {
-                        const pointsA = parseInt(a.dataset.points, 10);
-                        const pointsB = parseInt(b.dataset.points, 10);
-                        const goalsA = parseInt(a.dataset.goals, 10);
-                        const goalsB = parseInt(b.dataset.goals, 10);
-                        const diffA = parseInt(a.dataset.differential, 10);
-                        const diffB = parseInt(b.dataset.differential, 10);
+    <h2>Home</h2>
 
-                        if (pointsA !== pointsB) {
-                            return pointsB - pointsA;
-                        } else if (goalsA !== goalsB) {
-                            return goalsB - goalsA;
-                        } else if (diffA !== diffB) {
-                            return diffB - diffA;
-                        } else {
-                            return 0;
-                        }
-                    });
+    <section id="description" class="news-card">
+        <p>
+            Welcome to the official website of the National Knee Hockey League!
+            Stay updated with the latest news, schedules, and standings.
+            See how your favorite teams are performing, and watch to see who
+            will win the national championship!
+        </p>
+    </section>
 
-                    const topTeams = standingsRows.slice(0, 3);
-                    const topTeamsTable = document.querySelector("#top-teams-table tbody");
 
-                    topTeams.forEach(team => {
-                        const newRow = document.createElement("tr");
+    <section id="top-teams">
 
-                        const teamName = team.querySelector("td:first-child").textContent;
-                        const wins = team.querySelector("td:nth-child(2)").textContent;
-                        const losses = team.querySelector("td:nth-child(3)").textContent;
-                        const otLosses = team.querySelector("td:nth-child(4)").textContent;
-                        const points = team.querySelector("td:nth-child(5)").textContent;
-                        const goalsScored = team.querySelector("td:nth-child(6)").textContent;
-                        const streak = team.querySelector("td:nth-child(7)").textContent;
-                        const goalDifferential = team.querySelector("td:nth-child(8)").textContent;
+        <h2>Top 3 Teams</h2>
 
-                        newRow.innerHTML = `
-                            <td>${teamName}</td>
-                            <td>${wins}</td>
-                            <td>${losses}</td>
-                            <td>${otLosses}</td>
-                            <td>${points}</td>
-                            <td>${goalsScored}</td>
-                            <td>${streak}</td>
-                            <td>${goalDifferential}</td>
-                        `;
-                        topTeamsTable.appendChild(newRow);
-                    });
-                }
-            };
+        <iframe
+            src="standings.html"
+            id="standings-frame"
+            style="display:none;">
+        </iframe>
+
+        <table id="top-teams-table">
+
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Team</th>
+                    <th>W</th>
+                    <th>L</th>
+                    <th>OTL</th>
+                    <th>Points</th>
+                    <th>Streak</th>
+                    <th>Goals Scored</th>
+                    <th>Goal Differential</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!-- Top 3 teams will be dynamically populated here -->
+            </tbody>
+
+        </table>
+
+    </section>
+
+</main>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Wait until the iframe has fully loaded
+    const iframe = document.getElementById("standings-frame");
+
+    iframe.onload = () => {
+
+        const iframeDocument =
+            iframe.contentDocument ||
+            iframe.contentWindow.document;
+
+        const standingsTable =
+            iframeDocument.getElementById("standings");
+
+        if (!standingsTable) {
+            return;
+        }
+
+        const standingsRows =
+            Array.from(
+                standingsTable.querySelectorAll("tbody tr")
+            );
+
+        standingsRows.sort((a, b) => {
+
+            const pointsA =
+                parseInt(a.dataset.points, 10);
+
+            const pointsB =
+                parseInt(b.dataset.points, 10);
+
+            const goalsA =
+                parseInt(a.dataset.goals, 10);
+
+            const goalsB =
+                parseInt(b.dataset.goals, 10);
+
+            const diffA =
+                parseInt(a.dataset.differential, 10);
+
+            const diffB =
+                parseInt(b.dataset.differential, 10);
+
+            if (pointsA !== pointsB) {
+                return pointsB - pointsA;
+            }
+
+            if (goalsA !== goalsB) {
+                return goalsB - goalsA;
+            }
+
+            if (diffA !== diffB) {
+                return diffB - diffA;
+            }
+
+            return 0;
         });
-    </script>
+
+
+        const topTeams =
+            standingsRows.slice(0, 3);
+
+        const topTeamsTable =
+            document.querySelector("#top-teams-table tbody");
+
+
+        topTeams.forEach((team, index) => {
+
+            const newRow =
+                document.createElement("tr");
+
+            const rank =
+                index + 1;
+
+            const teamName =
+                team.querySelector(".team-name-cell span").textContent;
+
+            const teamLogo =
+                team.querySelector(".team-name-cell img").src;
+
+            const wins =
+                team.querySelector("td:nth-child(3)").textContent;
+
+            const losses =
+                team.querySelector("td:nth-child(4)").textContent;
+
+            const otLosses =
+                team.querySelector("td:nth-child(5)").textContent;
+
+            const points =
+                team.querySelector("td:nth-child(6)").textContent;
+
+            const streak =
+                team.querySelector("td:nth-child(7)").textContent;
+
+            const goalsScored =
+                team.querySelector("td:nth-child(8)").textContent;
+
+            const goalDifferential =
+                team.querySelector("td:nth-child(9)").textContent;
+
+
+            newRow.innerHTML = `
+                <td>${rank}</td>
+                <td class="team-name-cell">
+                    <img
+                        src="${teamLogo}"
+                        alt="${teamName} logo"
+                        class="team-logo">
+                    <span>${teamName}</span>
+                </td>
+                <td>${wins}</td>
+                <td>${losses}</td>
+                <td>${otLosses}</td>
+                <td>${points}</td>
+                <td>${streak}</td>
+                <td>${goalsScored}</td>
+                <td>${goalDifferential}</td>
+            `;
+
+            topTeamsTable.appendChild(newRow);
+        });
+    };
+
+});
+</script>
+
 </body>
 </html>
