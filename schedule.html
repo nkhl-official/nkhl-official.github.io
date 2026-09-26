@@ -1,1630 +1,1149 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>NKHL Schedule</title>
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
-    <link rel="manifest" href="/assets/favicons/site.webmanifest">
-    <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="/assets/favicons/favicon.ico">
-
-    <meta name="msapplication-TileColor" content="#ffc40d">
-    <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
-
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/favicons/favicon.ico">
 </head>
-
 
 <body>
 
 <header>
-
-    <div class="logo">
-        <a href="index.html">
-            <img src="assets/nkhl-logo.png" alt="NKHL Logo">
-        </a>
-    </div>
-
-    <div class="title">
-        <h1>
-            <a href="index.html">National Knee Hockey League</a>
-        </h1>
-    </div>
+    <a href="index.html" class="logo-link">
+        <img src="assets/nkhl-logo.png" alt="NKHL Logo" class="logo">
+        <span class="site-title">National Knee Hockey League</span>
+    </a>
 
     <nav>
-        <ul>
-            <li>
-                <a href="standings.html">Standings</a>
-            </li>
-
-            <li>
-                <a href="schedule.html">Schedule</a>
-            </li>
-
-            <li>
-                <a href="teams.html">Teams</a>
-            </li>
-        </ul>
+        <a href="index.html">Home</a>
+        <a href="standings.html">Standings</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="teams.html">Teams</a>
     </nav>
-
 </header>
-
 
 <main class="schedule-page">
 
     <h2>Schedule</h2>
 
-
     <div class="schedule-carousel">
 
-        <button
-            class="carousel-button"
-            id="prev"
-            aria-label="Previous week">
+        <button class="carousel-button" id="prev" aria-label="Previous week">
             &#10094;
         </button>
 
+        <div class="carousel-track" id="carouselTrack"></div>
 
-        <div
-            class="carousel-track"
-            id="carousel-track">
-        </div>
-
-
-        <button
-            class="carousel-button"
-            id="next"
-            aria-label="Next week">
+        <button class="carousel-button" id="next" aria-label="Next week">
             &#10095;
         </button>
 
     </div>
 
-
     <div class="week-navigation">
-
-        <select
-            id="week-selector"
-            class="week-selector"
-            aria-label="Select week">
-        </select>
-
+        <select id="weekSelector" class="week-selector"></select>
     </div>
 
-
-    <div
-        class="week-dots"
-        id="week-dots">
-    </div>
+    <div class="week-dots" id="weekDots"></div>
 
 </main>
 
-
 <script>
 
-/* =========================================================
-   NKHL SCHEDULE
-   =========================================================
+const teamLogos = {
+    "Snipers": "assets/teams/snipers.png",
+    "Bowmen": "assets/teams/bowmen.png",
+    "Goblins": "assets/teams/goblins.png",
+    "Polar Bears": "assets/teams/polar-bears.png",
+    "Gladiators": "assets/teams/gladiators.png",
+    "Elves": "assets/teams/elves.png",
+    "Pioneers": "assets/teams/pioneers.png",
+    "Hawks": "assets/teams/hawks.png",
+    "Rangers": "assets/teams/rangers.png",
+    "Coyotes": "assets/teams/coyotes.png",
+    "Wildfire": "assets/teams/wildfire.png",
+    "Lumberjacks": "assets/teams/lumberjacks.png",
+    "Sailors": "assets/teams/sailors.png",
+    "Wombats": "assets/teams/wombats.png",
+    "Cyborgs": "assets/teams/cyborgs.png",
+    "Bolts": "assets/teams/bolts.png"
+};
 
-   14 games per team:
 
-   6 — Same division
-   4 — Other division in same conference
-   4 — Opposite conference
-        2 from each opposite division
+/*
+    DIVISIONS
 
-   Week 1 begins Monday, September 28, 2026.
-   Each week runs Monday through Saturday.
+    American North:
+    Snipers, Bowmen, Goblins, Polar Bears
 
-   A score of null means the game has not been played.
+    American East:
+    Gladiators, Elves, Pioneers, Hawks
 
-   Example:
-       score: "4 - 2"
+    National West:
+    Rangers, Coyotes, Wildfire, Lumberjacks
 
-   Overtime:
-       score: "4 - 3 OT"
+    National South:
+    Sailors, Wombats, Cyborgs, Bolts
 */
 
 
-const schedule = [
+const weeks = [
 
-    /* =====================================================
+    /* =========================
        WEEK 1
-       Sep 28 - Oct 3
-       ===================================================== */
+       SEPTEMBER 28 - OCTOBER 3
+       ========================= */
 
     {
-        week: 1,
-        startDate: "Sep 28",
-        endDate: "Oct 3",
-
+        name: "Week 1",
+        date: "September 28 – October 3, 2026",
         games: [
-
             {
-                date: "Sep 28",
-                home: "Sailors",
-                away: "Wombats",
-                score: null
-            },
-
-            {
-                date: "Sep 29",
-                home: "Cyborgs",
-                away: "Bolts",
-                score: null
-            },
-
-            {
-                date: "Sep 30",
-                home: "Pioneers",
-                away: "Hawks",
-                score: null
-            },
-
-            {
-                date: "Oct 1",
+                date: "Mon, Sep 28",
                 home: "Snipers",
-                away: "Bowmen",
-                score: null
+                away: "Bowmen"
             },
-
             {
-                date: "Oct 2",
-                home: "Wildfire",
-                away: "Lumberjacks",
-                score: null
-            },
-
-            {
-                date: "Oct 2",
-                home: "Rangers",
-                away: "Coyotes",
-                score: null
-            },
-
-            {
-                date: "Oct 3",
+                date: "Tue, Sep 29",
                 home: "Gladiators",
-                away: "Elves",
-                score: null
+                away: "Elves"
             },
-
             {
-                date: "Oct 3",
+                date: "Wed, Sep 30",
+                home: "Rangers",
+                away: "Coyotes"
+            },
+            {
+                date: "Thu, Oct 1",
+                home: "Sailors",
+                away: "Wombats"
+            },
+            {
+                date: "Fri, Oct 2",
                 home: "Goblins",
-                away: "Polar Bears",
-                score: null
+                away: "Polar Bears"
+            },
+            {
+                date: "Fri, Oct 2",
+                home: "Pioneers",
+                away: "Hawks"
+            },
+            {
+                date: "Sat, Oct 3",
+                home: "Wildfire",
+                away: "Lumberjacks"
+            },
+            {
+                date: "Sat, Oct 3",
+                home: "Cyborgs",
+                away: "Bolts"
             }
-
         ]
     },
 
 
-    /* =====================================================
+    /* =========================
        WEEK 2
-       Oct 5 - Oct 10
-       ===================================================== */
+       OCTOBER 5 - 10
+       ========================= */
 
     {
-        week: 2,
-        startDate: "Oct 5",
-        endDate: "Oct 10",
-
+        name: "Week 2",
+        date: "October 5 – 10, 2026",
         games: [
-
             {
-                date: "Oct 5",
+                date: "Mon, Oct 5",
                 home: "Snipers",
-                away: "Wombats",
-                score: null
+                away: "Gladiators"
             },
-
             {
-                date: "Oct 6",
+                date: "Tue, Oct 6",
                 home: "Bowmen",
-                away: "Lumberjacks",
-                score: null
+                away: "Elves"
             },
-
             {
-                date: "Oct 7",
+                date: "Wed, Oct 7",
                 home: "Goblins",
-                away: "Sailors",
-                score: null
+                away: "Pioneers"
             },
-
             {
-                date: "Oct 8",
+                date: "Thu, Oct 8",
                 home: "Polar Bears",
-                away: "Wildfire",
-                score: null
+                away: "Hawks"
             },
-
             {
-                date: "Oct 9",
-                home: "Gladiators",
-                away: "Rangers",
-                score: null
+                date: "Fri, Oct 9",
+                home: "Rangers",
+                away: "Sailors"
             },
-
             {
-                date: "Oct 9",
-                home: "Elves",
-                away: "Cyborgs",
-                score: null
+                date: "Fri, Oct 9",
+                home: "Coyotes",
+                away: "Wombats"
             },
-
             {
-                date: "Oct 10",
-                home: "Pioneers",
-                away: "Coyotes",
-                score: null
+                date: "Sat, Oct 10",
+                home: "Wildfire",
+                away: "Cyborgs"
             },
-
             {
-                date: "Oct 10",
-                home: "Hawks",
-                away: "Bolts",
-                score: null
+                date: "Sat, Oct 10",
+                home: "Lumberjacks",
+                away: "Bolts"
             }
-
         ]
     },
 
 
-    /* =====================================================
+    /* =========================
        WEEK 3
-       Oct 12 - Oct 17
-       ===================================================== */
+       OCTOBER 12 - 17
+       ========================= */
 
     {
-        week: 3,
-        startDate: "Oct 12",
-        endDate: "Oct 17",
-
+        name: "Week 3",
+        date: "October 12 – 17, 2026",
         games: [
-
             {
-                date: "Oct 12",
-                home: "Coyotes",
-                away: "Lumberjacks",
-                score: null
-            },
-
-            {
-                date: "Oct 13",
-                home: "Gladiators",
-                away: "Pioneers",
-                score: null
-            },
-
-            {
-                date: "Oct 14",
+                date: "Mon, Oct 12",
                 home: "Snipers",
-                away: "Goblins",
-                score: null
+                away: "Rangers"
             },
-
             {
-                date: "Oct 15",
+                date: "Tue, Oct 13",
                 home: "Bowmen",
-                away: "Polar Bears",
-                score: null
+                away: "Coyotes"
             },
-
             {
-                date: "Oct 16",
+                date: "Wed, Oct 14",
+                home: "Goblins",
+                away: "Wildfire"
+            },
+            {
+                date: "Thu, Oct 15",
+                home: "Polar Bears",
+                away: "Lumberjacks"
+            },
+            {
+                date: "Fri, Oct 16",
+                home: "Gladiators",
+                away: "Sailors"
+            },
+            {
+                date: "Fri, Oct 16",
                 home: "Elves",
-                away: "Hawks",
-                score: null
+                away: "Wombats"
             },
-
             {
-                date: "Oct 16",
-                home: "Rangers",
-                away: "Wildfire",
-                score: null
+                date: "Sat, Oct 17",
+                home: "Pioneers",
+                away: "Cyborgs"
             },
-
             {
-                date: "Oct 17",
-                home: "Sailors",
-                away: "Cyborgs",
-                score: null
-            },
-
-            {
-                date: "Oct 17",
-                home: "Wombats",
-                away: "Bolts",
-                score: null
+                date: "Sat, Oct 17",
+                home: "Hawks",
+                away: "Bolts"
             }
-
         ]
     },
 
 
-    /* =====================================================
+    /* =========================
        WEEK 4
-       Oct 19 - Oct 24
-       ===================================================== */
+       OCTOBER 19 - 24
+       ========================= */
 
     {
-        week: 4,
-        startDate: "Oct 19",
-        endDate: "Oct 24",
-
+        name: "Week 4",
+        date: "October 19 – 24, 2026",
         games: [
-
             {
-                date: "Oct 19",
-                home: "Rangers",
-                away: "Wombats",
-                score: null
-            },
-
-            {
-                date: "Oct 20",
-                home: "Bowmen",
-                away: "Pioneers",
-                score: null
-            },
-
-            {
-                date: "Oct 21",
-                home: "Goblins",
-                away: "Elves",
-                score: null
-            },
-
-            {
-                date: "Oct 22",
-                home: "Lumberjacks",
-                away: "Sailors",
-                score: null
-            },
-
-            {
-                date: "Oct 23",
+                date: "Mon, Oct 19",
                 home: "Snipers",
-                away: "Hawks",
-                score: null
+                away: "Sailors"
             },
-
             {
-                date: "Oct 23",
-                home: "Wildfire",
-                away: "Bolts",
-                score: null
+                date: "Tue, Oct 20",
+                home: "Bowmen",
+                away: "Wombats"
             },
-
             {
-                date: "Oct 24",
+                date: "Wed, Oct 21",
+                home: "Goblins",
+                away: "Cyborgs"
+            },
+            {
+                date: "Thu, Oct 22",
                 home: "Polar Bears",
-                away: "Gladiators",
-                score: null
+                away: "Bolts"
             },
-
             {
-                date: "Oct 24",
-                home: "Coyotes",
-                away: "Cyborgs",
-                score: null
+                date: "Fri, Oct 23",
+                home: "Gladiators",
+                away: "Rangers"
+            },
+            {
+                date: "Fri, Oct 23",
+                home: "Elves",
+                away: "Coyotes"
+            },
+            {
+                date: "Sat, Oct 24",
+                home: "Pioneers",
+                away: "Wildfire"
+            },
+            {
+                date: "Sat, Oct 24",
+                home: "Hawks",
+                away: "Lumberjacks"
             }
-
         ]
     },
 
 
-    /* =====================================================
+    /* =========================
        WEEK 5
-       Oct 26 - Oct 31
-       ===================================================== */
+       OCTOBER 26 - 31
+       SPECIAL WEEK
+       ========================= */
 
     {
-        week: 5,
-        startDate: "Oct 26",
-        endDate: "Oct 31",
-
+        name: "Week 5",
+        date: "October 26 – 31, 2026",
         games: [
-
             {
-                date: "Oct 26",
+                date: "Mon, Oct 26",
                 home: "Snipers",
-                away: "Sailors",
-                score: null
+                away: "Gladiators"
             },
-
             {
-                date: "Oct 27",
+                date: "Mon, Oct 26",
                 home: "Bowmen",
-                away: "Rangers",
-                score: null
+                away: "Elves"
             },
-
             {
-                date: "Oct 28",
+                date: "Tue, Oct 27",
                 home: "Goblins",
-                away: "Coyotes",
-                score: null
+                away: "Pioneers"
             },
-
             {
-                date: "Oct 29",
+                date: "Tue, Oct 27",
                 home: "Polar Bears",
-                away: "Cyborgs",
-                score: null
+                away: "Hawks"
             },
-
             {
-                date: "Oct 30",
-                home: "Gladiators",
-                away: "Wildfire",
-                score: null
+                date: "Wed, Oct 28",
+                home: "Rangers",
+                away: "Sailors"
             },
-
             {
-                date: "Oct 30",
-                home: "Elves",
-                away: "Wombats",
-                score: null
+                date: "Thu, Oct 29",
+                home: "Coyotes",
+                away: "Wombats"
             },
-
             {
-                date: "Oct 31",
-                home: "Pioneers",
-                away: "Bolts",
-                score: null
+                date: "Fri, Oct 30",
+                home: "Wildfire",
+                away: "Cyborgs"
             },
-
             {
-                date: "Oct 31",
-                home: "Hawks",
-                away: "Lumberjacks",
-                score: null
+                date: "Sat, Oct 31",
+                home: "Lumberjacks",
+                away: "Bolts"
             }
-
         ]
     },
 
 
-    /* =====================================================
+    /* =========================
        WEEK 6
-       Nov 2 - Nov 7
-       ===================================================== */
+       NOVEMBER 2 - 7
+       BYE WEEK
+       ========================= */
 
     {
-        week: 6,
-        startDate: "Nov 2",
-        endDate: "Nov 7",
-
-        games: [
-
-            {
-                date: "Nov 2",
-                home: "Rangers",
-                away: "Lumberjacks",
-                score: null
-            },
-
-            {
-                date: "Nov 3",
-                home: "Wombats",
-                away: "Cyborgs",
-                score: null
-            },
-
-            {
-                date: "Nov 4",
-                home: "Sailors",
-                away: "Bolts",
-                score: null
-            },
-
-            {
-                date: "Nov 5",
-                home: "Coyotes",
-                away: "Wildfire",
-                score: null
-            },
-
-            {
-                date: "Nov 6",
-                home: "Elves",
-                away: "Pioneers",
-                score: null
-            },
-
-            {
-                date: "Nov 6",
-                home: "Snipers",
-                away: "Polar Bears",
-                score: null
-            },
-
-            {
-                date: "Nov 7",
-                home: "Gladiators",
-                away: "Hawks",
-                score: null
-            },
-
-            {
-                date: "Nov 7",
-                home: "Bowmen",
-                away: "Goblins",
-                score: null
-            }
-
-        ]
+        name: "Week 6",
+        date: "November 2 – 7, 2026",
+        bye: true
     },
 
 
-    /* =====================================================
+    /* =========================
        WEEK 7
-       Nov 9 - Nov 14
-       ===================================================== */
+       NOVEMBER 9 - 14
+       ========================= */
 
     {
-        week: 7,
-        startDate: "Nov 9",
-        endDate: "Nov 14",
-
+        name: "Week 7",
+        date: "November 9 – 14, 2026",
         games: [
-
             {
-                date: "Nov 9",
+                date: "Mon, Nov 9",
                 home: "Snipers",
-                away: "Pioneers",
-                score: null
+                away: "Pioneers"
             },
-
             {
-                date: "Nov 10",
-                home: "Goblins",
-                away: "Gladiators",
-                score: null
-            },
-
-            {
-                date: "Nov 11",
-                home: "Lumberjacks",
-                away: "Wombats",
-                score: null
-            },
-
-            {
-                date: "Nov 12",
-                home: "Wildfire",
-                away: "Sailors",
-                score: null
-            },
-
-            {
-                date: "Nov 13",
-                home: "Coyotes",
-                away: "Bolts",
-                score: null
-            },
-
-            {
-                date: "Nov 13",
-                home: "Rangers",
-                away: "Cyborgs",
-                score: null
-            },
-
-            {
-                date: "Nov 14",
-                home: "Polar Bears",
-                away: "Hawks",
-                score: null
-            },
-
-            {
-                date: "Nov 14",
+                date: "Tue, Nov 10",
                 home: "Bowmen",
-                away: "Elves",
-                score: null
+                away: "Hawks"
+            },
+            {
+                date: "Wed, Nov 11",
+                home: "Goblins",
+                away: "Gladiators"
+            },
+            {
+                date: "Thu, Nov 12",
+                home: "Polar Bears",
+                away: "Elves"
+            },
+            {
+                date: "Fri, Nov 13",
+                home: "Rangers",
+                away: "Wildfire"
+            },
+            {
+                date: "Fri, Nov 13",
+                home: "Coyotes",
+                away: "Lumberjacks"
+            },
+            {
+                date: "Sat, Nov 14",
+                home: "Sailors",
+                away: "Cyborgs"
+            },
+            {
+                date: "Sat, Nov 14",
+                home: "Wombats",
+                away: "Bolts"
             }
-
         ]
     },
 
 
-    /* =====================================================
+    /* =========================
        WEEK 8
-       Nov 16 - Nov 21
-       ===================================================== */
+       NOVEMBER 16 - 21
+       ========================= */
 
     {
-        week: 8,
-        startDate: "Nov 16",
-        endDate: "Nov 21",
-
+        name: "Week 8",
+        date: "November 16 – 21, 2026",
         games: [
-
             {
-                date: "Nov 16",
+                date: "Mon, Nov 16",
                 home: "Snipers",
-                away: "Lumberjacks",
-                score: null
+                away: "Hawks"
             },
-
             {
-                date: "Nov 17",
+                date: "Tue, Nov 17",
                 home: "Bowmen",
-                away: "Wombats",
-                score: null
+                away: "Pioneers"
             },
-
             {
-                date: "Nov 18",
+                date: "Wed, Nov 18",
                 home: "Goblins",
-                away: "Wildfire",
-                score: null
+                away: "Elves"
             },
-
             {
-                date: "Nov 19",
+                date: "Thu, Nov 19",
                 home: "Polar Bears",
-                away: "Bolts",
-                score: null
+                away: "Gladiators"
             },
-
             {
-                date: "Nov 20",
-                home: "Gladiators",
-                away: "Cyborgs",
-                score: null
+                date: "Fri, Nov 20",
+                home: "Rangers",
+                away: "Lumberjacks"
             },
-
             {
-                date: "Nov 20",
-                home: "Elves",
-                away: "Rangers",
-                score: null
+                date: "Fri, Nov 20",
+                home: "Coyotes",
+                away: "Wildfire"
             },
-
             {
-                date: "Nov 21",
-                home: "Pioneers",
-                away: "Sailors",
-                score: null
+                date: "Sat, Nov 21",
+                home: "Sailors",
+                away: "Bolts"
             },
-
             {
-                date: "Nov 21",
-                home: "Hawks",
-                away: "Coyotes",
-                score: null
+                date: "Sat, Nov 21",
+                home: "Wombats",
+                away: "Cyborgs"
             }
-
         ]
     },
 
 
-    /* =====================================================
+    /* =========================
        WEEK 9
-       Nov 23 - Nov 28
-       ===================================================== */
+       NOVEMBER 23 - 28
+       ========================= */
 
     {
-        week: 9,
-        startDate: "Nov 23",
-        endDate: "Nov 28",
-
+        name: "Week 9",
+        date: "November 23 – 28, 2026",
         games: [
-
             {
-                date: "Nov 23",
+                date: "Mon, Nov 23",
+                home: "Snipers",
+                away: "Coyotes"
+            },
+            {
+                date: "Tue, Nov 24",
                 home: "Bowmen",
-                away: "Hawks",
-                score: null
+                away: "Rangers"
             },
-
             {
-                date: "Nov 24",
-                home: "Coyotes",
-                away: "Wombats",
-                score: null
-            },
-
-            {
-                date: "Nov 25",
+                date: "Wed, Nov 25",
                 home: "Goblins",
-                away: "Pioneers",
-                score: null
+                away: "Sailors"
             },
-
             {
-                date: "Nov 26",
-                home: "Snipers",
-                away: "Gladiators",
-                score: null
-            },
-
-            {
-                date: "Nov 27",
-                home: "Lumberjacks",
-                away: "Bolts",
-                score: null
-            },
-
-            {
-                date: "Nov 27",
+                date: "Thu, Nov 26",
                 home: "Polar Bears",
-                away: "Elves",
-                score: null
+                away: "Wombats"
             },
-
             {
-                date: "Nov 28",
-                home: "Rangers",
-                away: "Sailors",
-                score: null
-            },
-
-            {
-                date: "Nov 28",
-                home: "Wildfire",
-                away: "Cyborgs",
-                score: null
-            }
-
-        ]
-    },
-
-
-    /* =====================================================
-       WEEK 10
-       Nov 30 - Dec 5
-       ===================================================== */
-
-    {
-        week: 10,
-        startDate: "Nov 30",
-        endDate: "Dec 5",
-
-        games: [
-
-            {
-                date: "Nov 30",
-                home: "Snipers",
-                away: "Bowmen",
-                score: null
-            },
-
-            {
-                date: "Dec 1",
-                home: "Cyborgs",
-                away: "Bolts",
-                score: null
-            },
-
-            {
-                date: "Dec 2",
-                home: "Sailors",
-                away: "Wombats",
-                score: null
-            },
-
-            {
-                date: "Dec 3",
-                home: "Rangers",
-                away: "Coyotes",
-                score: null
-            },
-
-            {
-                date: "Dec 4",
+                date: "Fri, Nov 27",
                 home: "Gladiators",
-                away: "Elves",
-                score: null
+                away: "Cyborgs"
             },
-
             {
-                date: "Dec 4",
-                home: "Pioneers",
-                away: "Hawks",
-                score: null
-            },
-
-            {
-                date: "Dec 5",
-                home: "Goblins",
-                away: "Polar Bears",
-                score: null
-            },
-
-            {
-                date: "Dec 5",
-                home: "Wildfire",
-                away: "Lumberjacks",
-                score: null
-            }
-
-        ]
-    },
-
-
-    /* =====================================================
-       WEEK 11
-       Dec 7 - Dec 12
-       ===================================================== */
-
-    {
-        week: 11,
-        startDate: "Dec 7",
-        endDate: "Dec 12",
-
-        games: [
-
-            {
-                date: "Dec 7",
-                home: "Snipers",
-                away: "Coyotes",
-                score: null
-            },
-
-            {
-                date: "Dec 8",
-                home: "Bowmen",
-                away: "Bolts",
-                score: null
-            },
-
-            {
-                date: "Dec 9",
-                home: "Goblins",
-                away: "Cyborgs",
-                score: null
-            },
-
-            {
-                date: "Dec 10",
-                home: "Polar Bears",
-                away: "Rangers",
-                score: null
-            },
-
-            {
-                date: "Dec 11",
-                home: "Gladiators",
-                away: "Wombats",
-                score: null
-            },
-
-            {
-                date: "Dec 11",
+                date: "Fri, Nov 27",
                 home: "Elves",
-                away: "Lumberjacks",
-                score: null
+                away: "Bolts"
             },
-
             {
-                date: "Dec 12",
+                date: "Sat, Nov 28",
                 home: "Pioneers",
-                away: "Wildfire",
-                score: null
+                away: "Rangers"
             },
-
             {
-                date: "Dec 12",
+                date: "Sat, Nov 28",
                 home: "Hawks",
-                away: "Sailors",
-                score: null
+                away: "Wildfire"
             }
-
         ]
     },
 
 
-    /* =====================================================
-       WEEK 12
-       Dec 14 - Dec 19
-       ===================================================== */
+    /* =========================
+       WEEK 10
+       NOVEMBER 30 - DECEMBER 5
+       ========================= */
 
     {
-        week: 12,
-        startDate: "Dec 14",
-        endDate: "Dec 19",
-
+        name: "Week 10",
+        date: "November 30 – December 5, 2026",
         games: [
-
             {
-                date: "Dec 14",
-                home: "Rangers",
-                away: "Lumberjacks",
-                score: null
-            },
-
-            {
-                date: "Dec 15",
-                home: "Elves",
-                away: "Pioneers",
-                score: null
-            },
-
-            {
-                date: "Dec 16",
-                home: "Wombats",
-                away: "Cyborgs",
-                score: null
-            },
-
-            {
-                date: "Dec 17",
-                home: "Sailors",
-                away: "Bolts",
-                score: null
-            },
-
-            {
-                date: "Dec 18",
+                date: "Mon, Nov 30",
                 home: "Snipers",
-                away: "Polar Bears",
-                score: null
+                away: "Elves"
             },
-
             {
-                date: "Dec 18",
-                home: "Gladiators",
-                away: "Hawks",
-                score: null
-            },
-
-            {
-                date: "Dec 19",
-                home: "Coyotes",
-                away: "Wildfire",
-                score: null
-            },
-
-            {
-                date: "Dec 19",
+                date: "Tue, Dec 1",
                 home: "Bowmen",
-                away: "Goblins",
-                score: null
-            }
-
-        ]
-    },
-
-
-    /* =====================================================
-       WEEK 13
-       Dec 21 - Dec 26
-       ===================================================== */
-
-    {
-        week: 13,
-        startDate: "Dec 21",
-        endDate: "Dec 26",
-
-        games: [
-
-            {
-                date: "Dec 21",
-                home: "Polar Bears",
-                away: "Pioneers",
-                score: null
+                away: "Gladiators"
             },
-
             {
-                date: "Dec 22",
-                home: "Bowmen",
-                away: "Gladiators",
-                score: null
-            },
-
-            {
-                date: "Dec 23",
-                home: "Lumberjacks",
-                away: "Cyborgs",
-                score: null
-            },
-
-            {
-                date: "Dec 24",
-                home: "Coyotes",
-                away: "Sailors",
-                score: null
-            },
-
-            {
-                date: "Dec 25",
-                home: "Rangers",
-                away: "Bolts",
-                score: null
-            },
-
-            {
-                date: "Dec 25",
-                home: "Snipers",
-                away: "Elves",
-                score: null
-            },
-
-            {
-                date: "Dec 26",
-                home: "Wildfire",
-                away: "Wombats",
-                score: null
-            },
-
-            {
-                date: "Dec 26",
+                date: "Wed, Dec 2",
                 home: "Goblins",
-                away: "Hawks",
-                score: null
+                away: "Hawks"
+            },
+            {
+                date: "Thu, Dec 3",
+                home: "Polar Bears",
+                away: "Pioneers"
+            },
+            {
+                date: "Fri, Dec 4",
+                home: "Rangers",
+                away: "Wombats"
+            },
+            {
+                date: "Fri, Dec 4",
+                home: "Coyotes",
+                away: "Sailors"
+            },
+            {
+                date: "Sat, Dec 5",
+                home: "Wildfire",
+                away: "Bolts"
+            },
+            {
+                date: "Sat, Dec 5",
+                home: "Lumberjacks",
+                away: "Cyborgs"
             }
-
         ]
     },
 
 
-    /* =====================================================
-       WEEK 14
-       Dec 28 - Jan 2
-       ===================================================== */
+    /* =========================
+       WEEK 11
+       DECEMBER 7 - 12
+       BYE WEEK
+       ========================= */
 
     {
-        week: 14,
-        startDate: "Dec 28",
-        endDate: "Jan 2",
+        name: "Week 11",
+        date: "December 7 – 12, 2026",
+        bye: true
+    },
 
+
+    /* =========================
+       WEEK 12
+       DECEMBER 14 - 19
+       ========================= */
+
+    {
+        name: "Week 12",
+        date: "December 14 – 19, 2026",
         games: [
-
             {
-                date: "Dec 28",
-                home: "Elves",
-                away: "Hawks",
-                score: null
-            },
-
-            {
-                date: "Dec 29",
-                home: "Bowmen",
-                away: "Polar Bears",
-                score: null
-            },
-
-            {
-                date: "Dec 30",
+                date: "Mon, Dec 14",
                 home: "Snipers",
-                away: "Goblins",
-                score: null
+                away: "Polar Bears"
             },
-
             {
-                date: "Dec 31",
-                home: "Wombats",
-                away: "Bolts",
-                score: null
+                date: "Tue, Dec 15",
+                home: "Bowmen",
+                away: "Goblins"
             },
-
             {
-                date: "Jan 1",
-                home: "Rangers",
-                away: "Wildfire",
-                score: null
-            },
-
-            {
-                date: "Jan 1",
-                home: "Sailors",
-                away: "Cyborgs",
-                score: null
-            },
-
-            {
-                date: "Jan 2",
-                home: "Coyotes",
-                away: "Lumberjacks",
-                score: null
-            },
-
-            {
-                date: "Jan 2",
+                date: "Wed, Dec 16",
                 home: "Gladiators",
-                away: "Pioneers",
-                score: null
+                away: "Pioneers"
+            },
+            {
+                date: "Thu, Dec 17",
+                home: "Elves",
+                away: "Hawks"
+            },
+            {
+                date: "Fri, Dec 18",
+                home: "Rangers",
+                away: "Cyborgs"
+            },
+            {
+                date: "Fri, Dec 18",
+                home: "Coyotes",
+                away: "Bolts"
+            },
+            {
+                date: "Sat, Dec 19",
+                home: "Wildfire",
+                away: "Sailors"
+            },
+            {
+                date: "Sat, Dec 19",
+                home: "Lumberjacks",
+                away: "Wombats"
             }
+        ]
+    },
 
+
+    /* =========================
+       WEEK 13
+       DECEMBER 21 - 26
+       SPECIAL HOLIDAY WEEK
+       ========================= */
+
+    {
+        name: "Week 13",
+        date: "December 21 – 26, 2026",
+        games: [
+            {
+                date: "Mon, Dec 21",
+                home: "Snipers",
+                away: "Bowmen"
+            },
+            {
+                date: "Tue, Dec 22",
+                home: "Gladiators",
+                away: "Elves"
+            },
+            {
+                date: "Wed, Dec 23",
+                home: "Rangers",
+                away: "Coyotes"
+            },
+            {
+                date: "Thu, Dec 24",
+                home: "Goblins",
+                away: "Polar Bears"
+            },
+            {
+                date: "Thu, Dec 24",
+                home: "Sailors",
+                away: "Wombats"
+            },
+            {
+                date: "Fri, Dec 25",
+                home: "Pioneers",
+                away: "Hawks"
+            },
+            {
+                date: "Fri, Dec 25",
+                home: "Wildfire",
+                away: "Lumberjacks"
+            },
+            {
+                date: "Sat, Dec 26",
+                home: "Cyborgs",
+                away: "Bolts"
+            }
+        ]
+    },
+
+
+    /* =========================
+       WEEK 14
+       DECEMBER 28 - JANUARY 2
+       SPECIAL HOLIDAY WEEK
+       ========================= */
+
+    {
+        name: "Week 14",
+        date: "December 28, 2026 – January 2, 2027",
+        games: [
+            {
+                date: "Mon, Dec 28",
+                home: "Snipers",
+                away: "Gladiators"
+            },
+            {
+                date: "Tue, Dec 29",
+                home: "Bowmen",
+                away: "Elves"
+            },
+            {
+                date: "Wed, Dec 30",
+                home: "Goblins",
+                away: "Pioneers"
+            },
+            {
+                date: "Thu, Dec 31",
+                home: "Polar Bears",
+                away: "Hawks"
+            },
+            {
+                date: "Thu, Dec 31",
+                home: "Rangers",
+                away: "Sailors"
+            },
+            {
+                date: "Fri, Jan 1",
+                home: "Coyotes",
+                away: "Wombats"
+            },
+            {
+                date: "Fri, Jan 1",
+                home: "Wildfire",
+                away: "Cyborgs"
+            },
+            {
+                date: "Sat, Jan 2",
+                home: "Lumberjacks",
+                away: "Bolts"
+            }
+        ]
+    },
+
+
+    /* =========================
+       WEEK 15
+       JANUARY 4 - 9
+       ========================= */
+
+    {
+        name: "Week 15",
+        date: "January 4 – 9, 2027",
+        games: [
+            {
+                date: "Mon, Jan 4",
+                home: "Snipers",
+                away: "Rangers"
+            },
+            {
+                date: "Tue, Jan 5",
+                home: "Bowmen",
+                away: "Coyotes"
+            },
+            {
+                date: "Wed, Jan 6",
+                home: "Goblins",
+                away: "Wildfire"
+            },
+            {
+                date: "Thu, Jan 7",
+                home: "Polar Bears",
+                away: "Lumberjacks"
+            },
+            {
+                date: "Fri, Jan 8",
+                home: "Gladiators",
+                away: "Sailors"
+            },
+            {
+                date: "Fri, Jan 8",
+                home: "Elves",
+                away: "Wombats"
+            },
+            {
+                date: "Sat, Jan 9",
+                home: "Pioneers",
+                away: "Cyborgs"
+            },
+            {
+                date: "Sat, Jan 9",
+                home: "Hawks",
+                away: "Bolts"
+            }
+        ]
+    },
+
+
+    /* =========================
+       WEEK 16
+       JANUARY 11 - 16
+       ========================= */
+
+    {
+        name: "Week 16",
+        date: "January 11 – 16, 2027",
+        games: [
+            {
+                date: "Mon, Jan 11",
+                home: "Snipers",
+                away: "Bowmen"
+            },
+            {
+                date: "Tue, Jan 12",
+                home: "Goblins",
+                away: "Polar Bears"
+            },
+            {
+                date: "Wed, Jan 13",
+                home: "Gladiators",
+                away: "Elves"
+            },
+            {
+                date: "Thu, Jan 14",
+                home: "Pioneers",
+                away: "Hawks"
+            },
+            {
+                date: "Fri, Jan 15",
+                home: "Rangers",
+                away: "Coyotes"
+            },
+            {
+                date: "Fri, Jan 15",
+                home: "Wildfire",
+                away: "Lumberjacks"
+            },
+            {
+                date: "Sat, Jan 16",
+                home: "Sailors",
+                away: "Wombats"
+            },
+            {
+                date: "Sat, Jan 16",
+                home: "Cyborgs",
+                away: "Bolts"
+            }
         ]
     }
 
 ];
 
 
-/* =========================================================
-   TEAM LOGOS
-   ========================================================= */
+const carouselTrack = document.getElementById("carouselTrack");
+const weekSelector = document.getElementById("weekSelector");
+const weekDots = document.getElementById("weekDots");
 
-const teamLogos = {
-
-    "Snipers": "assets/teams/snipers.png",
-    "Bowmen": "assets/teams/bowmen.png",
-    "Goblins": "assets/teams/goblins.png",
-    "Polar Bears": "assets/teams/polar-bears.png",
-
-    "Gladiators": "assets/teams/gladiators.png",
-    "Elves": "assets/teams/elves.png",
-    "Pioneers": "assets/teams/pioneers.png",
-    "Hawks": "assets/teams/hawks.png",
-
-    "Rangers": "assets/teams/rangers.png",
-    "Coyotes": "assets/teams/coyotes.png",
-    "Wildfire": "assets/teams/wildfire.png",
-    "Lumberjacks": "assets/teams/lumberjacks.png",
-
-    "Sailors": "assets/teams/sailors.png",
-    "Wombats": "assets/teams/wombats.png",
-    "Cyborgs": "assets/teams/cyborgs.png",
-    "Bolts": "assets/teams/bolts.png"
-
-};
+let currentWeek = 0;
 
 
-/* =========================================================
-   CAROUSEL ELEMENTS
-   ========================================================= */
+/* =========================
+   CREATE TEAM HTML
+   ========================= */
 
-const track = document.getElementById("carousel-track");
+function createTeam(team, side) {
 
-const nextButton =
-    document.getElementById("next");
+    const div = document.createElement("div");
+    div.className = `team ${side}`;
 
-const prevButton =
-    document.getElementById("prev");
+    const img = document.createElement("img");
+    img.className = "team-logo";
+    img.src = teamLogos[team];
+    img.alt = `${team} logo`;
 
-const weekSelector =
-    document.getElementById("week-selector");
-
-const weekDots =
-    document.getElementById("week-dots");
-
-
-/* =========================================================
-   INITIAL WEEK
-   =========================================================
-
-   Change this number to control which week opens
-   when the schedule page is loaded.
-
-   1 = Week 1
-   14 = Week 14
-*/
-
-let currentWeek = 1;
-
-let currentIndex =
-    currentWeek - 1;
-
-
-/* =========================================================
-   CREATE TEAM
-   ========================================================= */
-
-function createTeam(teamName, side) {
-
-    const logo =
-        teamLogos[teamName] || "";
+    const name = document.createElement("span");
+    name.textContent = team;
 
     if (side === "home") {
-
-        return `
-            <div class="team home">
-
-                <span>${teamName}</span>
-
-                <img
-                    class="team-logo"
-                    src="${logo}"
-                    alt="${teamName} logo"
-                    onerror="this.style.display='none';"
-                >
-
-            </div>
-        `;
-
+        div.appendChild(name);
+        div.appendChild(img);
+    } else {
+        div.appendChild(img);
+        div.appendChild(name);
     }
 
-    return `
-        <div class="team away">
-
-            <img
-                class="team-logo"
-                src="${logo}"
-                alt="${teamName} logo"
-                onerror="this.style.display='none';"
-            >
-
-            <span>${teamName}</span>
-
-        </div>
-    `;
+    return div;
 }
 
 
-/* =========================================================
-   CREATE GAME
-   ========================================================= */
+/* =========================
+   CREATE GAME HTML
+   ========================= */
 
 function createGame(game) {
 
-    const score =
-        game.score ? game.score : "—";
+    const card = document.createElement("div");
+    card.className = "game-card";
 
-    const scoreClass =
-        game.score
-            ? "score-box final"
-            : "score-box";
+    const date = document.createElement("div");
+    date.className = "game-date";
+    date.textContent = game.date;
 
+    const matchup = document.createElement("div");
+    matchup.className = "matchup";
 
-    return `
-        <div class="game-card">
+    matchup.appendChild(createTeam(game.home, "home"));
 
-            <div class="game-date">
-                ${game.date}
-            </div>
+    const vs = document.createElement("span");
+    vs.className = "vs";
+    vs.textContent = "VS";
 
+    matchup.appendChild(vs);
 
-            <div class="matchup">
+    matchup.appendChild(createTeam(game.away, "away"));
 
-                ${createTeam(game.home, "home")}
+    const scoreContainer = document.createElement("div");
+    scoreContainer.className = "score-container";
 
-                <span class="vs">
-                    VS
-                </span>
+    const score = document.createElement("div");
+    score.className = "score-box";
 
-                ${createTeam(game.away, "away")}
+    if (game.score) {
+        score.textContent = game.score;
+        score.classList.add("final");
+    } else {
+        score.textContent = "—";
+    }
 
-            </div>
+    scoreContainer.appendChild(score);
 
+    card.appendChild(date);
+    card.appendChild(matchup);
+    card.appendChild(scoreContainer);
 
-            <div class="score-container">
-
-                <div class="${scoreClass}">
-                    ${score}
-                </div>
-
-            </div>
-
-        </div>
-    `;
+    return card;
 }
 
 
-/* =========================================================
-   RENDER SCHEDULE
-   ========================================================= */
+/* =========================
+   RENDER WEEKS
+   ========================= */
 
-function renderSchedule() {
+function renderWeeks() {
 
-    track.innerHTML = "";
-
+    carouselTrack.innerHTML = "";
     weekSelector.innerHTML = "";
-
     weekDots.innerHTML = "";
 
+    weeks.forEach((week, index) => {
 
-    schedule.forEach((week, index) => {
+        const slide = document.createElement("div");
+        slide.className = "carousel-slide";
 
-        /* -------------------------
-           CREATE SLIDE
-           ------------------------- */
+        const header = document.createElement("div");
+        header.className = "week-header";
 
-        const slide =
-            document.createElement("div");
+        const title = document.createElement("div");
+        title.className = "week-title";
+        title.textContent = week.name;
 
-        slide.className =
-            "carousel-slide";
+        const date = document.createElement("div");
+        date.className = "week-date";
+        date.textContent = week.date;
 
+        header.appendChild(title);
+        header.appendChild(date);
 
-        slide.innerHTML = `
-
-            <div class="week-header">
-
-                <h3 class="week-title">
-                    Week ${week.week}
-                </h3>
-
-                <div class="week-date">
-                    ${week.startDate} – ${week.endDate}
-                </div>
-
-            </div>
+        slide.appendChild(header);
 
 
-            <div class="games-list">
+        if (week.bye) {
 
-                ${week.games
-                    .map(createGame)
-                    .join("")}
+            const bye = document.createElement("div");
+            bye.className = "bye-week";
 
-            </div>
-        `;
+            const byeTitle = document.createElement("h3");
+            byeTitle.textContent = "BYE WEEK";
+
+            const byeText = document.createElement("p");
+            byeText.textContent = "No games are scheduled this week.";
+
+            bye.appendChild(byeTitle);
+            bye.appendChild(byeText);
+
+            slide.appendChild(bye);
+
+        } else {
+
+            const gamesList = document.createElement("div");
+            gamesList.className = "games-list";
+
+            week.games.forEach(game => {
+                gamesList.appendChild(createGame(game));
+            });
+
+            slide.appendChild(gamesList);
+        }
 
 
-        track.appendChild(slide);
+        carouselTrack.appendChild(slide);
 
 
-        /* -------------------------
-           WEEK SELECTOR
-           ------------------------- */
-
-        const option =
-            document.createElement("option");
-
+        const option = document.createElement("option");
         option.value = index;
-
-        option.textContent =
-            `Week ${week.week}`;
+        option.textContent = week.name;
 
         weekSelector.appendChild(option);
 
 
-        /* -------------------------
-           WEEK DOT
-           ------------------------- */
+        const dot = document.createElement("button");
+        dot.className = "week-dot";
+        dot.setAttribute("aria-label", `Go to ${week.name}`);
 
-        const dot =
-            document.createElement("button");
-
-        dot.className =
-            "week-dot";
-
-        dot.type =
-            "button";
-
-        dot.setAttribute(
-            "aria-label",
-            `Go to Week ${week.week}`
-        );
-
-
-        dot.addEventListener(
-            "click",
-            () => {
-
-                currentIndex = index;
-
-                updateCarousel();
-
-            }
-        );
-
+        dot.addEventListener("click", () => {
+            goToWeek(index);
+        });
 
         weekDots.appendChild(dot);
-
     });
-
 
     updateCarousel();
 }
 
 
-/* =========================================================
-   UPDATE CAROUSEL
-   ========================================================= */
+/* =========================
+   CAROUSEL CONTROL
+   ========================= */
 
-function updateCarousel() {
+function goToWeek(index) {
 
-    track.style.transform =
-        `translateX(-${currentIndex * 100}%)`;
+    if (index < 0) {
+        index = 0;
+    }
 
+    if (index >= weeks.length) {
+        index = weeks.length - 1;
+    }
 
-    prevButton.disabled =
-        currentIndex === 0;
+    currentWeek = index;
 
-
-    nextButton.disabled =
-        currentIndex === schedule.length - 1;
-
-
-    weekSelector.value =
-        currentIndex;
-
-
-    document
-        .querySelectorAll(".week-dot")
-        .forEach((dot, index) => {
-
-            dot.classList.toggle(
-                "active",
-                index === currentIndex
-            );
-
-        });
+    updateCarousel();
 }
 
 
-/* =========================================================
-   NEXT BUTTON
-   ========================================================= */
+function updateCarousel() {
 
-nextButton.addEventListener(
-    "click",
-    () => {
+    carouselTrack.style.transform =
+        `translateX(-${currentWeek * 100}%)`;
 
-        if (
-            currentIndex <
-            schedule.length - 1
-        ) {
+    weekSelector.value = currentWeek;
 
-            currentIndex++;
+    const dots = document.querySelectorAll(".week-dot");
 
-            updateCarousel();
+    dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentWeek);
+    });
 
-        }
+    document.getElementById("prev").disabled =
+        currentWeek === 0;
 
+    document.getElementById("next").disabled =
+        currentWeek === weeks.length - 1;
+}
+
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+document.getElementById("prev").addEventListener("click", () => {
+    goToWeek(currentWeek - 1);
+});
+
+document.getElementById("next").addEventListener("click", () => {
+    goToWeek(currentWeek + 1);
+});
+
+
+weekSelector.addEventListener("change", () => {
+    goToWeek(Number(weekSelector.value));
+});
+
+
+/* =========================
+   KEYBOARD NAVIGATION
+   ========================= */
+
+document.addEventListener("keydown", event => {
+
+    if (event.key === "ArrowLeft") {
+        goToWeek(currentWeek - 1);
     }
-);
 
-
-/* =========================================================
-   PREVIOUS BUTTON
-   ========================================================= */
-
-prevButton.addEventListener(
-    "click",
-    () => {
-
-        if (currentIndex > 0) {
-
-            currentIndex--;
-
-            updateCarousel();
-
-        }
-
+    if (event.key === "ArrowRight") {
+        goToWeek(currentWeek + 1);
     }
-);
+});
 
 
-/* =========================================================
-   WEEK SELECTOR
-   ========================================================= */
-
-weekSelector.addEventListener(
-    "change",
-    (event) => {
-
-        currentIndex =
-            Number(event.target.value);
-
-        updateCarousel();
-
-    }
-);
-
-
-/* =========================================================
-   KEYBOARD CONTROLS
-   ========================================================= */
-
-document.addEventListener(
-    "keydown",
-    (event) => {
-
-        if (
-            event.key === "ArrowRight" &&
-            currentIndex < schedule.length - 1
-        ) {
-
-            currentIndex++;
-
-            updateCarousel();
-
-        }
-
-
-        if (
-            event.key === "ArrowLeft" &&
-            currentIndex > 0
-        ) {
-
-            currentIndex--;
-
-            updateCarousel();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   SWIPE SUPPORT
-   ========================================================= */
+/* =========================
+   TOUCH SWIPING
+   ========================= */
 
 let touchStartX = 0;
-
 let touchEndX = 0;
 
+carouselTrack.addEventListener("touchstart", event => {
+    touchStartX = event.changedTouches[0].screenX;
+});
 
-track.addEventListener(
-    "touchstart",
-    (event) => {
+carouselTrack.addEventListener("touchend", event => {
 
-        touchStartX =
-            event.changedTouches[0].screenX;
+    touchEndX = event.changedTouches[0].screenX;
 
-    },
-    { passive: true }
-);
+    const difference = touchStartX - touchEndX;
 
+    if (Math.abs(difference) < 50) {
+        return;
+    }
 
-track.addEventListener(
-    "touchend",
-    (event) => {
-
-        touchEndX =
-            event.changedTouches[0].screenX;
-
-
-        const swipeDistance =
-            touchEndX - touchStartX;
+    if (difference > 0) {
+        goToWeek(currentWeek + 1);
+    } else {
+        goToWeek(currentWeek - 1);
+    }
+});
 
 
-        if (
-            Math.abs(swipeDistance) < 50
-        ) {
-            return;
-        }
-
-
-        /* Swipe left */
-
-        if (swipeDistance < 0) {
-
-            if (
-                currentIndex <
-                schedule.length - 1
-            ) {
-
-                currentIndex++;
-
-                updateCarousel();
-
-            }
-
-        }
-
-
-        /* Swipe right */
-
-        else {
-
-            if (currentIndex > 0) {
-
-                currentIndex--;
-
-                updateCarousel();
-
-            }
-
-        }
-
-    },
-    { passive: true }
-);
-
-
-/* =========================================================
+/* =========================
    START
-   ========================================================= */
+   ========================= */
 
-renderSchedule();
+renderWeeks();
 
 </script>
 
