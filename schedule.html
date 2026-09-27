@@ -49,23 +49,37 @@
 
 <script>
 const teamLogos = {
-    "Snipers": "teams/assets/snipers/logo.png",
-    "Bowmen": "teams/assets/bowmen/logo.png",
-    "Goblins": "teams/assets/goblins/logo.png",
-    "Polar Bears": "teams/assets/polar-bears/logo.png",
-    "Gladiators": "teams/assets/gladiators/logo.png",
-    "Elves": "teams/assets/elves/logo.png",
-    "Pioneers": "teams/assets/pioneers/logo.png",
-    "Hawks": "teams/assets/hawks/logo.png",
-    "Rangers": "teams/assets/rangers/logo.png",
-    "Coyotes": "teams/assets/coyotes/logo.png",
-    "Wildfire": "teams/assets/wildfire/logo.png",
-    "Lumberjacks": "teams/assets/lumberjacks/logo.png",
-    "Sailors": "teams/assets/sailors/logo.png",
-    "Wombats": "teams/assets/wombats/logo.png",
-    "Cyborgs": "teams/assets/cyborgs/logo.png",
-    "Bolts": "teams/assets/bolts/logo.png"
+    "Snipers": "assets/teams/snipers.png",
+    "Bowmen": "assets/teams/bowmen.png",
+    "Goblins": "assets/teams/goblins.png",
+    "Polar Bears": "assets/teams/polar-bears.png",
+    "Gladiators": "assets/teams/gladiators.png",
+    "Elves": "assets/teams/elves.png",
+    "Pioneers": "assets/teams/pioneers.png",
+    "Hawks": "assets/teams/hawks.png",
+    "Rangers": "assets/teams/rangers.png",
+    "Coyotes": "assets/teams/coyotes.png",
+    "Wildfire": "assets/teams/wildfire.png",
+    "Lumberjacks": "assets/teams/lumberjacks.png",
+    "Sailors": "assets/teams/sailors.png",
+    "Wombats": "assets/teams/wombats.png",
+    "Cyborgs": "assets/teams/cyborgs.png",
+    "Bolts": "assets/teams/bolts.png"
 };
+
+/*
+    Each game is:
+
+    [date, home team, away team, home score, away score]
+
+    Use null, null for games that have not been played.
+
+    Example:
+    ["2026-10-05", "Rangers", "Coyotes", null, null]
+
+    After the game:
+    ["2026-10-05", "Rangers", "Coyotes", 4, 2]
+*/
 
 const schedule = [
     {
@@ -73,14 +87,14 @@ const schedule = [
         start: "2026-09-28",
         end: "2026-10-03",
         games: [
-            ["2026-09-28", "Goblins", "Polar Bears"],
-            ["2026-09-29", "Hawks", "Rangers"],
-            ["2026-09-30", "Sailors", "Wombats"],
-            ["2026-10-01", "Elves", "Pioneers"],
-            ["2026-10-02", "Bolts", "Cyborgs"],
-            ["2026-10-02", "Wildfire", "Lumberjacks"],
-            ["2026-10-03", "Coyotes", "Gladiators"],
-            ["2026-10-03", "Snipers", "Bowmen"]
+            ["2026-09-28", "Goblins", "Polar Bears", null, null],
+            ["2026-09-29", "Hawks", "Rangers", null, null],
+            ["2026-09-30", "Sailors", "Wombats", null, null],
+            ["2026-10-01", "Elves", "Pioneers", null, null],
+            ["2026-10-02", "Bolts", "Cyborgs", null, null],
+            ["2026-10-02", "Wildfire", "Lumberjacks", null, null],
+            ["2026-10-03", "Coyotes", "Gladiators", null, null],
+            ["2026-10-03", "Snipers", "Bowmen", 2, 4]
         ]
     },
 
@@ -89,14 +103,14 @@ const schedule = [
         start: "2026-10-05",
         end: "2026-10-10",
         games: [
-            ["2026-10-05", "Rangers", "Coyotes"],
-            ["2026-10-06", "Wombats", "Cyborgs"],
-            ["2026-10-07", "Elves", "Gladiators"],
-            ["2026-10-08", "Sailors", "Wildfire"],
-            ["2026-10-09", "Bolts", "Lumberjacks"],
-            ["2026-10-09", "Pioneers", "Hawks"],
-            ["2026-10-10", "Polar Bears", "Snipers"],
-            ["2026-10-10", "Bowmen", "Goblins"]
+            ["2026-10-05", "Rangers", "Coyotes", null, null],
+            ["2026-10-06", "Wombats", "Cyborgs", null, null],
+            ["2026-10-07", "Elves", "Gladiators", null, null],
+            ["2026-10-08", "Sailors", "Wildfire", null, null],
+            ["2026-10-09", "Bolts", "Lumberjacks", null, null],
+            ["2026-10-09", "Pioneers", "Hawks", null, null],
+            ["2026-10-10", "Polar Bears", "Snipers", null, null],
+            ["2026-10-10", "Bowmen", "Goblins", null, null]
         ]
     },
 
@@ -105,14 +119,14 @@ const schedule = [
         start: "2026-10-12",
         end: "2026-10-17",
         games: [
-            ["2026-10-12", "Cyborgs", "Sailors"],
-            ["2026-10-13", "Bolts", "Coyotes"],
-            ["2026-10-14", "Wildfire", "Pioneers"],
-            ["2026-10-15", "Hawks", "Elves"],
-            ["2026-10-16", "Gladiators", "Wombats"],
-            ["2026-10-16", "Polar Bears", "Bowmen"],
-            ["2026-10-17", "Rangers", "Lumberjacks"],
-            ["2026-10-17", "Snipers", "Goblins"]
+            ["2026-10-12", "Cyborgs", "Sailors", null, null],
+            ["2026-10-13", "Bolts", "Coyotes", null, null],
+            ["2026-10-14", "Wildfire", "Pioneers", null, null],
+            ["2026-10-15", "Hawks", "Elves", null, null],
+            ["2026-10-16", "Gladiators", "Wombats", null, null],
+            ["2026-10-16", "Polar Bears", "Bowmen", null, null],
+            ["2026-10-17", "Rangers", "Lumberjacks", null, null],
+            ["2026-10-17", "Snipers", "Goblins", null, null]
         ]
     },
 
@@ -121,14 +135,14 @@ const schedule = [
         start: "2026-10-19",
         end: "2026-10-24",
         games: [
-            ["2026-10-19", "Sailors", "Bolts"],
-            ["2026-10-20", "Elves", "Hawks"],
-            ["2026-10-21", "Snipers", "Wildfire"],
-            ["2026-10-22", "Rangers", "Coyotes"],
-            ["2026-10-23", "Polar Bears", "Bowmen"],
-            ["2026-10-23", "Gladiators", "Pioneers"],
-            ["2026-10-24", "Cyborgs", "Goblins"],
-            ["2026-10-24", "Lumberjacks", "Wombats"]
+            ["2026-10-19", "Sailors", "Bolts", null, null],
+            ["2026-10-20", "Elves", "Hawks", null, null],
+            ["2026-10-21", "Snipers", "Wildfire", null, null],
+            ["2026-10-22", "Rangers", "Coyotes", null, null],
+            ["2026-10-23", "Polar Bears", "Bowmen", null, null],
+            ["2026-10-23", "Gladiators", "Pioneers", null, null],
+            ["2026-10-24", "Cyborgs", "Goblins", null, null],
+            ["2026-10-24", "Lumberjacks", "Wombats", null, null]
         ]
     },
 
@@ -137,14 +151,14 @@ const schedule = [
         start: "2026-10-26",
         end: "2026-10-31",
         games: [
-            ["2026-10-26", "Goblins", "Polar Bears"],
-            ["2026-10-26", "Cyborgs", "Sailors"],
-            ["2026-10-27", "Lumberjacks", "Coyotes"],
-            ["2026-10-27", "Snipers", "Hawks"],
-            ["2026-10-28", "Rangers", "Pioneers"],
-            ["2026-10-29", "Bolts", "Wombats"],
-            ["2026-10-30", "Bowmen", "Elves"],
-            ["2026-10-31", "Wildfire", "Gladiators"]
+            ["2026-10-26", "Goblins", "Polar Bears", null, null],
+            ["2026-10-26", "Cyborgs", "Sailors", null, null],
+            ["2026-10-27", "Lumberjacks", "Coyotes", null, null],
+            ["2026-10-27", "Snipers", "Hawks", null, null],
+            ["2026-10-28", "Rangers", "Pioneers", null, null],
+            ["2026-10-29", "Bolts", "Wombats", null, null],
+            ["2026-10-30", "Bowmen", "Elves", null, null],
+            ["2026-10-31", "Wildfire", "Gladiators", null, null]
         ]
     },
 
@@ -160,14 +174,14 @@ const schedule = [
         start: "2026-11-09",
         end: "2026-11-14",
         games: [
-            ["2026-11-09", "Snipers", "Gladiators"],
-            ["2026-11-10", "Hawks", "Bowmen"],
-            ["2026-11-11", "Bolts", "Sailors"],
-            ["2026-11-12", "Wombats", "Rangers"],
-            ["2026-11-13", "Wildfire", "Cyborgs"],
-            ["2026-11-13", "Coyotes", "Elves"],
-            ["2026-11-14", "Pioneers", "Polar Bears"],
-            ["2026-11-14", "Goblins", "Lumberjacks"]
+            ["2026-11-09", "Snipers", "Gladiators", null, null],
+            ["2026-11-10", "Hawks", "Bowmen", null, null],
+            ["2026-11-11", "Bolts", "Sailors", null, null],
+            ["2026-11-12", "Wombats", "Rangers", null, null],
+            ["2026-11-13", "Wildfire", "Cyborgs", null, null],
+            ["2026-11-13", "Coyotes", "Elves", null, null],
+            ["2026-11-14", "Pioneers", "Polar Bears", null, null],
+            ["2026-11-14", "Goblins", "Lumberjacks", null, null]
         ]
     },
 
@@ -176,14 +190,14 @@ const schedule = [
         start: "2026-11-16",
         end: "2026-11-21",
         games: [
-            ["2026-11-16", "Goblins", "Pioneers"],
-            ["2026-11-17", "Gladiators", "Hawks"],
-            ["2026-11-18", "Lumberjacks", "Cyborgs"],
-            ["2026-11-19", "Rangers", "Sailors"],
-            ["2026-11-20", "Coyotes", "Bowmen"],
-            ["2026-11-20", "Wombats", "Wildfire"],
-            ["2026-11-21", "Bolts", "Elves"],
-            ["2026-11-21", "Polar Bears", "Snipers"]
+            ["2026-11-16", "Goblins", "Pioneers", null, null],
+            ["2026-11-17", "Gladiators", "Hawks", null, null],
+            ["2026-11-18", "Lumberjacks", "Cyborgs", null, null],
+            ["2026-11-19", "Rangers", "Sailors", null, null],
+            ["2026-11-20", "Coyotes", "Bowmen", null, null],
+            ["2026-11-20", "Wombats", "Wildfire", null, null],
+            ["2026-11-21", "Bolts", "Elves", null, null],
+            ["2026-11-21", "Polar Bears", "Snipers", null, null]
         ]
     },
 
@@ -192,14 +206,14 @@ const schedule = [
         start: "2026-11-23",
         end: "2026-11-28",
         games: [
-            ["2026-11-23", "Snipers", "Wombats"],
-            ["2026-11-24", "Bowmen", "Goblins"],
-            ["2026-11-25", "Wildfire", "Bolts"],
-            ["2026-11-26", "Cyborgs", "Rangers"],
-            ["2026-11-27", "Polar Bears", "Gladiators"],
-            ["2026-11-27", "Lumberjacks", "Elves"],
-            ["2026-11-28", "Pioneers", "Hawks"],
-            ["2026-11-28", "Coyotes", "Sailors"]
+            ["2026-11-23", "Snipers", "Wombats", null, null],
+            ["2026-11-24", "Bowmen", "Goblins", null, null],
+            ["2026-11-25", "Wildfire", "Bolts", null, null],
+            ["2026-11-26", "Cyborgs", "Rangers", null, null],
+            ["2026-11-27", "Polar Bears", "Gladiators", null, null],
+            ["2026-11-27", "Lumberjacks", "Elves", null, null],
+            ["2026-11-28", "Pioneers", "Hawks", null, null],
+            ["2026-11-28", "Coyotes", "Sailors", null, null]
         ]
     },
 
@@ -208,14 +222,14 @@ const schedule = [
         start: "2026-11-30",
         end: "2026-12-05",
         games: [
-            ["2026-11-30", "Pioneers", "Gladiators"],
-            ["2026-12-01", "Hawks", "Polar Bears"],
-            ["2026-12-02", "Sailors", "Lumberjacks"],
-            ["2026-12-03", "Coyotes", "Wombats"],
-            ["2026-12-04", "Bowmen", "Wildfire"],
-            ["2026-12-04", "Elves", "Cyborgs"],
-            ["2026-12-05", "Rangers", "Bolts"],
-            ["2026-12-05", "Snipers", "Goblins"]
+            ["2026-11-30", "Pioneers", "Gladiators", null, null],
+            ["2026-12-01", "Hawks", "Polar Bears", null, null],
+            ["2026-12-02", "Sailors", "Lumberjacks", null, null],
+            ["2026-12-03", "Coyotes", "Wombats", null, null],
+            ["2026-12-04", "Bowmen", "Wildfire", null, null],
+            ["2026-12-04", "Elves", "Cyborgs", null, null],
+            ["2026-12-05", "Rangers", "Bolts", null, null],
+            ["2026-12-05", "Snipers", "Goblins", null, null]
         ]
     },
 
@@ -231,14 +245,14 @@ const schedule = [
         start: "2026-12-14",
         end: "2026-12-19",
         games: [
-            ["2026-12-14", "Bowmen", "Snipers"],
-            ["2026-12-15", "Lumberjacks", "Hawks"],
-            ["2026-12-16", "Polar Bears", "Rangers"],
-            ["2026-12-17", "Wildfire", "Coyotes"],
-            ["2026-12-18", "Cyborgs", "Bolts"],
-            ["2026-12-18", "Gladiators", "Sailors"],
-            ["2026-12-19", "Wombats", "Pioneers"],
-            ["2026-12-19", "Goblins", "Elves"]
+            ["2026-12-14", "Bowmen", "Snipers", null, null],
+            ["2026-12-15", "Lumberjacks", "Hawks", null, null],
+            ["2026-12-16", "Polar Bears", "Rangers", null, null],
+            ["2026-12-17", "Wildfire", "Coyotes", null, null],
+            ["2026-12-18", "Cyborgs", "Bolts", null, null],
+            ["2026-12-18", "Gladiators", "Sailors", null, null],
+            ["2026-12-19", "Wombats", "Pioneers", null, null],
+            ["2026-12-19", "Goblins", "Elves", null, null]
         ]
     },
 
@@ -247,14 +261,14 @@ const schedule = [
         start: "2026-12-21",
         end: "2026-12-26",
         games: [
-            ["2026-12-21", "Bolts", "Goblins"],
-            ["2026-12-22", "Polar Bears", "Coyotes"],
-            ["2026-12-23", "Bowmen", "Gladiators"],
-            ["2026-12-24", "Hawks", "Cyborgs"],
-            ["2026-12-24", "Wombats", "Sailors"],
-            ["2026-12-25", "Rangers", "Wildfire"],
-            ["2026-12-25", "Lumberjacks", "Snipers"],
-            ["2026-12-26", "Pioneers", "Elves"]
+            ["2026-12-21", "Bolts", "Goblins", null, null],
+            ["2026-12-22", "Polar Bears", "Coyotes", null, null],
+            ["2026-12-23", "Bowmen", "Gladiators", null, null],
+            ["2026-12-24", "Hawks", "Cyborgs", null, null],
+            ["2026-12-24", "Wombats", "Sailors", null, null],
+            ["2026-12-25", "Rangers", "Wildfire", null, null],
+            ["2026-12-25", "Lumberjacks", "Snipers", null, null],
+            ["2026-12-26", "Pioneers", "Elves", null, null]
         ]
     },
 
@@ -263,14 +277,14 @@ const schedule = [
         start: "2026-12-28",
         end: "2027-01-02",
         games: [
-            ["2026-12-28", "Elves", "Polar Bears"],
-            ["2026-12-29", "Sailors", "Bowmen"],
-            ["2026-12-30", "Cyborgs", "Wombats"],
-            ["2026-12-31", "Wildfire", "Coyotes"],
-            ["2026-12-31", "Rangers", "Lumberjacks"],
-            ["2027-01-01", "Bolts", "Hawks"],
-            ["2027-01-01", "Pioneers", "Snipers"],
-            ["2027-01-02", "Goblins", "Gladiators"]
+            ["2026-12-28", "Elves", "Polar Bears", null, null],
+            ["2026-12-29", "Sailors", "Bowmen", null, null],
+            ["2026-12-30", "Cyborgs", "Wombats", null, null],
+            ["2026-12-31", "Wildfire", "Coyotes", null, null],
+            ["2026-12-31", "Rangers", "Lumberjacks", null, null],
+            ["2027-01-01", "Bolts", "Hawks", null, null],
+            ["2027-01-01", "Pioneers", "Snipers", null, null],
+            ["2027-01-02", "Goblins", "Gladiators", null, null]
         ]
     },
 
@@ -279,14 +293,14 @@ const schedule = [
         start: "2027-01-04",
         end: "2027-01-09",
         games: [
-            ["2027-01-04", "Polar Bears", "Sailors"],
-            ["2027-01-05", "Snipers", "Elves"],
-            ["2027-01-06", "Lumberjacks", "Wildfire"],
-            ["2027-01-07", "Pioneers", "Bowmen"],
-            ["2027-01-08", "Cyborgs", "Coyotes"],
-            ["2027-01-08", "Gladiators", "Hawks"],
-            ["2027-01-09", "Goblins", "Rangers"],
-            ["2027-01-09", "Wombats", "Bolts"]
+            ["2027-01-04", "Polar Bears", "Sailors", null, null],
+            ["2027-01-05", "Snipers", "Elves", null, null],
+            ["2027-01-06", "Lumberjacks", "Wildfire", null, null],
+            ["2027-01-07", "Pioneers", "Bowmen", null, null],
+            ["2027-01-08", "Cyborgs", "Coyotes", null, null],
+            ["2027-01-08", "Gladiators", "Hawks", null, null],
+            ["2027-01-09", "Goblins", "Rangers", null, null],
+            ["2027-01-09", "Wombats", "Bolts", null, null]
         ]
     },
 
@@ -295,27 +309,17 @@ const schedule = [
         start: "2027-01-11",
         end: "2027-01-16",
         games: [
-            ["2027-01-11", "Wombats", "Polar Bears"],
-            ["2027-01-12", "Snipers", "Cyborgs"],
-            ["2027-01-13", "Pioneers", "Sailors"],
-            ["2027-01-14", "Elves", "Gladiators"],
-            ["2027-01-15", "Coyotes", "Lumberjacks"],
-            ["2027-01-15", "Goblins", "Hawks"],
-            ["2027-01-16", "Rangers", "Wildfire"],
-            ["2027-01-16", "Bolts", "Bowmen"]
+            ["2027-01-11", "Wombats", "Polar Bears", null, null],
+            ["2027-01-12", "Snipers", "Cyborgs", null, null],
+            ["2027-01-13", "Pioneers", "Sailors", null, null],
+            ["2027-01-14", "Elves", "Gladiators", null, null],
+            ["2027-01-15", "Coyotes", "Lumberjacks", null, null],
+            ["2027-01-15", "Goblins", "Hawks", null, null],
+            ["2027-01-16", "Rangers", "Wildfire", null, null],
+            ["2027-01-16", "Bolts", "Bowmen", null, null]
         ]
     }
 ];
-
-const scoreStorageKey = "nkhl-schedule-scores";
-
-let savedScores = {};
-
-try {
-    savedScores = JSON.parse(localStorage.getItem(scoreStorageKey) || "{}");
-} catch {
-    savedScores = {};
-}
 
 let currentWeek = 0;
 
@@ -352,10 +356,6 @@ function formatDateRange(start, end) {
     return `${startText} – ${endText}`;
 }
 
-function gameId(date, home, away) {
-    return `${date}|${home}|${away}`;
-}
-
 function createTeam(team, side) {
     const wrapper = document.createElement("div");
     wrapper.className = `team ${side}`;
@@ -387,8 +387,8 @@ function createGameCard(game) {
     const date = game[0];
     const home = game[1];
     const away = game[2];
-    const id = gameId(date, home, away);
-    const saved = savedScores[id];
+    const homeScore = game[3];
+    const awayScore = game[4];
 
     const card = document.createElement("div");
     card.className = "game-card";
@@ -415,102 +415,12 @@ function createGameCard(game) {
     const scoreBox = document.createElement("div");
     scoreBox.className = "score-box";
 
-    const scoreInputs = document.createElement("div");
-    scoreInputs.className = "score-inputs";
-
-    const homeInput = document.createElement("input");
-    homeInput.className = "score-input";
-    homeInput.type = "number";
-    homeInput.min = "0";
-    homeInput.max = "99";
-    homeInput.inputMode = "numeric";
-    homeInput.placeholder = "0";
-    homeInput.setAttribute("aria-label", `${home} score`);
-
-    const dash = document.createElement("span");
-    dash.className = "score-dash";
-    dash.textContent = "-";
-
-    const awayInput = document.createElement("input");
-    awayInput.className = "score-input";
-    awayInput.type = "number";
-    awayInput.min = "0";
-    awayInput.max = "99";
-    awayInput.inputMode = "numeric";
-    awayInput.placeholder = "0";
-    awayInput.setAttribute("aria-label", `${away} score`);
-
-    if (saved) {
-        homeInput.value = saved.home;
-        awayInput.value = saved.away;
+    if (homeScore !== null && awayScore !== null) {
         scoreBox.classList.add("final");
+        scoreBox.textContent = `${homeScore} - ${awayScore}`;
+    } else {
+        scoreBox.textContent = "—";
     }
-
-    scoreInputs.appendChild(homeInput);
-    scoreInputs.appendChild(dash);
-    scoreInputs.appendChild(awayInput);
-
-    const saveButton = document.createElement("button");
-    saveButton.className = "score-save";
-    saveButton.type = "button";
-    saveButton.textContent = saved ? "Update" : "Save";
-
-    const status = document.createElement("div");
-    status.className = "score-status";
-    status.textContent = saved ? "FINAL" : "Enter score";
-
-    const clearButton = document.createElement("button");
-    clearButton.className = "clear-score";
-    clearButton.type = "button";
-    clearButton.textContent = "Clear";
-    clearButton.style.display = saved ? "block" : "none";
-
-    saveButton.addEventListener("click", () => {
-        const homeScore = homeInput.value.trim();
-        const awayScore = awayInput.value.trim();
-
-        if (homeScore === "" || awayScore === "") {
-            alert("Enter both scores before saving.");
-            return;
-        }
-
-        savedScores[id] = {
-            home: Number(homeScore),
-            away: Number(awayScore)
-        };
-
-        localStorage.setItem(
-            scoreStorageKey,
-            JSON.stringify(savedScores)
-        );
-
-        scoreBox.classList.add("final");
-        saveButton.textContent = "Update";
-        status.textContent = "FINAL";
-        clearButton.style.display = "block";
-    });
-
-    clearButton.addEventListener("click", () => {
-        delete savedScores[id];
-
-        localStorage.setItem(
-            scoreStorageKey,
-            JSON.stringify(savedScores)
-        );
-
-        homeInput.value = "";
-        awayInput.value = "";
-
-        scoreBox.classList.remove("final");
-        saveButton.textContent = "Save";
-        status.textContent = "Enter score";
-        clearButton.style.display = "none";
-    });
-
-    scoreBox.appendChild(scoreInputs);
-    scoreBox.appendChild(saveButton);
-    scoreBox.appendChild(status);
-    scoreBox.appendChild(clearButton);
 
     scoreContainer.appendChild(scoreBox);
 
