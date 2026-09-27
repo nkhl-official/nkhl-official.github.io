@@ -1,7 +1,3 @@
-/* =========================
-   GENERAL SITE STYLES
-   ========================= */
-
 * {
     box-sizing: border-box;
 }
@@ -11,207 +7,312 @@ html {
 }
 
 body {
-    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: #f4f4f4;
-    color: #111;
+    margin: 0;
+    padding: 0;
+    color: #222;
+    background: #fff;
 }
 
 header {
-    background: #111;
-    color: white;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 12px 24px;
-    min-height: 76px;
+    gap: 25px;
+    padding: 10px 20px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
 }
 
-header a {
-    color: white;
+.logo img {
+    height: 100px;
+    width: auto;
+    display: block;
+}
+
+.title {
+    flex: 1;
+}
+
+.title h1 {
+    margin: 0;
+    font-size: 40px;
+    line-height: 1.1;
+}
+
+.title h1 a {
     text-decoration: none;
+    color: inherit;
 }
 
-.logo-link {
+.title h1 a:hover {
+    text-decoration: underline;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     align-items: center;
+    gap: 30px;
 }
 
-.logo {
-    width: 52px;
-    height: 52px;
-    object-fit: contain;
-    margin-right: 12px;
+nav ul li {
+    margin: 0;
 }
 
-.site-title {
-    font-size: 25px;
-    font-weight: bold;
-    white-space: nowrap;
-}
-
-nav {
-    margin-left: auto;
-    display: flex;
-    gap: 24px;
-}
-
-nav a {
-    font-size: 16px;
+nav ul li a {
+    text-decoration: none;
+    color: #333;
     font-weight: bold;
 }
 
-nav a:hover {
-    color: #ccc;
+nav ul li a:hover {
+    color: #007bff;
+}
+
+h2 {
+    font-size: 30px;
+    text-align: center;
 }
 
 main {
-    width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px 20px 50px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
 }
-
-h1,
-h2,
-h3 {
-    margin-top: 0;
-}
-
-
-/* =========================
-   TABLES
-   ========================= */
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+thead {
+    background-color: #333;
+    color: white;
 }
 
 th,
 td {
-    padding: 12px 10px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
 }
 
-th {
-    background: #111;
-    color: white;
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
-tr:hover {
-    background: #f1f1f1;
+tbody tr:hover {
+    background-color: #e6e6e6;
 }
-
-
-/* =========================
-   DIVISIONS / TEAMS
-   ========================= */
 
 .divisions {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 20px;
 }
 
 .division {
-    background: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
 }
 
-.team-card {
+.division h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.division ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.division li {
+    margin: 5px 0;
+}
+
+.division a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.division a:hover {
+    text-decoration: underline;
+}
+
+#team-info {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#team-logo {
+    max-width: 150px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+#team-info h3 {
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 10px;
+}
+
+#current-season table,
+#previous-seasons table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+#current-season th,
+#previous-seasons th,
+#current-season td,
+#previous-seasons td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+#current-season th,
+#previous-seasons th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+#current-season td:first-child,
+#previous-seasons td:first-child {
+    font-weight: bold;
+    color: #555;
+}
+
+#team-jerseys {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.jersey-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.jersey {
+    max-width: 150px;
+    height: auto;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.jersey:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.jersey-label {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+#news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+    padding: 10px;
+}
+
+.news-box {
     display: flex;
     align-items: center;
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-}
-
-.team-card:last-child {
-    border-bottom: none;
-}
-
-.team-card img {
-    width: 45px;
-    height: 45px;
-    object-fit: contain;
-    margin-right: 12px;
-}
-
-
-/* =========================
-   NEWS / CONTENT
-   ========================= */
-
-.news-card {
-    background: white;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border: 2px solid #ddd;
     border-radius: 10px;
     padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+    transition: all 0.3s ease;
 }
 
+.news-box:hover {
+    background-color: #e0e0e0;
+    border-color: #aaa;
+    transform: scale(1.05);
+}
 
-/* =========================
-   SCHEDULE PAGE
-   ========================= */
+.news-box p {
+    margin: 0;
+}
 
 .schedule-page {
-    max-width: 1250px;
+    max-width: 1200px;
+    margin: 35px auto;
+    padding: 0 20px 40px;
+    text-align: center;
 }
 
-.schedule-page h2 {
-    text-align: center;
-    font-size: 32px;
-    margin-bottom: 25px;
+.schedule-page > h2 {
+    margin: 0 0 25px;
 }
 
 .schedule-carousel {
     position: relative;
     width: 100%;
     overflow: hidden;
-    background: transparent;
+    background: #f7f7f7;
+    border: 1px solid #d5d5d5;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
 .carousel-track {
     display: flex;
     width: 100%;
-    transition: transform 0.45s ease;
+    transition: transform 0.4s ease;
 }
 
 .carousel-slide {
     min-width: 100%;
     width: 100%;
-    padding: 0 55px 10px;
+    padding: 30px 75px 35px;
 }
 
-
-/* =========================
-   WEEK HEADER
-   ========================= */
-
 .week-header {
-    text-align: center;
-    margin-bottom: 22px;
+    margin-bottom: 25px;
 }
 
 .week-title {
-    font-size: 27px;
-    font-weight: bold;
-    margin-bottom: 5px;
+    margin: 0 0 7px;
+    font-size: 28px;
+    color: #222;
 }
 
 .week-date {
-    font-size: 16px;
+    margin: 0;
     color: #666;
+    font-size: 16px;
+    font-weight: 600;
 }
-
-
-/* =========================
-   GAME LIST
-   ========================= */
 
 .games-list {
     display: flex;
@@ -220,14 +321,15 @@ tr:hover {
 }
 
 .game-card {
-    background: white;
-    border-radius: 10px;
-    min-height: 78px;
     display: grid;
-    grid-template-columns: 125px 1fr 170px;
+    grid-template-columns: 125px minmax(0, 1fr) 120px;
     align-items: center;
+    min-height: 82px;
     padding: 12px 18px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .game-date {
@@ -239,40 +341,38 @@ tr:hover {
 
 .matchup {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 25px;
+    justify-content: center;
+    gap: 28px;
+    min-width: 0;
 }
 
 .team {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 10px;
+    min-width: 170px;
     font-size: 17px;
     font-weight: bold;
-    min-width: 150px;
-}
-
-.team.home {
-    justify-content: flex-end;
-    text-align: right;
 }
 
 .team.away {
     justify-content: flex-start;
-    text-align: left;
 }
 
 .team-logo {
     width: 42px;
     height: 42px;
     object-fit: contain;
+    flex: 0 0 42px;
 }
 
 .vs {
-    font-size: 14px;
+    color: #888;
+    font-size: 13px;
     font-weight: bold;
-    color: #777;
+    letter-spacing: 1px;
 }
 
 .score-container {
@@ -281,155 +381,224 @@ tr:hover {
 }
 
 .score-box {
-    min-width: 92px;
+    min-width: 105px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f3f3f3;
+}
+
+.score-inputs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.score-input {
+    width: 34px;
+    height: 32px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    background: #fff;
     text-align: center;
-    padding: 9px 12px;
-    border-radius: 7px;
-    background: #e9e9e9;
-    color: #555;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
+    color: #111;
+    padding: 2px;
+}
+
+.score-dash {
+    font-weight: bold;
+    color: #555;
+}
+
+.score-save {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    padding: 5px 8px;
+    border: none;
+    border-radius: 5px;
+    background: #111;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.score-save:hover {
+    background: #333;
 }
 
 .score-box.final {
-    background: #111;
-    color: white;
+    background: #333;
+    border-color: #333;
 }
 
+.score-box.final .score-input {
+    background: #fff;
+    color: #111;
+}
 
-/* =========================
-   BYE WEEK
-   ========================= */
+.score-box.final .score-save {
+    background: #555;
+}
+
+.score-status {
+    margin-top: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    color: #777;
+    text-align: center;
+}
+
+.score-box.final .score-status {
+    color: #fff;
+}
+
+.clear-score {
+    display: block;
+    margin: 4px auto 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #777;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.score-box.final .clear-score {
+    color: #ddd;
+}
 
 .bye-week {
-    background: white;
-    border-radius: 10px;
-    padding: 55px 20px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    background: #fff;
 }
 
 .bye-week h3 {
-    font-size: 26px;
-    margin-bottom: 8px;
+    margin: 0 0 10px;
+    font-size: 28px;
 }
 
 .bye-week p {
-    color: #666;
     margin: 0;
+    color: #777;
+    font-size: 17px;
 }
-
-
-/* =========================
-   CAROUSEL BUTTONS
-   ========================= */
 
 .carousel-button {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    width: 42px;
-    height: 42px;
-    border: none;
-    border-radius: 50%;
-    background: #111;
-    color: white;
-    font-size: 25px;
-    line-height: 42px;
-    cursor: pointer;
     z-index: 5;
-    transition: background 0.2s, transform 0.2s;
+    width: 46px;
+    height: 46px;
+    transform: translateY(-50%);
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    background: #fff;
+    color: #222;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    transition: background-color 0.2s, color 0.2s, opacity 0.2s;
 }
 
-.carousel-button:hover {
+.carousel-button:hover:not(:disabled) {
     background: #333;
-}
-
-.carousel-button:active {
-    transform: translateY(-50%) scale(0.95);
-}
-
-#prev {
-    left: 5px;
-}
-
-#next {
-    right: 5px;
+    color: #fff;
 }
 
 .carousel-button:disabled {
-    opacity: 0.35;
+    opacity: 0.3;
     cursor: default;
 }
 
+#prev {
+    left: 16px;
+}
 
-/* =========================
-   WEEK NAVIGATION
-   ========================= */
+#next {
+    right: 16px;
+}
 
 .week-navigation {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
-    margin-top: 22px;
-    flex-wrap: wrap;
+    gap: 15px;
+    margin: 22px 0 12px;
 }
 
 .week-selector {
+    min-width: 190px;
+    padding: 9px 12px;
     border: 1px solid #ccc;
-    background: white;
-    border-radius: 6px;
-    padding: 8px 12px;
-    font-size: 14px;
+    border-radius: 7px;
+    background: #fff;
+    font-size: 15px;
     cursor: pointer;
 }
 
 .week-dots {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 7px;
-    margin-top: 15px;
+    flex-wrap: wrap;
+    margin-top: 10px;
 }
 
 .week-dot {
     width: 9px;
     height: 9px;
-    border-radius: 50%;
-    border: none;
     padding: 0;
-    background: #ccc;
+    border: 0;
+    border-radius: 50%;
+    background: #c7c7c7;
     cursor: pointer;
 }
 
 .week-dot.active {
-    background: #111;
+    background: #333;
+    transform: scale(1.3);
 }
 
-
-/* =========================
-   RESPONSIVE
-   ========================= */
+.week-dot.bye {
+    background: #aaa;
+}
 
 @media (max-width: 900px) {
     header {
-        padding: 10px 16px;
+        flex-wrap: wrap;
     }
 
-    .site-title {
-        font-size: 20px;
+    .title h1 {
+        font-size: 32px;
     }
 
     nav {
-        gap: 14px;
+        width: 100%;
     }
 
-    nav a {
-        font-size: 14px;
+    nav ul {
+        justify-content: center;
+    }
+
+    .divisions {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .game-card {
-        grid-template-columns: 95px 1fr 120px;
+        grid-template-columns: 95px minmax(0, 1fr) 90px;
     }
 
     .team {
@@ -437,40 +606,47 @@ tr:hover {
         font-size: 15px;
     }
 
-    .team-logo {
-        width: 36px;
-        height: 36px;
-    }
-
     .matchup {
-        gap: 10px;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 700px) {
+    .score-box {
+        min-width: 95px;
     }
 }
 
 @media (max-width: 650px) {
-    header {
-        flex-wrap: wrap;
+    .logo img {
+        height: 70px;
     }
 
-    .site-title {
-        font-size: 18px;
+    .title h1 {
+        font-size: 25px;
     }
 
-    nav {
-        width: 100%;
-        justify-content: center;
-        margin-top: 10px;
-        margin-left: 0;
+    nav ul {
+        gap: 15px;
+    }
+
+    .schedule-page {
+        padding-left: 8px;
+        padding-right: 8px;
     }
 
     .carousel-slide {
-        padding: 0 40px 10px;
+        padding: 25px 48px 30px;
+    }
+
+    .week-title {
+        font-size: 24px;
     }
 
     .game-card {
         grid-template-columns: 1fr;
-        gap: 8px;
-        padding: 14px;
+        gap: 10px;
+        padding: 13px;
     }
 
     .game-date {
@@ -478,196 +654,63 @@ tr:hover {
     }
 
     .matchup {
-        gap: 7px;
+        gap: 8px;
     }
 
     .team {
         min-width: 0;
         flex: 1;
-    }
-
-    .team.home {
-        justify-content: flex-end;
-    }
-
-    .team.away {
-        justify-content: flex-start;
+        font-size: 14px;
     }
 
     .team-logo {
-        width: 32px;
-        height: 32px;
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
     }
 
     .score-container {
         justify-content: center;
     }
 
-    .score-box {
-        width: 100%;
-    }
-
     .carousel-button {
-        width: 36px;
-        height: 36px;
-        line-height: 36px;
+        width: 38px;
+        height: 38px;
         font-size: 21px;
     }
 
     #prev {
-        left: 1px;
+        left: 7px;
     }
 
     #next {
-        right: 1px;
+        right: 7px;
+    }
+
+    .divisions {
+        grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 430px) {
-    main {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    .schedule-page h2 {
-        font-size: 27px;
-    }
-
-    .week-title {
-        font-size: 23px;
-    }
-
-    .carousel-slide {
-        padding-left: 32px;
-        padding-right: 32px;
-    }
-
     .matchup {
-        gap: 3px;
+        gap: 5px;
     }
 
     .team {
-        font-size: 13px;
+        flex-direction: column;
+        text-align: center;
     }
 
-    .team-logo {
-        width: 28px;
-        height: 28px;
+    .team.away {
+        justify-content: center;
     }
 
     .vs {
-        font-size: 12px;
-    }
-}
-
-.team-name-cell {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-    text-align: left;
-    font-weight: bold;
-}
-
-.team-name-cell .team-logo {
-    width: 38px;
-    height: 38px;
-    object-fit: contain;
-}
-
-.rank {
-    font-weight: bold;
-}
-
-.teams-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 24px;
-}
-
-.teams-page h1 {
-    text-align: center;
-    font-size: 36px;
-    margin: 0 0 40px;
-}
-
-.conference {
-    margin-bottom: 50px;
-}
-
-.conference > h2 {
-    font-size: 28px;
-    margin: 0 0 20px;
-    padding-bottom: 10px;
-    border-bottom: 3px solid #111;
-}
-
-.divisions {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-}
-
-.division {
-    background: white;
-    border: 1px solid #d5d5d5;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-}
-
-.division h3 {
-    margin: 0;
-    padding: 16px 20px;
-    background: #111;
-    color: white;
-    font-size: 20px;
-}
-
-.division ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.division li {
-    border-top: 1px solid #e5e5e5;
-}
-
-.division li:first-child {
-    border-top: none;
-}
-
-.division li a {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    color: #111;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.15s ease;
-}
-
-.division li a:hover {
-    background: #f0f0f0;
-}
-
-.division li span {
-    color: #666;
-    font-weight: normal;
-}
-
-@media (max-width: 700px) {
-    .divisions {
-        grid-template-columns: 1fr;
+        font-size: 11px;
     }
 
-    .teams-page {
-        padding: 30px 16px;
-    }
-
-    .conference > h2 {
-        font-size: 24px;
+    .week-selector {
+        min-width: 160px;
     }
 }
