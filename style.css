@@ -381,95 +381,20 @@ tbody tr:hover {
 }
 
 .score-box {
-    min-width: 105px;
-    padding: 8px;
+    min-width: 76px;
+    padding: 11px 10px;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 7px;
     background: #f3f3f3;
-}
-
-.score-inputs {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-}
-
-.score-input {
-    width: 34px;
-    height: 32px;
-    border: 1px solid #bbb;
-    border-radius: 5px;
-    background: #fff;
-    text-align: center;
+    color: #777;
+    font-weight: bold;
     font-size: 16px;
-    font-weight: bold;
-    color: #111;
-    padding: 2px;
-}
-
-.score-dash {
-    font-weight: bold;
-    color: #555;
-}
-
-.score-save {
-    display: block;
-    width: 100%;
-    margin-top: 6px;
-    padding: 5px 8px;
-    border: none;
-    border-radius: 5px;
-    background: #111;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.score-save:hover {
-    background: #333;
 }
 
 .score-box.final {
     background: #333;
     border-color: #333;
-}
-
-.score-box.final .score-input {
-    background: #fff;
-    color: #111;
-}
-
-.score-box.final .score-save {
-    background: #555;
-}
-
-.score-status {
-    margin-top: 4px;
-    font-size: 10px;
-    font-weight: bold;
-    color: #777;
-    text-align: center;
-}
-
-.score-box.final .score-status {
     color: #fff;
-}
-
-.clear-score {
-    display: block;
-    margin: 4px auto 0;
-    padding: 0;
-    border: none;
-    background: transparent;
-    color: #777;
-    font-size: 10px;
-    cursor: pointer;
-}
-
-.score-box.final .clear-score {
-    color: #ddd;
 }
 
 .bye-week {
@@ -611,12 +536,6 @@ tbody tr:hover {
     }
 }
 
-@media (max-width: 700px) {
-    .score-box {
-        min-width: 95px;
-    }
-}
-
 @media (max-width: 650px) {
     .logo img {
         height: 70px;
@@ -713,4 +632,33 @@ tbody tr:hover {
     .week-selector {
         min-width: 160px;
     }
+}
+
+.team-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.team-link img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.division li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    color: #111;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.division li span:last-child {
+    color: #666;
+    font-weight: normal;
+    white-space: nowrap;
 }
