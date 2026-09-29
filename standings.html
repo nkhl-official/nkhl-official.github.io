@@ -6,367 +6,435 @@
     <title>NKHL Standings</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- Header -->
-    <header>
-        <a href="index.html" class="logo-link">
-            <img src="assets/nkhl-logo.png" alt="NKHL Logo" class="logo">
-            <span class="site-title">National Knee Hockey League</span>
-        </a>
+<header>
+    <a href="index.html" class="logo-link">
+        <img src="assets/nkhl-logo.png" alt="NKHL Logo" class="logo">
+        <span class="site-title">National Knee Hockey League</span>
+    </a>
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="standings.html">Standings</a>
-            <a href="schedule.html">Schedule</a>
-            <a href="teams.html">Teams</a>
-        </nav>
-    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="standings.html">Standings</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="teams.html">Teams</a>
+    </nav>
+</header>
 
+<main>
+    <h1>Standings</h1>
 
-    <!-- Main Content -->
-    <main class="standings-page">
+    <section class="conference">
+        <h2>American Conference</h2>
 
-        <h1>NKHL Standings</h1>
+        <div class="standings-section">
+            <h3>Northern Division</h3>
 
-        <div class="standings-table-container">
-
-            <table id="standings">
-
+            <table class="standings-table" id="standings">
                 <thead>
                     <tr>
-                        <!-- Rank -->
                         <th>Rank</th>
-
-                        <!-- Team -->
                         <th>Team</th>
-
-                        <!-- Wins -->
                         <th>W</th>
-
-                        <!-- Losses -->
                         <th>L</th>
-
-                        <!-- OT Losses -->
                         <th>OTL</th>
-
-                        <!-- Points (3 for win, 2 for ot loss, 1 for loss) -->
                         <th>Points</th>
-
-                        <!-- Streak -->
                         <th>Streak</th>
-
-                        <!-- Goals Scored -->
                         <th>Goals Scored</th>
-
-                        <!-- Goal Differential -->
                         <th>Goal Differential</th>
                     </tr>
                 </thead>
 
                 <tbody>
-
-                    <!-- Snipers -->
                     <tr data-points="0" data-goals="0" data-differential="0">
-                        <td class="rank"></td>
-                        <td class="team-name-cell">
-                            <img src="teams/assets/snipers/logo.png" alt="Snipers Logo" class="team-logo">
-                            <span>Snipers</span>
+                        <td class="rank">1</td>
+                        <td>
+                            <div class="team-name">
+                                <img src="teams/assets/snipers/logo.png" alt="Snipers logo">
+                                <a href="teams/snipers.html">Snipers</a>
+                            </div>
                         </td>
-                        <td>0</td> <!-- Wins -->
-                        <td>1</td> <!-- Losses -->
-                        <td>0</td> <!-- OTL -->
-                        <td>1</td> <!-- Points (W=3 OTL=2 L=1)-->
-                        <td>L1</td> <!-- Streak -->
-                        <td>2</td> <!-- Scored -->
-                        <td>-2</td> <!-- Differential -->
+                        <td>0</td> <!--Wins-->
+                        <td>1</td> <!--Losses-->
+                        <td>0</td> <!--OTL-->
+                        <td>1</td> <!--Points: W=3, OTL=2, L=1-->
+                        <td>L1</td> <!--Streak-->
+                        <td>2</td> <!--Goals Scored-->
+                        <td>-2</td> <!--Goal Diff-->
                     </tr>
 
-                    <!-- Bowmen -->
                     <tr data-points="0" data-goals="0" data-differential="0">
-                        <td class="rank"></td>
-                        <td class="team-name-cell">
-                            <img src="teams/assets/bowmen/logo.png" alt="Bowmen Logo" class="team-logo">
-                            <span>Bowmen</span>
+                        <td class="rank">2</td>
+                        <td>
+                            <div class="team-name">
+                                <img src="teams/assets/bowmen/logo.png" alt="Bowmen logo">
+                                <a href="teams/bowmen.html">Bowmen</a>
+                            </div>
                         </td>
-                        <td>1</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>3</td>
-                        <td>W1</td>
-                        <td>4</td>
-                        <td>+2</td>
+                        <td>1</td> <!--Wins-->
+                        <td>0</td> <!--Losses-->
+                        <td>0</td> <!--OTL-->
+                        <td>3</td> <!--Points: W=3, OTL=2, L=1-->
+                        <td>W1</td> <!--Streak-->
+                        <td>4</td> <!--Goals Scored-->
+                        <td>+2</td> <!--Goal Diff-->
                     </tr>
 
-                    <!-- Goblins -->
                     <tr data-points="0" data-goals="0" data-differential="0">
-                        <td class="rank"></td>
-                        <td class="team-name-cell">
-                            <img src="teams/assets/goblins/logo.png" alt="Goblins Logo" class="team-logo">
-                            <span>Goblins</span>
+                        <td class="rank">3</td>
+                        <td>
+                            <div class="team-name">
+                                <img src="teams/assets/goblins/logo.png" alt="Goblins logo">
+                                <a href="teams/goblins.html">Goblins</a>
+                            </div>
                         </td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>L1</td>
-                        <td>1</td>
-                        <td>-1</td>
+                        <td>0</td> <!--Wins-->
+                        <td>0</td> <!--Losses-->
+                        <td>1</td> <!--OTL-->
+                        <td>2</td> <!--Points: W=3, OTL=2, L=1-->
+                        <td>L1</td> <!--Streak-->
+                        <td>1</td> <!--Goals Scored-->
+                        <td>-1</td> <!--Goal Diff-->
                     </tr>
 
-                    <!-- Polar Bears -->
                     <tr data-points="0" data-goals="0" data-differential="0">
-                        <td class="rank"></td>
-                        <td class="team-name-cell">
-                            <img src="teams/assets/polar-bears/logo.png" alt="Polar Bears Logo" class="team-logo">
-                            <span>Polar Bears</span>
+                        <td class="rank">4</td>
+                        <td>
+                            <div class="team-name">
+                                <img src="teams/assets/polar-bears/logo.png" alt="Polar Bears logo">
+                                <a href="teams/polar_bears.html">Polar Bears</a>
+                            </div>
                         </td>
-                        <td>1</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>3</td>
-                        <td>W1</td>
-                        <td>2</td>
-                        <td>+1</td>
+                        <td>1</td> <!--Wins-->
+                        <td>0</td> <!--Losses-->
+                        <td>0</td> <!--OTL-->
+                        <td>3</td> <!--Points: W=3, OTL=2, L=1-->
+                        <td>W1</td> <!--Streak-->
+                        <td>2</td> <!--Goals Scored-->
+                        <td>+1</td> <!--Goal Diff-->
                     </tr>
-
-                    <!-- Gladiators -->
-                    <tr data-points="0" data-goals="0" data-differential="0">
-                        <td class="rank"></td>
-                        <td class="team-name-cell">
-                            <img src="teams/assets/gladiators/logo.png" alt="Gladiators Logo" class="team-logo">
-                            <span>Gladiators</span>
-                        </td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>W0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-
-                    <!-- Elves -->
-                    <tr data-points="0" data-goals="0" data-differential="0">
-                        <td class="rank"></td>
-                        <td class="team-name-cell">
-                            <img src="teams/assets/elves/logo.png" alt="Elves Logo" class="team-logo">
-                            <span>Elves</span>
-                        </td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>W0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-
-                    <!-- Pioneers -->
-                    <tr data-points="0" data-goals="0" data-differential="0">
-                        <td class="rank"></td>
-                        <td class="team-name-cell">
-                            <img src="teams/assets/pioneers/logo.png" alt="Pioneers Logo" class="team-logo">
-                            <span>Pioneers</span>
-                        </td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>W0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-
-                    <!-- Hawks -->
-                    <tr data-points="0" data-goals="0" data-differential="0">
-                        <td class="rank"></td>
-                        <td class="team-name-cell">
-                            <img src="teams/assets/hawks/logo.png" alt="Hawks Logo" class="team-logo">
-                            <span>Hawks</span>
-                        </td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>W0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-
-                    <!-- Rangers -->
-                    <tr data-points="0" data-goals="0" data-differential="0">
-                        <td class="rank"></td>
-                        <td class="team-name-cell">
-                            <img src="teams/assets/rangers/logo.png" alt="Rangers Logo" class="team-logo">
-                            <span>Rangers</span>
-                        </td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>W0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-
-                    <!-- Coyotes -->
-                    <tr data-points="0" data-goals="0" data-differential="0">
-                        <td class="rank"></td>
-                        <td class="team-name-cell">
-                            <img src="teams/assets/coyotes/logo.png" alt="Coyotes Logo" class="team-logo">
-                            <span>Coyotes</span>
-                        </td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>W0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-
-                    <!-- Wildfire -->
-                    <tr data-points="0" data-goals="0" data-differential="0">
-                        <td class="rank"></td>
-                        <td class="team-name-cell">
-                            <img src="teams/assets/wildfire/logo.png" alt="Wildfire Logo" class="team-logo">
-                            <span>Wildfire</span>
-                        </td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>W0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-
-                    <!-- Lumberjacks -->
-                    <tr data-points="0" data-goals="0" data-differential="0">
-                        <td class="rank"></td>
-                        <td class="team-name-cell">
-                            <img src="teams/assets/lumberjacks/logo.png" alt="Lumberjacks Logo" class="team-logo">
-                            <span>Lumberjacks</span>
-                        </td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>W0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-
-                    <!-- Sailors -->
-                    <tr data-points="0" data-goals="0" data-differential="0">
-                        <td class="rank"></td>
-                        <td class="team-name-cell">
-                            <img src="teams/assets/sailors/logo.png" alt="Sailors Logo" class="team-logo">
-                            <span>Sailors</span>
-                        </td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>W0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-
-                    <!-- Wombats -->
-                    <tr data-points="0" data-goals="0" data-differential="0">
-                        <td class="rank"></td>
-                        <td class="team-name-cell">
-                            <img src="teams/assets/wombats/logo.png" alt="Wombats Logo" class="team-logo">
-                            <span>Wombats</span>
-                        </td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>W0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-
-                    <!-- Cyborgs -->
-                    <tr data-points="0" data-goals="0" data-differential="0">
-                        <td class="rank"></td>
-                        <td class="team-name-cell">
-                            <img src="teams/assets/cyborgs/logo.png" alt="Cyborgs Logo" class="team-logo">
-                            <span>Cyborgs</span>
-                        </td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>W0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-
-                    <!-- Bolts -->
-                    <tr data-points="0" data-goals="0" data-differential="0">
-                        <td class="rank"></td>
-                        <td class="team-name-cell">
-                            <img src="teams/assets/bolts/logo.png" alt="Bolts Logo" class="team-logo">
-                            <span>Bolts</span>
-                        </td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>W0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-
                 </tbody>
-
             </table>
-
         </div>
 
-    </main>
+        <div class="standings-section">
+            <h3>Eastern Division</h3>
 
+            <table class="standings-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Team</th>
+                        <th>W</th>
+                        <th>L</th>
+                        <th>OTL</th>
+                        <th>Points</th>
+                        <th>Streak</th>
+                        <th>Goals Scored</th>
+                        <th>Goal Differential</th>
+                    </tr>
+                </thead>
 
-    <!-- Standings Sorting -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const table = document.getElementById("standings");
-            const tbody = table.querySelector("tbody");
+                <tbody>
+                    <tr data-points="0" data-goals="0" data-differential="0">
+                        <td class="rank">1</td>
+                        <td>
+                            <div class="team-name">
+                                <img src="teams/assets/gladiators/logo.png" alt="Gladiators logo">
+                                <a href="teams/gladiators.html">Gladiators</a>
+                            </div>
+                        </td>
+                        <td>0</td> <!--Wins-->
+                        <td>0</td> <!--Losses-->
+                        <td>0</td> <!--OTL-->
+                        <td>0</td> <!--Points: W=3, OTL=2, L=1-->
+                        <td>0</td> <!--Streak-->
+                        <td>0</td> <!--Goals Scored-->
+                        <td>0</td> <!--Goal Diff-->
+                    </tr>
 
-            const rows = Array.from(tbody.querySelectorAll("tr"));
+                    <tr data-points="0" data-goals="0" data-differential="0">
+                        <td class="rank">2</td>
+                        <td>
+                            <div class="team-name">
+                                <img src="teams/assets/elves/logo.png" alt="Elves logo">
+                                <a href="teams/elves.html">Elves</a>
+                            </div>
+                        </td>
+                        <td>0</td> <!--Wins-->
+                        <td>0</td> <!--Losses-->
+                        <td>0</td> <!--OTL-->
+                        <td>0</td> <!--Points: W=3, OTL=2, L=1-->
+                        <td>0</td> <!--Streak-->
+                        <td>0</td> <!--Goals Scored-->
+                        <td>0</td> <!--Goal Diff-->
+                    </tr>
 
-            rows.sort((a, b) => {
-                const pointsA = parseInt(a.dataset.points) || 0;
-                const pointsB = parseInt(b.dataset.points) || 0;
+                    <tr data-points="0" data-goals="0" data-differential="0">
+                        <td class="rank">3</td>
+                        <td>
+                            <div class="team-name">
+                                <img src="teams/assets/pioneers/logo.png" alt="Pioneers logo">
+                                <a href="teams/pioneers.html">Pioneers</a>
+                            </div>
+                        </td>
+                        <td>0</td> <!--Wins-->
+                        <td>0</td> <!--Losses-->
+                        <td>0</td> <!--OTL-->
+                        <td>0</td> <!--Points: W=3, OTL=2, L=1-->
+                        <td>0</td> <!--Streak-->
+                        <td>0</td> <!--Goals Scored-->
+                        <td>0</td> <!--Goal Diff-->
+                    </tr>
 
-                if (pointsA !== pointsB) {
-                    return pointsB - pointsA;
-                }
+                    <tr data-points="0" data-goals="0" data-differential="0">
+                        <td class="rank">4</td>
+                        <td>
+                            <div class="team-name">
+                                <img src="teams/assets/hawks/logo.png" alt="Hawks logo">
+                                <a href="teams/hawks.html">Hawks</a>
+                            </div>
+                        </td>
+                        <td>0</td> <!--Wins-->
+                        <td>0</td> <!--Losses-->
+                        <td>0</td> <!--OTL-->
+                        <td>0</td> <!--Points: W=3, OTL=2, L=1-->
+                        <td>0</td> <!--Streak-->
+                        <td>0</td> <!--Goals Scored-->
+                        <td>0</td> <!--Goal Diff-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-                const goalsA = parseInt(a.dataset.goals) || 0;
-                const goalsB = parseInt(b.dataset.goals) || 0;
+    <section class="conference">
+        <h2>National Conference</h2>
 
-                if (goalsA !== goalsB) {
-                    return goalsB - goalsA;
-                }
+        <div class="standings-section">
+            <h3>Western Division</h3>
 
-                const differentialA = parseInt(a.dataset.differential) || 0;
-                const differentialB = parseInt(b.dataset.differential) || 0;
+            <table class="standings-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Team</th>
+                        <th>W</th>
+                        <th>L</th>
+                        <th>OTL</th>
+                        <th>Points</th>
+                        <th>Streak</th>
+                        <th>Goals Scored</th>
+                        <th>Goal Differential</th>
+                    </tr>
+                </thead>
 
+                <tbody>
+                    <tr data-points="0" data-goals="0" data-differential="0">
+                        <td class="rank">1</td>
+                        <td>
+                            <div class="team-name">
+                                <img src="teams/assets/rangers/logo.png" alt="Rangers logo">
+                                <a href="teams/rangers.html">Rangers</a>
+                            </div>
+                        <td>0</td> <!--Wins-->
+                        <td>0</td> <!--Losses-->
+                        <td>0</td> <!--OTL-->
+                        <td>0</td> <!--Points: W=3, OTL=2, L=1-->
+                        <td>0</td> <!--Streak-->
+                        <td>0</td> <!--Goals Scored-->
+                        <td>0</td> <!--Goal Diff-->
+                    </tr>
+
+                    <tr data-points="0" data-goals="0" data-differential="0">
+                        <td class="rank">2</td>
+                        <td>
+                            <div class="team-name">
+                                <img src="teams/assets/coyotes/logo.png" alt="Coyotes logo">
+                                <a href="teams/coyotes.html">Coyotes</a>
+                            </div>
+                        </td>
+                        <td>0</td> <!--Wins-->
+                        <td>0</td> <!--Losses-->
+                        <td>0</td> <!--OTL-->
+                        <td>0</td> <!--Points: W=3, OTL=2, L=1-->
+                        <td>0</td> <!--Streak-->
+                        <td>0</td> <!--Goals Scored-->
+                        <td>0</td> <!--Goal Diff-->
+                    </tr>
+
+                    <tr data-points="0" data-goals="0" data-differential="0">
+                        <td class="rank">3</td>
+                        <td>
+                            <div class="team-name">
+                                <img src="teams/assets/wildfire/logo.png" alt="Wildfire logo">
+                                <a href="teams/wildfire.html">Wildfire</a>
+                            </div>
+                        </td>
+                        <td>0</td> <!--Wins-->
+                        <td>0</td> <!--Losses-->
+                        <td>0</td> <!--OTL-->
+                        <td>0</td> <!--Points: W=3, OTL=2, L=1-->
+                        <td>0</td> <!--Streak-->
+                        <td>0</td> <!--Goals Scored-->
+                        <td>0</td> <!--Goal Diff-->
+                    </tr>
+
+                    <tr data-points="0" data-goals="0" data-differential="0">
+                        <td class="rank">4</td>
+                        <td>
+                            <div class="team-name">
+                                <img src="teams/assets/lumberjacks/logo.png" alt="Lumberjacks logo">
+                                <a href="teams/lumberjacks.html">Lumberjacks</a>
+                            </div>
+                        </td>
+                        <td>0</td> <!--Wins-->
+                        <td>0</td> <!--Losses-->
+                        <td>0</td> <!--OTL-->
+                        <td>0</td> <!--Points: W=3, OTL=2, L=1-->
+                        <td>0</td> <!--Streak-->
+                        <td>0</td> <!--Goals Scored-->
+                        <td>0</td> <!--Goal Diff-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="standings-section">
+            <h3>Southern Division</h3>
+
+            <table class="standings-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Team</th>
+                        <th>W</th>
+                        <th>L</th>
+                        <th>OTL</th>
+                        <th>Points</th>
+                        <th>Streak</th>
+                        <th>Goals Scored</th>
+                        <th>Goal Differential</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr data-points="0" data-goals="0" data-differential="0">
+                        <td class="rank">1</td>
+                        <td>
+                            <div class="team-name">
+                                <img src="teams/assets/sailors/logo.png" alt="Sailors logo">
+                                <a href="teams/sailors.html">Sailors</a>
+                            </div>
+                        </td>
+                        <td>0</td> <!--Wins-->
+                        <td>0</td> <!--Losses-->
+                        <td>0</td> <!--OTL-->
+                        <td>0</td> <!--Points: W=3, OTL=2, L=1-->
+                        <td>0</td> <!--Streak-->
+                        <td>0</td> <!--Goals Scored-->
+                        <td>0</td> <!--Goal Diff-->
+                    </tr>
+
+                    <tr data-points="0" data-goals="0" data-differential="0">
+                        <td class="rank">2</td>
+                        <td>
+                            <div class="team-name">
+                                <img src="teams/assets/wombats/logo.png" alt="Wombats logo">
+                                <a href="teams/wombats.html">Wombats</a>
+                            </div>
+                        </td>
+                        <td>0</td> <!--Wins-->
+                        <td>0</td> <!--Losses-->
+                        <td>0</td> <!--OTL-->
+                        <td>0</td> <!--Points: W=3, OTL=2, L=1-->
+                        <td>0</td> <!--Streak-->
+                        <td>0</td> <!--Goals Scored-->
+                        <td>0</td> <!--Goal Diff-->
+                    </tr>
+
+                    <tr data-points="0" data-goals="0" data-differential="0">
+                        <td class="rank">3</td>
+                        <td>
+                            <div class="team-name">
+                                <img src="teams/assets/cyborgs/logo.png" alt="Cyborgs logo">
+                                <a href="teams/cyborgs.html">Cyborgs</a>
+                            </div>
+                        </td>
+                        <td>0</td> <!--Wins-->
+                        <td>0</td> <!--Losses-->
+                        <td>0</td> <!--OTL-->
+                        <td>0</td> <!--Points: W=3, OTL=2, L=1-->
+                        <td>0</td> <!--Streak-->
+                        <td>0</td> <!--Goals Scored-->
+                        <td>0</td> <!--Goal Diff-->
+                    </tr>
+
+                    <tr data-points="0" data-goals="0" data-differential="0">
+                        <td class="rank">4</td>
+                        <td>
+                            <div class="team-name">
+                                <img src="teams/assets/bolts/logo.png" alt="Bolts logo">
+                                <a href="teams/bolts.html">Bolts</a>
+                            </div>
+                        </td>
+                        <td>0</td> <!--Wins-->
+                        <td>0</td> <!--Losses-->
+                        <td>0</td> <!--OTL-->
+                        <td>0</td> <!--Points: W=3, OTL=2, L=1-->
+                        <td>0</td> <!--Streak-->
+                        <td>0</td> <!--Goals Scored-->
+                        <td>0</td> <!--Goal Diff-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<script>
+function sortStandings() {
+    const tables = document.querySelectorAll(".standings-table");
+
+    tables.forEach(table => {
+        const tbody = table.querySelector("tbody");
+        const rows = Array.from(tbody.querySelectorAll("tr"));
+
+        rows.sort((a, b) => {
+            const pointsA = Number(a.dataset.points);
+            const pointsB = Number(b.dataset.points);
+
+            if (pointsA !== pointsB) {
+                return pointsB - pointsA;
+            }
+
+            const goalsA = Number(a.dataset.goals);
+            const goalsB = Number(b.dataset.goals);
+
+            if (goalsA !== goalsB) {
+                return goalsB - goalsA;
+            }
+
+            const differentialA = Number(a.dataset.differential);
+            const differentialB = Number(b.dataset.differential);
+
+            if (differentialA !== differentialB) {
                 return differentialB - differentialA;
-            });
+            }
 
-            rows.forEach((row, index) => {
-                row.querySelector(".rank").textContent = index + 1;
-                tbody.appendChild(row);
-            });
+            return 0;
         });
-    </script>
+
+        rows.forEach((row, index) => {
+            row.querySelector(".rank").textContent = index + 1;
+            tbody.appendChild(row);
+        });
+    });
+}
+
+sortStandings();
+</script>
 
 </body>
 </html>
