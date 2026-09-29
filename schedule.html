@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NKHL Schedule</title>
+    <title>Schedule - National Knee Hockey League</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -29,25 +29,35 @@
 </header>
 
 <main class="schedule-page">
+
     <h2>Schedule</h2>
 
     <div class="schedule-carousel">
-        <button class="carousel-button" id="prev" aria-label="Previous week">&#10094;</button>
+
+        <button class="carousel-button" id="prev" aria-label="Previous week">
+            &#10094;
+        </button>
 
         <div class="carousel-track" id="carousel-track"></div>
 
-        <button class="carousel-button" id="next" aria-label="Next week">&#10095;</button>
+        <button class="carousel-button" id="next" aria-label="Next week">
+            &#10095;
+        </button>
+
     </div>
 
     <div class="week-navigation">
         <label for="week-selector">Jump to week:</label>
+
         <select id="week-selector" class="week-selector"></select>
     </div>
 
     <div class="week-dots" id="week-dots"></div>
+
 </main>
 
 <script>
+
 const teamLogos = {
     "Snipers": "assets/teams/snipers.png",
     "Bowmen": "assets/teams/bowmen.png",
@@ -67,533 +77,704 @@ const teamLogos = {
     "Bolts": "assets/teams/bolts.png"
 };
 
+
 /*
     Each game is:
 
-    [date, home team, away team, home score, away score]
+    [date, home team, away team, home score, away score, result type]
 
-    Use null, null for games that have not been played.
+    Scores:
+    null, null = game has not been played
 
-    Example:
-    ["2026-10-05", "Rangers", "Coyotes", null, null]
+    Result type:
+    ""   = regulation / no special result
+    "OT" = overtime
+    "SO" = shootout
 
-    After the game:
-    ["2026-10-05", "Rangers", "Coyotes", 4, 2]
+    Examples:
+
+    ["2026-10-05", "Rangers", "Coyotes", null, null, ""]
+
+    ["2026-10-05", "Rangers", "Coyotes", 4, 2, ""]
+
+    ["2026-10-05", "Rangers", "Coyotes", 3, 4, "OT"]
+
+    ["2026-10-05", "Rangers", "Coyotes", 4, 3, "SO"]
 */
 
+
 const schedule = [
+
     {
-        week: 1,
-        start: "2026-09-28",
-        end: "2026-10-03",
+        name: "Week 1",
+        dates: "September 28 – October 3, 2026",
         games: [
-            ["2026-09-28", "Goblins", "Polar Bears", 1, 2],
-            ["2026-09-29", "Hawks", "Rangers", null, null],
-            ["2026-09-30", "Sailors", "Wombats", null, null],
-            ["2026-10-01", "Elves", "Pioneers", null, null],
-            ["2026-10-02", "Bolts", "Cyborgs", null, null],
-            ["2026-10-02", "Wildfire", "Lumberjacks", null, null],
-            ["2026-10-03", "Coyotes", "Gladiators", null, null],
-            ["2026-10-03", "Snipers", "Bowmen", 2, 4]
+            ["2026-09-28", "Goblins", "Polar Bears", 1, 2, "OT"],
+            ["2026-09-29", "Hawks", "Rangers", null, null, ""],
+            ["2026-09-30", "Sailors", "Wombats", null, null, ""],
+            ["2026-10-01", "Elves", "Pioneers", null, null, ""],
+            ["2026-10-02", "Bolts", "Cyborgs", null, null, ""],
+            ["2026-10-02", "Wildfire", "Lumberjacks", null, null, ""],
+            ["2026-10-03", "Coyotes", "Gladiators", null, null, ""],
+            ["2026-10-03", "Snipers", "Bowmen", 2, 4, ""]
         ]
     },
 
     {
-        week: 2,
-        start: "2026-10-05",
-        end: "2026-10-10",
+        name: "Week 2",
+        dates: "October 5 – October 10, 2026",
         games: [
-            ["2026-10-05", "Rangers", "Coyotes", null, null],
-            ["2026-10-06", "Wombats", "Cyborgs", null, null],
-            ["2026-10-07", "Elves", "Gladiators", null, null],
-            ["2026-10-08", "Sailors", "Wildfire", null, null],
-            ["2026-10-09", "Bolts", "Lumberjacks", null, null],
-            ["2026-10-09", "Pioneers", "Hawks", null, null],
-            ["2026-10-10", "Polar Bears", "Snipers", null, null],
-            ["2026-10-10", "Bowmen", "Goblins", null, null]
+            ["2026-10-05", "Rangers", "Coyotes", null, null, ""],
+            ["2026-10-06", "Wombats", "Cyborgs", null, null, ""],
+            ["2026-10-07", "Elves", "Gladiators", null, null, ""],
+            ["2026-10-08", "Sailors", "Wildfire", null, null, ""],
+            ["2026-10-09", "Bolts", "Lumberjacks", null, null, ""],
+            ["2026-10-09", "Pioneers", "Hawks", null, null, ""],
+            ["2026-10-10", "Polar Bears", "Snipers", null, null, ""],
+            ["2026-10-10", "Bowmen", "Goblins", null, null, ""]
         ]
     },
 
     {
-        week: 3,
-        start: "2026-10-12",
-        end: "2026-10-17",
+        name: "Week 3",
+        dates: "October 12 – October 17, 2026",
         games: [
-            ["2026-10-12", "Cyborgs", "Sailors", null, null],
-            ["2026-10-13", "Bolts", "Coyotes", null, null],
-            ["2026-10-14", "Wildfire", "Pioneers", null, null],
-            ["2026-10-15", "Hawks", "Elves", null, null],
-            ["2026-10-16", "Gladiators", "Wombats", null, null],
-            ["2026-10-16", "Polar Bears", "Bowmen", null, null],
-            ["2026-10-17", "Rangers", "Lumberjacks", null, null],
-            ["2026-10-17", "Snipers", "Goblins", null, null]
+            ["2026-10-12", "Cyborgs", "Sailors", null, null, ""],
+            ["2026-10-13", "Bolts", "Coyotes", null, null, ""],
+            ["2026-10-14", "Wildfire", "Pioneers", null, null, ""],
+            ["2026-10-15", "Hawks", "Elves", null, null, ""],
+            ["2026-10-16", "Gladiators", "Wombats", null, null, ""],
+            ["2026-10-16", "Polar Bears", "Bowmen", null, null, ""],
+            ["2026-10-17", "Rangers", "Lumberjacks", null, null, ""],
+            ["2026-10-17", "Snipers", "Goblins", null, null, ""]
         ]
     },
 
     {
-        week: 4,
-        start: "2026-10-19",
-        end: "2026-10-24",
+        name: "Week 4",
+        dates: "October 19 – October 24, 2026",
         games: [
-            ["2026-10-19", "Sailors", "Bolts", null, null],
-            ["2026-10-20", "Elves", "Hawks", null, null],
-            ["2026-10-21", "Snipers", "Wildfire", null, null],
-            ["2026-10-22", "Rangers", "Coyotes", null, null],
-            ["2026-10-23", "Polar Bears", "Bowmen", null, null],
-            ["2026-10-23", "Gladiators", "Pioneers", null, null],
-            ["2026-10-24", "Cyborgs", "Goblins", null, null],
-            ["2026-10-24", "Lumberjacks", "Wombats", null, null]
+            ["2026-10-19", "Sailors", "Bolts", null, null, ""],
+            ["2026-10-20", "Elves", "Hawks", null, null, ""],
+            ["2026-10-21", "Snipers", "Wildfire", null, null, ""],
+            ["2026-10-22", "Rangers", "Coyotes", null, null, ""],
+            ["2026-10-23", "Polar Bears", "Bowmen", null, null, ""],
+            ["2026-10-23", "Gladiators", "Pioneers", null, null, ""],
+            ["2026-10-24", "Cyborgs", "Goblins", null, null, ""],
+            ["2026-10-24", "Lumberjacks", "Wombats", null, null, ""]
         ]
     },
 
     {
-        week: 5,
-        start: "2026-10-26",
-        end: "2026-10-31",
+        name: "Week 5",
+        dates: "October 26 – October 31, 2026",
         games: [
-            ["2026-10-26", "Goblins", "Polar Bears", null, null],
-            ["2026-10-26", "Cyborgs", "Sailors", null, null],
-            ["2026-10-27", "Lumberjacks", "Coyotes", null, null],
-            ["2026-10-27", "Snipers", "Hawks", null, null],
-            ["2026-10-28", "Rangers", "Pioneers", null, null],
-            ["2026-10-29", "Bolts", "Wombats", null, null],
-            ["2026-10-30", "Bowmen", "Elves", null, null],
-            ["2026-10-31", "Wildfire", "Gladiators", null, null]
+            ["2026-10-26", "Goblins", "Polar Bears", null, null, ""],
+            ["2026-10-27", "Cyborgs", "Sailors", null, null, ""],
+            ["2026-10-28", "Lumberjacks", "Coyotes", null, null, ""],
+            ["2026-10-29", "Snipers", "Hawks", null, null, ""],
+            ["2026-10-30", "Rangers", "Pioneers", null, null, ""],
+            ["2026-10-30", "Bolts", "Wombats", null, null, ""],
+            ["2026-10-31", "Bowmen", "Elves", null, null, ""],
+            ["2026-10-31", "Wildfire", "Gladiators", null, null, ""]
         ]
     },
 
     {
-        week: 6,
-        start: "2026-11-02",
-        end: "2026-11-07",
-        games: []
+        name: "Week 6",
+        dates: "November 2 – November 7, 2026",
+        bye: true
     },
 
     {
-        week: 7,
-        start: "2026-11-09",
-        end: "2026-11-14",
+        name: "Week 7",
+        dates: "November 9 – November 14, 2026",
         games: [
-            ["2026-11-09", "Snipers", "Gladiators", null, null],
-            ["2026-11-10", "Hawks", "Bowmen", null, null],
-            ["2026-11-11", "Bolts", "Sailors", null, null],
-            ["2026-11-12", "Wombats", "Rangers", null, null],
-            ["2026-11-13", "Wildfire", "Cyborgs", null, null],
-            ["2026-11-13", "Coyotes", "Elves", null, null],
-            ["2026-11-14", "Pioneers", "Polar Bears", null, null],
-            ["2026-11-14", "Goblins", "Lumberjacks", null, null]
+            ["2026-11-09", "Snipers", "Gladiators", null, null, ""],
+            ["2026-11-10", "Hawks", "Bowmen", null, null, ""],
+            ["2026-11-11", "Bolts", "Sailors", null, null, ""],
+            ["2026-11-12", "Wombats", "Rangers", null, null, ""],
+            ["2026-11-13", "Wildfire", "Cyborgs", null, null, ""],
+            ["2026-11-13", "Coyotes", "Elves", null, null, ""],
+            ["2026-11-14", "Pioneers", "Polar Bears", null, null, ""],
+            ["2026-11-14", "Goblins", "Lumberjacks", null, null, ""]
         ]
     },
 
     {
-        week: 8,
-        start: "2026-11-16",
-        end: "2026-11-21",
+        name: "Week 8",
+        dates: "November 16 – November 21, 2026",
         games: [
-            ["2026-11-16", "Goblins", "Pioneers", null, null],
-            ["2026-11-17", "Gladiators", "Hawks", null, null],
-            ["2026-11-18", "Lumberjacks", "Cyborgs", null, null],
-            ["2026-11-19", "Rangers", "Sailors", null, null],
-            ["2026-11-20", "Coyotes", "Bowmen", null, null],
-            ["2026-11-20", "Wombats", "Wildfire", null, null],
-            ["2026-11-21", "Bolts", "Elves", null, null],
-            ["2026-11-21", "Polar Bears", "Snipers", null, null]
+            ["2026-11-16", "Goblins", "Pioneers", null, null, ""],
+            ["2026-11-17", "Gladiators", "Hawks", null, null, ""],
+            ["2026-11-18", "Lumberjacks", "Cyborgs", null, null, ""],
+            ["2026-11-19", "Rangers", "Sailors", null, null, ""],
+            ["2026-11-20", "Coyotes", "Bowmen", null, null, ""],
+            ["2026-11-20", "Wombats", "Wildfire", null, null, ""],
+            ["2026-11-21", "Bolts", "Elves", null, null, ""],
+            ["2026-11-21", "Polar Bears", "Snipers", null, null, ""]
         ]
     },
 
     {
-        week: 9,
-        start: "2026-11-23",
-        end: "2026-11-28",
+        name: "Week 9",
+        dates: "November 23 – November 28, 2026",
         games: [
-            ["2026-11-23", "Snipers", "Wombats", null, null],
-            ["2026-11-24", "Bowmen", "Goblins", null, null],
-            ["2026-11-25", "Wildfire", "Bolts", null, null],
-            ["2026-11-26", "Cyborgs", "Rangers", null, null],
-            ["2026-11-27", "Polar Bears", "Gladiators", null, null],
-            ["2026-11-27", "Lumberjacks", "Elves", null, null],
-            ["2026-11-28", "Pioneers", "Hawks", null, null],
-            ["2026-11-28", "Coyotes", "Sailors", null, null]
+            ["2026-11-23", "Snipers", "Wombats", null, null, ""],
+            ["2026-11-24", "Bowmen", "Goblins", null, null, ""],
+            ["2026-11-25", "Wildfire", "Bolts", null, null, ""],
+            ["2026-11-26", "Cyborgs", "Rangers", null, null, ""],
+            ["2026-11-27", "Polar Bears", "Gladiators", null, null, ""],
+            ["2026-11-27", "Lumberjacks", "Elves", null, null, ""],
+            ["2026-11-28", "Pioneers", "Hawks", null, null, ""],
+            ["2026-11-28", "Coyotes", "Sailors", null, null, ""]
         ]
     },
 
     {
-        week: 10,
-        start: "2026-11-30",
-        end: "2026-12-05",
+        name: "Week 10",
+        dates: "November 30 – December 5, 2026",
         games: [
-            ["2026-11-30", "Pioneers", "Gladiators", null, null],
-            ["2026-12-01", "Hawks", "Polar Bears", null, null],
-            ["2026-12-02", "Sailors", "Lumberjacks", null, null],
-            ["2026-12-03", "Coyotes", "Wombats", null, null],
-            ["2026-12-04", "Bowmen", "Wildfire", null, null],
-            ["2026-12-04", "Elves", "Cyborgs", null, null],
-            ["2026-12-05", "Rangers", "Bolts", null, null],
-            ["2026-12-05", "Snipers", "Goblins", null, null]
+            ["2026-11-30", "Pioneers", "Gladiators", null, null, ""],
+            ["2026-12-01", "Hawks", "Polar Bears", null, null, ""],
+            ["2026-12-02", "Sailors", "Lumberjacks", null, null, ""],
+            ["2026-12-03", "Coyotes", "Wombats", null, null, ""],
+            ["2026-12-04", "Bowmen", "Wildfire", null, null, ""],
+            ["2026-12-04", "Elves", "Cyborgs", null, null, ""],
+            ["2026-12-05", "Rangers", "Bolts", null, null, ""],
+            ["2026-12-05", "Snipers", "Goblins", null, null, ""]
         ]
     },
 
     {
-        week: 11,
-        start: "2026-12-07",
-        end: "2026-12-12",
-        games: []
+        name: "Week 11",
+        dates: "December 7 – December 12, 2026",
+        bye: true
     },
 
     {
-        week: 12,
-        start: "2026-12-14",
-        end: "2026-12-19",
+        name: "Week 12",
+        dates: "December 14 – December 19, 2026",
         games: [
-            ["2026-12-14", "Bowmen", "Snipers", null, null],
-            ["2026-12-15", "Lumberjacks", "Hawks", null, null],
-            ["2026-12-16", "Polar Bears", "Rangers", null, null],
-            ["2026-12-17", "Wildfire", "Coyotes", null, null],
-            ["2026-12-18", "Cyborgs", "Bolts", null, null],
-            ["2026-12-18", "Gladiators", "Sailors", null, null],
-            ["2026-12-19", "Wombats", "Pioneers", null, null],
-            ["2026-12-19", "Goblins", "Elves", null, null]
+            ["2026-12-14", "Bowmen", "Snipers", null, null, ""],
+            ["2026-12-15", "Lumberjacks", "Hawks", null, null, ""],
+            ["2026-12-16", "Polar Bears", "Rangers", null, null, ""],
+            ["2026-12-17", "Wildfire", "Coyotes", null, null, ""],
+            ["2026-12-18", "Cyborgs", "Bolts", null, null, ""],
+            ["2026-12-18", "Gladiators", "Sailors", null, null, ""],
+            ["2026-12-19", "Wombats", "Pioneers", null, null, ""],
+            ["2026-12-19", "Goblins", "Elves", null, null, ""]
         ]
     },
 
     {
-        week: 13,
-        start: "2026-12-21",
-        end: "2026-12-26",
+        name: "Week 13",
+        dates: "December 21 – December 26, 2026",
         games: [
-            ["2026-12-21", "Bolts", "Goblins", null, null],
-            ["2026-12-22", "Polar Bears", "Coyotes", null, null],
-            ["2026-12-23", "Bowmen", "Gladiators", null, null],
-            ["2026-12-24", "Hawks", "Cyborgs", null, null],
-            ["2026-12-24", "Wombats", "Sailors", null, null],
-            ["2026-12-25", "Rangers", "Wildfire", null, null],
-            ["2026-12-25", "Lumberjacks", "Snipers", null, null],
-            ["2026-12-26", "Pioneers", "Elves", null, null]
+            ["2026-12-21", "Bolts", "Goblins", null, null, ""],
+            ["2026-12-22", "Polar Bears", "Coyotes", null, null, ""],
+            ["2026-12-23", "Bowmen", "Gladiators", null, null, ""],
+            ["2026-12-24", "Hawks", "Cyborgs", null, null, ""],
+            ["2026-12-24", "Wombats", "Sailors", null, null, ""],
+            ["2026-12-25", "Rangers", "Wildfire", null, null, ""],
+            ["2026-12-25", "Lumberjacks", "Snipers", null, null, ""],
+            ["2026-12-26", "Pioneers", "Elves", null, null, ""]
         ]
     },
 
     {
-        week: 14,
-        start: "2026-12-28",
-        end: "2027-01-02",
+        name: "Week 14",
+        dates: "December 28, 2026 – January 2, 2027",
         games: [
-            ["2026-12-28", "Elves", "Polar Bears", null, null],
-            ["2026-12-29", "Sailors", "Bowmen", null, null],
-            ["2026-12-30", "Cyborgs", "Wombats", null, null],
-            ["2026-12-31", "Wildfire", "Coyotes", null, null],
-            ["2026-12-31", "Rangers", "Lumberjacks", null, null],
-            ["2027-01-01", "Bolts", "Hawks", null, null],
-            ["2027-01-01", "Pioneers", "Snipers", null, null],
-            ["2027-01-02", "Goblins", "Gladiators", null, null]
+            ["2026-12-28", "Elves", "Polar Bears", null, null, ""],
+            ["2026-12-29", "Sailors", "Bowmen", null, null, ""],
+            ["2026-12-30", "Cyborgs", "Wombats", null, null, ""],
+            ["2026-12-31", "Wildfire", "Coyotes", null, null, ""],
+            ["2026-12-31", "Rangers", "Lumberjacks", null, null, ""],
+            ["2027-01-01", "Bolts", "Hawks", null, null, ""],
+            ["2027-01-01", "Pioneers", "Snipers", null, null, ""],
+            ["2027-01-02", "Goblins", "Gladiators", null, null, ""]
         ]
     },
 
     {
-        week: 15,
-        start: "2027-01-04",
-        end: "2027-01-09",
+        name: "Week 15",
+        dates: "January 4 – January 9, 2027",
         games: [
-            ["2027-01-04", "Polar Bears", "Sailors", null, null],
-            ["2027-01-05", "Snipers", "Elves", null, null],
-            ["2027-01-06", "Lumberjacks", "Wildfire", null, null],
-            ["2027-01-07", "Pioneers", "Bowmen", null, null],
-            ["2027-01-08", "Cyborgs", "Coyotes", null, null],
-            ["2027-01-08", "Gladiators", "Hawks", null, null],
-            ["2027-01-09", "Goblins", "Rangers", null, null],
-            ["2027-01-09", "Wombats", "Bolts", null, null]
+            ["2027-01-04", "Polar Bears", "Sailors", null, null, ""],
+            ["2027-01-05", "Snipers", "Elves", null, null, ""],
+            ["2027-01-06", "Lumberjacks", "Wildfire", null, null, ""],
+            ["2027-01-07", "Pioneers", "Bowmen", null, null, ""],
+            ["2027-01-08", "Cyborgs", "Coyotes", null, null, ""],
+            ["2027-01-08", "Gladiators", "Hawks", null, null, ""],
+            ["2027-01-09", "Goblins", "Rangers", null, null, ""],
+            ["2027-01-09", "Wombats", "Bolts", null, null, ""]
         ]
     },
 
     {
-        week: 16,
-        start: "2027-01-11",
-        end: "2027-01-16",
+        name: "Week 16",
+        dates: "January 11 – January 16, 2027",
         games: [
-            ["2027-01-11", "Wombats", "Polar Bears", null, null],
-            ["2027-01-12", "Snipers", "Cyborgs", null, null],
-            ["2027-01-13", "Pioneers", "Sailors", null, null],
-            ["2027-01-14", "Elves", "Gladiators", null, null],
-            ["2027-01-15", "Coyotes", "Lumberjacks", null, null],
-            ["2027-01-15", "Goblins", "Hawks", null, null],
-            ["2027-01-16", "Rangers", "Wildfire", null, null],
-            ["2027-01-16", "Bolts", "Bowmen", null, null]
+            ["2027-01-11", "Wombats", "Polar Bears", null, null, ""],
+            ["2027-01-12", "Snipers", "Cyborgs", null, null, ""],
+            ["2027-01-13", "Pioneers", "Sailors", null, null, ""],
+            ["2027-01-14", "Elves", "Gladiators", null, null, ""],
+            ["2027-01-15", "Coyotes", "Lumberjacks", null, null, ""],
+            ["2027-01-15", "Goblins", "Hawks", null, null, ""],
+            ["2027-01-16", "Rangers", "Wildfire", null, null, ""],
+            ["2027-01-16", "Bolts", "Bowmen", null, null, ""]
         ]
     }
+
 ];
+
 
 let currentWeek = 0;
 
-const track = document.getElementById("carousel-track");
-const prevButton = document.getElementById("prev");
-const nextButton = document.getElementById("next");
-const selector = document.getElementById("week-selector");
-const dots = document.getElementById("week-dots");
 
 function formatDate(dateString) {
-    const date = new Date(dateString + "T12:00:00");
+
+    const date = new Date(dateString + "T00:00:00");
 
     return date.toLocaleDateString("en-US", {
         weekday: "short",
         month: "short",
         day: "numeric"
     });
+
 }
 
-function formatDateRange(start, end) {
-    const startDate = new Date(start + "T12:00:00");
-    const endDate = new Date(end + "T12:00:00");
-
-    const startText = startDate.toLocaleDateString("en-US", {
-        month: "long",
-        day: "numeric"
-    });
-
-    const endText = endDate.toLocaleDateString("en-US", {
-        month: "long",
-        day: "numeric"
-    });
-
-    return `${startText} – ${endText}`;
-}
 
 function createTeam(team, side) {
+
     const wrapper = document.createElement("div");
+
     wrapper.className = `team ${side}`;
 
-    const name = document.createElement("span");
-    name.textContent = team;
-
     const logo = document.createElement("img");
+
     logo.className = "team-logo";
-    logo.src = teamLogos[team] || "";
+
+    logo.src = teamLogos[team];
+
     logo.alt = `${team} logo`;
 
-    logo.onerror = function() {
-        this.style.display = "none";
-    };
+    const name = document.createElement("span");
+
+    name.textContent = team;
 
     if (side === "home") {
+
         wrapper.appendChild(name);
         wrapper.appendChild(logo);
+
     } else {
+
         wrapper.appendChild(logo);
         wrapper.appendChild(name);
+
     }
 
     return wrapper;
+
 }
 
+
 function createGameCard(game) {
+
     const date = game[0];
-    const home = game[1];
-    const away = game[2];
+    const homeTeam = game[1];
+    const awayTeam = game[2];
     const homeScore = game[3];
     const awayScore = game[4];
+    const resultType = game[5];
 
     const card = document.createElement("div");
+
     card.className = "game-card";
 
+
     const dateElement = document.createElement("div");
+
     dateElement.className = "game-date";
+
     dateElement.textContent = formatDate(date);
 
+
     const matchup = document.createElement("div");
+
     matchup.className = "matchup";
 
-    matchup.appendChild(createTeam(home, "home"));
+
+    const home = createTeam(homeTeam, "home");
 
     const vs = document.createElement("span");
+
     vs.className = "vs";
+
     vs.textContent = "VS";
 
+    const away = createTeam(awayTeam, "away");
+
+
+    matchup.appendChild(home);
     matchup.appendChild(vs);
-    matchup.appendChild(createTeam(away, "away"));
+    matchup.appendChild(away);
+
 
     const scoreContainer = document.createElement("div");
+
     scoreContainer.className = "score-container";
 
+
     const scoreBox = document.createElement("div");
+
     scoreBox.className = "score-box";
 
+
     if (homeScore !== null && awayScore !== null) {
+
         scoreBox.classList.add("final");
-        scoreBox.textContent = `${homeScore} - ${awayScore}`;
+
+        if (resultType === "OT" || resultType === "SO") {
+
+            scoreBox.textContent =
+                `${homeScore} - ${awayScore} (${resultType})`;
+
+        } else {
+
+            scoreBox.textContent =
+                `${homeScore} - ${awayScore}`;
+
+        }
+
     } else {
+
         scoreBox.textContent = "—";
+
     }
 
+
     scoreContainer.appendChild(scoreBox);
+
 
     card.appendChild(dateElement);
     card.appendChild(matchup);
     card.appendChild(scoreContainer);
 
+
     return card;
+
 }
 
+
+function createWeekSlide(week) {
+
+    const slide = document.createElement("div");
+
+    slide.className = "carousel-slide";
+
+
+    const header = document.createElement("div");
+
+    header.className = "week-header";
+
+
+    const title = document.createElement("h3");
+
+    title.className = "week-title";
+
+    title.textContent = week.name;
+
+
+    const date = document.createElement("p");
+
+    date.className = "week-date";
+
+    date.textContent = week.dates;
+
+
+    header.appendChild(title);
+    header.appendChild(date);
+
+    slide.appendChild(header);
+
+
+    if (week.bye) {
+
+        const bye = document.createElement("div");
+
+        bye.className = "bye-week";
+
+
+        const byeTitle = document.createElement("h3");
+
+        byeTitle.textContent = "Bye Week";
+
+
+        const byeText = document.createElement("p");
+
+        byeText.textContent = "No games scheduled this week.";
+
+
+        bye.appendChild(byeTitle);
+        bye.appendChild(byeText);
+
+        slide.appendChild(bye);
+
+        return slide;
+
+    }
+
+
+    const gamesList = document.createElement("div");
+
+    gamesList.className = "games-list";
+
+
+    week.games.forEach(game => {
+
+        gamesList.appendChild(
+            createGameCard(game)
+        );
+
+    });
+
+
+    slide.appendChild(gamesList);
+
+
+    return slide;
+
+}
+
+
 function renderSchedule() {
+
+    const track = document.getElementById("carousel-track");
+
+    const selector = document.getElementById("week-selector");
+
+    const dots = document.getElementById("week-dots");
+
+
     track.innerHTML = "";
     selector.innerHTML = "";
     dots.innerHTML = "";
 
+
     schedule.forEach((week, index) => {
-        const slide = document.createElement("section");
-        slide.className = "carousel-slide";
 
-        const header = document.createElement("div");
-        header.className = "week-header";
+        track.appendChild(
+            createWeekSlide(week)
+        );
 
-        const title = document.createElement("h3");
-        title.className = "week-title";
-        title.textContent = `Week ${week.week}`;
-
-        const date = document.createElement("p");
-        date.className = "week-date";
-        date.textContent = formatDateRange(week.start, week.end);
-
-        header.appendChild(title);
-        header.appendChild(date);
-        slide.appendChild(header);
-
-        if (week.games.length === 0) {
-            const bye = document.createElement("div");
-            bye.className = "bye-week";
-
-            const byeTitle = document.createElement("h3");
-            byeTitle.textContent = "BYE WEEK";
-
-            const byeText = document.createElement("p");
-            byeText.textContent = "No games scheduled this week.";
-
-            bye.appendChild(byeTitle);
-            bye.appendChild(byeText);
-            slide.appendChild(bye);
-        } else {
-            const gamesList = document.createElement("div");
-            gamesList.className = "games-list";
-
-            week.games.forEach(game => {
-                gamesList.appendChild(createGameCard(game));
-            });
-
-            slide.appendChild(gamesList);
-        }
-
-        track.appendChild(slide);
 
         const option = document.createElement("option");
+
         option.value = index;
-        option.textContent = week.games.length === 0
-            ? `Week ${week.week} — Bye`
-            : `Week ${week.week}`;
+
+        option.textContent = week.name;
+
+        if (week.bye) {
+            option.textContent += " — Bye";
+        }
 
         selector.appendChild(option);
 
+
         const dot = document.createElement("button");
+
         dot.className = "week-dot";
 
-        if (week.games.length === 0) {
+        if (week.bye) {
             dot.classList.add("bye");
         }
 
-        dot.setAttribute("aria-label", `Go to Week ${week.week}`);
+        dot.setAttribute(
+            "aria-label",
+            `Go to ${week.name}`
+        );
 
         dot.addEventListener("click", () => {
+
             goToWeek(index);
+
         });
 
+
         dots.appendChild(dot);
+
     });
 
+
     updateCarousel();
+
 }
+
 
 function goToWeek(index) {
-    currentWeek = Math.max(
-        0,
-        Math.min(index, schedule.length - 1)
-    );
+
+    if (index < 0) {
+        index = 0;
+    }
+
+    if (index >= schedule.length) {
+        index = schedule.length - 1;
+    }
+
+    currentWeek = index;
 
     updateCarousel();
+
 }
 
-function updateCarousel() {
-    track.style.transform = `translateX(-${currentWeek * 100}%)`;
 
-    prevButton.disabled = currentWeek === 0;
-    nextButton.disabled = currentWeek === schedule.length - 1;
+function updateCarousel() {
+
+    const track = document.getElementById("carousel-track");
+
+    const selector = document.getElementById("week-selector");
+
+    const dots = document.querySelectorAll(".week-dot");
+
+    const prev = document.getElementById("prev");
+
+    const next = document.getElementById("next");
+
+
+    track.style.transform =
+        `translateX(-${currentWeek * 100}%)`;
+
 
     selector.value = currentWeek;
 
-    document.querySelectorAll(".week-dot").forEach((dot, index) => {
+
+    dots.forEach((dot, index) => {
+
         dot.classList.toggle(
             "active",
             index === currentWeek
         );
+
     });
+
+
+    prev.disabled = currentWeek === 0;
+
+    next.disabled = currentWeek === schedule.length - 1;
+
 }
 
-prevButton.addEventListener("click", () => {
-    if (currentWeek > 0) {
-        currentWeek--;
-        updateCarousel();
-    }
-});
 
-nextButton.addEventListener("click", () => {
-    if (currentWeek < schedule.length - 1) {
-        currentWeek++;
-        updateCarousel();
-    }
-});
+document.getElementById("prev").addEventListener(
+    "click",
+    () => {
 
-selector.addEventListener("change", event => {
-    goToWeek(Number(event.target.value));
-});
+        goToWeek(currentWeek - 1);
 
-document.addEventListener("keydown", event => {
-    if (event.key === "ArrowLeft" && currentWeek > 0) {
-        currentWeek--;
-        updateCarousel();
     }
+);
 
-    if (
-        event.key === "ArrowRight" &&
-        currentWeek < schedule.length - 1
-    ) {
-        currentWeek++;
-        updateCarousel();
+
+document.getElementById("next").addEventListener(
+    "click",
+    () => {
+
+        goToWeek(currentWeek + 1);
+
     }
-});
+);
+
+
+document.getElementById("week-selector").addEventListener(
+    "change",
+    event => {
+
+        goToWeek(
+            Number(event.target.value)
+        );
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (event.key === "ArrowLeft") {
+
+            goToWeek(currentWeek - 1);
+
+        }
+
+        if (event.key === "ArrowRight") {
+
+            goToWeek(currentWeek + 1);
+
+        }
+
+    }
+);
+
 
 let touchStartX = 0;
 let touchEndX = 0;
 
-track.addEventListener("touchstart", event => {
-    touchStartX = event.changedTouches[0].screenX;
-}, { passive: true });
 
-track.addEventListener("touchend", event => {
-    touchEndX = event.changedTouches[0].screenX;
+const carousel = document.querySelector(
+    ".schedule-carousel"
+);
 
-    if (
-        touchEndX < touchStartX - 50 &&
-        currentWeek < schedule.length - 1
-    ) {
-        currentWeek++;
-        updateCarousel();
-    }
 
-    if (
-        touchEndX > touchStartX + 50 &&
-        currentWeek > 0
-    ) {
-        currentWeek--;
-        updateCarousel();
-    }
-}, { passive: true });
+carousel.addEventListener(
+    "touchstart",
+    event => {
+
+        touchStartX =
+            event.changedTouches[0].screenX;
+
+    },
+    { passive: true }
+);
+
+
+carousel.addEventListener(
+    "touchend",
+    event => {
+
+        touchEndX =
+            event.changedTouches[0].screenX;
+
+
+        const difference =
+            touchStartX - touchEndX;
+
+
+        if (Math.abs(difference) < 50) {
+            return;
+        }
+
+
+        if (difference > 0) {
+
+            goToWeek(currentWeek + 1);
+
+        } else {
+
+            goToWeek(currentWeek - 1);
+
+        }
+
+    },
+    { passive: true }
+);
+
 
 renderSchedule();
+
 </script>
 
 </body>
