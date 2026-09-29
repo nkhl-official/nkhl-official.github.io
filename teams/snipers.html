@@ -6,157 +6,293 @@
     <title>Snipers</title>
     <link rel="stylesheet" href="https://nkhl-official.github.io/style.css">
 </head>
+
 <body>
-    <header>
-        <div class="logo">
-            <a href="index.html">
-                <img src="https://nkhl-official.github.io/assets/nkhl-logo.png" alt="NKHL Logo">
-            </a>
+
+<header>
+    <div class="logo">
+        <a href="index.html">
+            <img src="https://nkhl-official.github.io/assets/nkhl-logo.png" alt="NKHL Logo">
+        </a>
+    </div>
+
+    <div class="title">
+        <h1>
+            <a href="index.html">National Knee Hockey League</a>
+        </h1>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="news.html">News</a></li>
+            <li><a href="standings.html">Standings</a></li>
+            <li><a href="schedule.html">Schedule</a></li>
+            <li><a href="teams.html">Teams</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <h2>Snipers</h2>
+
+    <section id="team-info" data-team="Snipers">
+        <img
+            src="https://nkhl-official.github.io/teams/assets/snipers/logo.png"
+            alt="Snipers Logo"
+            id="team-logo">
+    </section>
+
+
+    <section id="team-standings">
+
+        <h3>Current Team Standings</h3>
+
+        <iframe
+            src="https://nkhl-official.github.io/standings.html"
+            id="standings-frame"
+            style="display: none;">
+        </iframe>
+
+        <table id="team-standings-table">
+
+            <thead>
+                <tr>
+                    <th>Place</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>OT Losses</th>
+                    <th>Points</th>
+                    <th>Goals Scored</th>
+                    <th>Streak</th>
+                    <th>Goal Differential</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+    <section id="previous-seasons-stats">
+
+        <h3>Previous Seasons Standings</h3>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Season</th>
+                    <th>Place</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>OT Losses</th>
+                    <th>Points</th>
+                    <th>Goals Scored</th>
+                    <th>Point Differential</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>2024-25</td>
+                    <td>rk</td>
+                    <td>w</td>
+                    <td>l</td>
+                    <td>otl</td>
+                    <td>pt</td>
+                    <td>gls</td>
+                    <td>dif</td>
+                </tr>
+                <tr>
+                    <td>2023-24</td>
+                    <td>6th</td>
+                    <td>7</td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td>25</td>
+                    <td>29</td>
+                    <td>-1</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+    <section id="team-jerseys">
+
+        <h3>Team Jerseys</h3>
+
+        <div class="jersey-images">
+
+            <img
+                src="https://nkhl-official.github.io/teams/assets/snipers/home-jersey.png"
+                alt="Snipers Home Jersey"
+                class="jersey">
+
+            <p class="jersey-label">Home Jersey</p>
+
+
+            <img
+                src="https://nkhl-official.github.io/teams/assets/snipers/away-jersey.png"
+                alt="Snipers Away Jersey"
+                class="jersey">
+
+            <p class="jersey-label">Away Jersey</p>
+
+
+            <img
+                src="https://nkhl-official.github.io/teams/assets/snipers/alternate-jersey.png"
+                alt="Snipers Alternate Jersey"
+                class="jersey">
+
+            <p class="jersey-label">Alternate Jersey</p>
+
         </div>
-        <div class="title">
-            <h1><a href="index.html">National Knee Hockey League</a></h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="news.html">News</a></li>
-                <li><a href="standings.html">Standings</a></li>
-                <li><a href="schedule.html">Schedule</a></li>
-                <li><a href="teams.html">Teams</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <h2>Snipers</h2>
+    </section>
 
-        <!-- Team Logo and Name -->
-        <section id="team-info" data-team="Snipers">
-            <img src="https://nkhl-official.github.io/teams/assets/snipers/logo.png" alt="Snipers Logo" id="team-logo">
-        </section>
+</main>
 
-        <!-- Standings Table for the Team -->
-        <section id="team-standings">
-            <h3>Current Team Standings</h3>
-            <!-- Hidden iFrame to load standings -->
-            <iframe src="standings.html" id="standings-frame" style="display: none;"></iframe>
-            <table id="team-standings-table">
-                <thead>
-                    <tr>
-                        <th>Place</th>
-                        <th>Wins</th>
-                        <th>Losses</th>
-                        <th>OT Losses</th>
-                        <th>Points</th>
-                        <th>Goals Scored</th>
-                        <th>Streak</th>
-                        <th>Point Differential</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- The team’s current standings will be dynamically populated here -->
-                </tbody>
-            </table>
-        </section>
 
-        <!-- Previous Seasons Stats -->
-        <section id="previous-seasons-stats">
-            <h3>Previous Seasons Standings</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Season</th>
-                        <th>Place</th>
-                        <th>Wins</th>
-                        <th>Losses</th>
-                        <th>OT Losses</th>
-                        <th>Points</th>
-                        <th>Goals Scored</th>
-                        <th>Point Differential</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2023-24</td>
-                        <td>6th</td> <!-- Place -->
-                        <td>7</td> <!-- Wins -->
-                        <td>4</td> <!-- Losses -->
-                        <td>0</td> <!-- OT Losses -->
-                        <td>25</td> <!-- Points -->
-                        <td>29</td> <!-- Goals Scored -->
-                        <td>-1</td> <!-- Point Differential -->
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+<script>
 
-        <!-- Team Jerseys -->
-        <section id="team-jerseys">
-            <h3>Team Jerseys</h3>
-            <div class="jersey-images">
-                <img src="https://nkhl-official.github.io/teams/assets/snipers/home-jersey.png" alt="Snipers Home Jersey " class="jersey">
-                <p class="jersey-label">Home Jersey</p>
-                <img src="https://nkhl-official.github.io/teams/assets/snipers/away-jersey.png" alt="Snipers Away Jersey" class="jersey">
-                <p class="jersey-label">Away Jersey</p>
-                <img src="https://nkhl-official.github.io/teams/assets/snipers/alternate-jersey.png" alt="Snipers Alternate Jersey" class="jersey">
-                <p class="jersey-label">Alternate Jersey</p>
-            </div>
-        </section>
-    </main>
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const teamName = "Snipers"; // Replace with the specific team's name
-        const iframe = document.querySelector("#standings-frame");
+document.addEventListener("DOMContentLoaded", () => {
 
-        iframe.addEventListener("load", () => {
-            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-            const standingsTable = iframeDocument.querySelector("#standings");
+    const teamName = "Snipers";
 
-            if (!standingsTable) {
-                console.error("Standings table not found.");
-                return;
-            }
+    const iframe =
+        document.querySelector("#standings-frame");
 
-            // Find the team's row in the standings
-            const standingsRows = Array.from(standingsTable.querySelectorAll("tbody tr"));
-            const teamRow = standingsRows.find(row => 
-                row.querySelector("td:first-child").textContent.trim() === teamName
+
+    iframe.addEventListener("load", () => {
+
+        const iframeDocument =
+            iframe.contentDocument ||
+            iframe.contentWindow.document;
+
+
+        const standingsTable =
+            iframeDocument.querySelector("#standings");
+
+
+        if (!standingsTable) {
+
+            console.error(
+                "Standings table not found."
             );
 
-            if (teamRow) {
-                // Extract the place/position of the team
-                const place = standingsRows.indexOf(teamRow) + 1;
+            return;
 
-                // Use the home page logic to get team stats based on the place
-                const placeRow = standingsRows[place - 1];
-                const teamStats = [
-                    placeRow.querySelector("td:nth-child(2)").textContent, // Wins
-                    placeRow.querySelector("td:nth-child(3)").textContent, // Losses
-                    placeRow.querySelector("td:nth-child(4)").textContent, // OT Losses
-                    placeRow.querySelector("td:nth-child(5)").textContent, // Points
-                    placeRow.querySelector("td:nth-child(6)").textContent, // Goals Scored
-                    placeRow.querySelector("td:nth-child(7)").textContent, // Streak
-                    placeRow.querySelector("td:nth-child(8)").textContent, // Goal Differential
-                ];
+        }
 
-                // Populate the table on the team page
-                const teamStandingsTable = document.querySelector("#team-standings-table tbody");
-                const newRow = document.createElement("tr");
-                newRow.innerHTML = `
-                    <td>${place}</td>
-                    <td>${teamStats[0]}</td>
-                    <td>${teamStats[1]}</td>
-                    <td>${teamStats[2]}</td>
-                    <td>${teamStats[3]}</td>
-                    <td>${teamStats[4]}</td>
-                    <td>${teamStats[5]}</td>
-                    <td>${teamStats[6]}</td>
-                `;
-                teamStandingsTable.appendChild(newRow);
-            } else {
-                console.error(`Team '${teamName}' not found in the standings.`);
-            }
-        });
+
+        const standingsRows =
+            Array.from(
+                standingsTable.querySelectorAll("tbody tr")
+            );
+
+
+        const teamRow =
+            standingsRows.find(row => {
+
+                const teamLink =
+                    row.querySelector(".team-name a");
+
+
+                return teamLink &&
+                    teamLink.textContent.trim() === teamName;
+
+            });
+
+
+        if (!teamRow) {
+
+            console.error(
+                `Team '${teamName}' not found in the standings.`
+            );
+
+            return;
+
+        }
+
+
+        const place =
+            teamRow.querySelector(".rank").textContent.trim();
+
+
+        const wins =
+            teamRow.querySelector("td:nth-child(3)")
+                .textContent.trim();
+
+
+        const losses =
+            teamRow.querySelector("td:nth-child(4)")
+                .textContent.trim();
+
+
+        const otLosses =
+            teamRow.querySelector("td:nth-child(5)")
+                .textContent.trim();
+
+
+        const points =
+            teamRow.querySelector("td:nth-child(6)")
+                .textContent.trim();
+
+
+        const streak =
+            teamRow.querySelector("td:nth-child(7)")
+                .textContent.trim();
+
+
+        const goalsScored =
+            teamRow.querySelector("td:nth-child(8)")
+                .textContent.trim();
+
+
+        const goalDifferential =
+            teamRow.querySelector("td:nth-child(9)")
+                .textContent.trim();
+
+
+        const teamStandingsTable =
+            document.querySelector(
+                "#team-standings-table tbody"
+            );
+
+
+        teamStandingsTable.innerHTML = "";
+
+
+        const newRow =
+            document.createElement("tr");
+
+
+        newRow.innerHTML = `
+            <td>${place}</td>
+            <td>${wins}</td>
+            <td>${losses}</td>
+            <td>${otLosses}</td>
+            <td>${points}</td>
+            <td>${goalsScored}</td>
+            <td>${streak}</td>
+            <td>${goalDifferential}</td>
+        `;
+
+
+        teamStandingsTable.appendChild(newRow);
+
     });
+
+});
+
 </script>
+
 </body>
 </html>
