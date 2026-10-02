@@ -42,19 +42,27 @@ header {
     line-height: 1.1;
 }
 
-header > .logo-link + nav {
+header nav {
+    display: flex;
+    align-items: center;
+}
+
+header nav ul {
     display: flex;
     align-items: center;
     gap: 30px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-header > .logo-link + nav a {
+header nav a {
     text-decoration: none;
     color: #333;
     font-weight: bold;
 }
 
-header > .logo-link + nav a:hover {
+header nav a:hover {
     color: #007bff;
 }
 
@@ -138,6 +146,11 @@ a:hover {
     text-align: center;
 }
 
+.schedule-page > h2 {
+    margin: 0 0 30px;
+    font-size: 32px;
+}
+
 .schedule-carousel {
     position: relative;
     overflow: hidden;
@@ -150,11 +163,14 @@ a:hover {
 
 .carousel-track {
     display: flex;
+    width: 100%;
     transition: transform 0.4s ease;
 }
 
 .carousel-slide {
     min-width: 100%;
+    width: 100%;
+    flex: 0 0 100%;
     padding: 25px;
 }
 
@@ -162,7 +178,8 @@ a:hover {
     margin-bottom: 25px;
 }
 
-.week-header h2 {
+.week-header h2,
+.week-header h3 {
     margin: 0;
     font-size: 28px;
 }
@@ -251,31 +268,54 @@ a:hover {
     font-weight: bold;
 }
 
-.carousel-button {
+.bye-week h3 {
+    margin: 0 0 8px;
+}
+
+.bye-week p {
+    margin: 0;
+}
+
+.schedule-carousel .carousel-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 2;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 42px;
     height: 42px;
+    margin: 0;
+    padding: 0;
     border: none;
     border-radius: 50%;
     background: #333;
     color: #fff;
     cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
+    line-height: 1;
+    text-align: center;
 }
 
-.carousel-button:hover {
+.schedule-carousel .carousel-button:hover {
     background: #555;
 }
 
-.carousel-button.prev {
-    left: 12px;
+.schedule-carousel .carousel-button:disabled {
+    opacity: 0.35;
+    cursor: default;
 }
 
-.carousel-button.next {
+.schedule-carousel .carousel-button.prev {
+    left: 12px;
+    right: auto;
+}
+
+.schedule-carousel .carousel-button.next {
     right: 12px;
+    left: auto;
 }
 
 .week-navigation {
@@ -300,6 +340,8 @@ a:hover {
 .week-dot {
     width: 9px;
     height: 9px;
+    padding: 0;
+    border: none;
     border-radius: 50%;
     background: #ccc;
     cursor: pointer;
@@ -648,102 +690,261 @@ a:hover {
     font-weight: 600;
 }
 
-@media (max-width: 900px) {
-    .standings-page {
-        margin-top: 30px;
-    }
+/* Snipers Team Page */
 
-    .standings-page-header h1 {
-        font-size: 34px;
-    }
-
-    .standings-page .standings-table th {
-        padding: 12px 8px;
-    }
-
-    .standings-page .standings-table td {
-        padding: 8px;
-    }
-
-    .standings-page .standings-table .team-name {
-        gap: 10px;
-    }
-
-    .standings-page .standings-table .team-name img {
-        width: 40px;
-        height: 40px;
-    }
-
-    .standings-page .standings-table .team-name a {
-        font-size: 15px;
-    }
+.team-page {
+    max-width: 1200px;
+    margin: 35px auto;
+    padding: 0 20px 50px;
 }
 
-@media (max-width: 650px) {
-    .standings-page {
-        margin-top: 25px;
-        padding: 0 10px 40px;
-    }
-
-    .standings-page-header {
-        margin-bottom: 22px;
-    }
-
-    .standings-page-header h1 {
-        font-size: 30px;
-    }
-
-    .standings-page-header p {
-        font-size: 14px;
-    }
-
-    .standings-header {
-        padding: 15px 16px;
-    }
-
-    .standings-header h2 {
-        font-size: 21px;
-    }
-
-    .standings-header p {
-        font-size: 12px;
-    }
-
-    .standings-page .standings-table {
-        min-width: 850px;
-    }
-
-    .standings-note {
-        justify-content: flex-start;
-        gap: 10px 18px;
-        padding: 12px 15px;
-        text-align: left;
-    }
+.team-page > h2 {
+    margin: 0 0 30px;
+    font-size: 32px;
+    text-align: center;
 }
 
-@media (max-width: 430px) {
-    .standings-page-header h1 {
-        font-size: 27px;
-    }
+.team-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    min-height: 230px;
+    margin-bottom: 35px;
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+}
 
-    .standings-header h2 {
-        font-size: 19px;
-    }
+.team-hero-logo {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+}
 
-    .standings-page .standings-table {
-        min-width: 850px;
-    }
+.team-hero-info {
+    text-align: left;
+}
+
+.team-hero-info h3 {
+    margin: 0 0 8px;
+    font-size: 32px;
+}
+
+.team-hero-info p {
+    margin: 0;
+    color: #777;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.team-section {
+    margin-bottom: 40px;
+}
+
+.team-section h3 {
+    margin: 0 0 18px;
+    font-size: 24px;
+}
+
+.team-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+}
+
+.team-page #team-standings-table {
+    width: 100%;
+    min-width: 850px;
+    background: #fff;
+}
+
+.team-page #team-standings-table th {
+    padding: 13px 10px;
+    background: #333;
+    color: #fff;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.team-page #team-standings-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #e5e5e5;
+    white-space: nowrap;
+}
+
+.team-page #team-standings-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.team-page #team-standings-table td.team-name-cell {
+    text-align: left;
+    font-weight: bold;
+}
+
+.previous-seasons-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+}
+
+.team-page #previous-seasons-stats {
+    width: 100%;
+    min-width: 700px;
+    background: #fff;
+}
+
+.team-page #previous-seasons-stats th {
+    padding: 13px 10px;
+    background: #333;
+    color: #fff;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.team-page #previous-seasons-stats td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.team-page #previous-seasons-stats tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.team-jerseys {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.jersey-card {
+    overflow: hidden;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+}
+
+.jersey-card img {
+    display: block;
+    width: 100%;
+    height: 280px;
+    object-fit: contain;
+}
+
+.jersey-card h4 {
+    margin: 15px 0 0;
+    font-size: 17px;
+}
+
+#standings-frame {
+    display: none;
+}
+
+#team-info {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#team-info #team-logo {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+}
+
+#team-standings,
+#previous-seasons-stats,
+#team-jerseys {
+    margin-bottom: 40px;
+}
+
+#team-standings h3,
+#previous-seasons-stats h3,
+#team-jerseys h3 {
+    margin-bottom: 18px;
+    font-size: 24px;
+}
+
+#team-standings-table,
+#previous-seasons-stats table {
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ddd;
+}
+
+#team-standings-table th,
+#previous-seasons-stats th {
+    background: #333;
+    color: #fff;
+}
+
+#team-standings-table td,
+#previous-seasons-stats td {
+    border-bottom: 1px solid #ddd;
+}
+
+.jersey-images {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.jersey {
+    width: 220px;
+    height: auto;
+    object-fit: contain;
+}
+
+.jersey-label {
+    width: 220px;
+    margin: 0 0 20px;
+    font-weight: bold;
 }
 
 @media (max-width: 900px) {
     .teams-page .divisions {
         grid-template-columns: 1fr;
     }
+
+    header {
+        gap: 20px;
+    }
+
+    .site-title {
+        font-size: 32px;
+    }
+
+    header nav ul {
+        gap: 18px;
+    }
+
+    .team-jerseys {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 650px) {
     header {
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
         padding: 12px 15px;
+    }
+
+    .logo-link {
+        justify-content: center;
     }
 
     .logo-link .logo {
@@ -754,17 +955,40 @@ a:hover {
         font-size: 27px;
     }
 
-    header > .logo-link + nav {
+    header nav ul {
+        justify-content: center;
         gap: 15px;
     }
 
-    header > .logo-link + nav a {
+    header nav a {
         font-size: 14px;
     }
 
     .schedule-page {
         margin-top: 25px;
         padding: 0 10px 40px;
+    }
+
+    .schedule-page > h2 {
+        font-size: 28px;
+    }
+
+    .schedule-carousel .carousel-button {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+
+    .schedule-carousel .carousel-button.prev {
+        left: 8px;
+    }
+
+    .schedule-carousel .carousel-button.next {
+        right: 8px;
+    }
+
+    .carousel-slide {
+        padding: 20px 15px;
     }
 
     .game-card {
@@ -809,6 +1033,52 @@ a:hover {
     .teams-page .team-link span {
         font-size: 15px;
     }
+
+    #team-info #team-logo {
+        width: 140px;
+        height: 140px;
+    }
+
+    .jersey {
+        width: 180px;
+    }
+
+    .jersey-label {
+        width: 180px;
+    }
+
+    .team-page {
+        margin-top: 25px;
+        padding: 0 10px 40px;
+    }
+
+    .team-hero {
+        flex-direction: column;
+        gap: 15px;
+        padding: 25px 15px;
+        text-align: center;
+    }
+
+    .team-hero-logo {
+        width: 140px;
+        height: 140px;
+    }
+
+    .team-hero-info {
+        text-align: center;
+    }
+
+    .team-hero-info h3 {
+        font-size: 27px;
+    }
+
+    .team-jerseys {
+        grid-template-columns: 1fr;
+    }
+
+    .jersey-card img {
+        height: 250px;
+    }
 }
 
 @media (max-width: 430px) {
@@ -816,11 +1086,11 @@ a:hover {
         font-size: 23px;
     }
 
-    header > .logo-link + nav {
+    header nav ul {
         gap: 10px;
     }
 
-    header > .logo-link + nav a {
+    header nav a {
         font-size: 12px;
     }
 
@@ -836,5 +1106,19 @@ a:hover {
     .team-logo {
         width: 35px;
         height: 35px;
+    }
+
+    #team-info #team-logo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .team-hero-logo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .team-hero-info h3 {
+        font-size: 24px;
     }
 }
