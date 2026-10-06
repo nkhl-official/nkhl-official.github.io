@@ -308,12 +308,12 @@ a:hover {
     cursor: default;
 }
 
-.schedule-carousel .carousel-button.prev {
+.schedule-carousel #prev {
     left: 12px;
     right: auto;
 }
 
-.schedule-carousel .carousel-button.next {
+.schedule-carousel #next {
     right: 12px;
     left: auto;
 }
@@ -690,7 +690,7 @@ a:hover {
     font-weight: 600;
 }
 
-/* Snipers page */
+/* Team pages */
 
 header .logo {
     display: flex;
@@ -895,12 +895,12 @@ header .title h1 a {
         font-size: 18px;
     }
 
-    .schedule-carousel .carousel-button.prev {
-        left: 8px;
+    .schedule-carousel #prev {
+    left: 8px;
     }
 
-    .schedule-carousel .carousel-button.next {
-        right: 8px;
+    .schedule-carousel #next {
+    right: 8px;
     }
 
     .carousel-slide {
